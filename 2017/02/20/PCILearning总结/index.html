@@ -87,58 +87,55 @@
 
 
 
-<meta name="description" content="创建BeautifulSoup对象
-导入bs4库  1from bs4 import BeautifulSoup
+<meta name="description" content="PCILearningchapter21.基于用户的协作型过滤(user-based collaborative filtering)
+适用于规模较小的、变化非常频繁的数据集
 
 
-
-创建beautifulsoup对象  
-1soup = BeautifulSoup(html, &quot;html.parser&quot;)
-
-格式化打印soup对象内容  
-1print(soup.prettify())
+1.1数据集构建使用嵌套字典，表达不同人及其偏好
 
 
-四大对象种类
-tag(两个重要属性是name和attrs)
-1pri">
+1.2寻找相近用户
+
+
+1.2.1欧几里得距离：二维空间几何距离策略：返回值 1/（d+1）
+
+
+1.2.2皮尔逊相关度作用：判断两组数据与某一直线的拟合程度，修正‘">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Beautifulsoup使用">
-<meta property="og:url" content="http://yoursite.com/2017/02/19/Beautifulsoup使用/index.html">
+<meta property="og:title" content="PCILearning总结">
+<meta property="og:url" content="http://yoursite.com/2017/02/20/PCILearning总结/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="创建BeautifulSoup对象
-导入bs4库  1from bs4 import BeautifulSoup
+<meta property="og:description" content="PCILearningchapter21.基于用户的协作型过滤(user-based collaborative filtering)
+适用于规模较小的、变化非常频繁的数据集
 
 
-
-创建beautifulsoup对象  
-1soup = BeautifulSoup(html, &quot;html.parser&quot;)
-
-格式化打印soup对象内容  
-1print(soup.prettify())
+1.1数据集构建使用嵌套字典，表达不同人及其偏好
 
 
-四大对象种类
-tag(两个重要属性是name和attrs)
-1pri">
-<meta property="og:updated_time" content="2017-02-19T05:59:00.414Z">
+1.2寻找相近用户
+
+
+1.2.1欧几里得距离：二维空间几何距离策略：返回值 1/（d+1）
+
+
+1.2.2皮尔逊相关度作用：判断两组数据与某一直线的拟合程度，修正‘">
+<meta property="og:updated_time" content="2017-02-20T02:21:53.421Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Beautifulsoup使用">
-<meta name="twitter:description" content="创建BeautifulSoup对象
-导入bs4库  1from bs4 import BeautifulSoup
+<meta name="twitter:title" content="PCILearning总结">
+<meta name="twitter:description" content="PCILearningchapter21.基于用户的协作型过滤(user-based collaborative filtering)
+适用于规模较小的、变化非常频繁的数据集
 
 
-
-创建beautifulsoup对象  
-1soup = BeautifulSoup(html, &quot;html.parser&quot;)
-
-格式化打印soup对象内容  
-1print(soup.prettify())
+1.1数据集构建使用嵌套字典，表达不同人及其偏好
 
 
-四大对象种类
-tag(两个重要属性是name和attrs)
-1pri">
+1.2寻找相近用户
+
+
+1.2.1欧几里得距离：二维空间几何距离策略：返回值 1/（d+1）
+
+
+1.2.2皮尔逊相关度作用：判断两组数据与某一直线的拟合程度，修正‘">
 
 
 
@@ -166,13 +163,13 @@ tag(两个重要属性是name和attrs)
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/19/Beautifulsoup使用/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/20/PCILearning总结/"/>
 
 
 
 
 
-  <title> Beautifulsoup使用 | Hexo </title>
+  <title> PCILearning总结 | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -289,7 +286,7 @@ tag(两个重要属性是name和attrs)
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/19/Beautifulsoup使用/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/20/PCILearning总结/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="John Doe">
@@ -313,7 +310,7 @@ tag(两个重要属性是name和attrs)
             
             
               
-                Beautifulsoup使用
+                PCILearning总结
               
             
           </h1>
@@ -328,8 +325,8 @@ tag(两个重要属性是name和attrs)
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-19T12:40:44+08:00">
-                2017-02-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-20T10:20:36+08:00">
+                2017-02-20
               </time>
             
 
@@ -364,44 +361,38 @@ tag(两个重要属性是name和attrs)
       
 
       
-        <h2 id="创建BeautifulSoup对象"><a href="#创建BeautifulSoup对象" class="headerlink" title="创建BeautifulSoup对象"></a>创建BeautifulSoup对象</h2><ul>
-<li>导入bs4库  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div></pre></td></tr></table></figure>
-</li>
+        <h1 id="PCILearning"><a href="#PCILearning" class="headerlink" title="PCILearning"></a>PCILearning</h1><h2 id="chapter2"><a href="#chapter2" class="headerlink" title="chapter2"></a>chapter2</h2><h3 id="1-基于用户的协作型过滤-user-based-collaborative-filtering"><a href="#1-基于用户的协作型过滤-user-based-collaborative-filtering" class="headerlink" title="1.基于用户的协作型过滤(user-based collaborative filtering)"></a>1.基于用户的协作型过滤(user-based collaborative filtering)</h3><blockquote>
+<p>适用于规模较小的、变化非常频繁的数据集</p>
+</blockquote>
+<ul>
+<li>1.1数据集构建使用嵌套字典，表达不同人及其偏好</li>
 </ul>
 <ul>
-<li><p>创建beautifulsoup对象  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">soup = BeautifulSoup(html, <span class="string">"html.parser"</span>)</div></pre></td></tr></table></figure>
-</li>
-<li><p>格式化打印soup对象内容  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(soup.prettify())</div></pre></td></tr></table></figure>
-</li>
+<li>1.2寻找相近用户</li>
 </ul>
-<h2 id="四大对象种类"><a href="#四大对象种类" class="headerlink" title="四大对象种类"></a>四大对象种类</h2><ol>
-<li><p>tag(两个重要属性是name和attrs)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(soup.title)</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(soup.head)</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(soup.a)</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(soup.p)</div></pre></td></tr></table></figure>
-</li>
-<li><p>NavigableString</p>
 <ul>
-<li>获取标签内部的文字  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(soup.p.string)</div></pre></td></tr></table></figure>
-</li>
+<li>1.2.1欧几里得距离：二维空间几何距离<br>策略：返回值 1/（d+1）</li>
 </ul>
-</li>
-<li><p>BeautifulSoup<br>表示的是一个文档的全部内容.大部分时候,可以把它当作 Tag 对象，是一个特殊的 Tag</p>
-</li>
-<li>Comment<br>Comment 对象是一个特殊类型的 NavigableString 对象，其实输出的内容仍然不包括注释符号<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> type(soup.a.string)==bs4.element.Comment:</div><div class="line">     <span class="keyword">print</span> soup.a.string</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="遍历文档树"><a href="#遍历文档树" class="headerlink" title="遍历文档树"></a>遍历文档树</h2><ol>
-<li><p>.contents<br>tag 的 .content 属性可以将tag的子节点以列表的方式输出</p>
-</li>
-<li><p>.children<br>它返回的不是一个 list，不过我们可以通过遍历获取所有子节点  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> child <span class="keyword">in</span> soup.body.children:</div><div class="line">    <span class="keyword">print</span> child</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>更多内容见  <a href="http://cuiqingcai.com/1319.html" target="_blank" rel="external">BeautifulSoup使用</a></p>
+<ul>
+<li>1.2.2皮尔逊相关度<br>作用：判断两组数据与某一直线的拟合程度，修正‘夸大分值’的情况<br>适用场合：数据不是很规范时（一组普遍偏高，一组普遍偏低）</li>
+</ul>
+<ul>
+<li>1.2.3曼哈顿距离（A*寻路算法）</li>
+</ul>
+<ul>
+<li>1.2.4Jaccard系数</li>
+</ul>
+<ul>
+<li>1.3推荐物品<br>对相似用户对物品的评分进行加权平均</li>
+</ul>
+<ul>
+<li>1.4寻找相似物品<br>矩阵转置</li>
+</ul>
+<h3 id="2-基于物品的协作型过滤-item-based-collaborative-filtering"><a href="#2-基于物品的协作型过滤-item-based-collaborative-filtering" class="headerlink" title="2.基于物品的协作型过滤(item-based collaborative filtering)"></a>2.基于物品的协作型过滤(item-based collaborative filtering)</h3><blockquote>
+<p>在拥有大量数据集的情况下，基于物品的协作型过滤更好。<br>物品间的比较不像用户间的比较那么频繁。  </p>
+</blockquote>
+<p>优点：大量计算任务预先执行，更快的给予需要推荐的用户结果<br>缺点：增加了维护物品相似度表达的额外开销</p>
+<p>具体说明：在为某用户提供推荐时，先统计他曾评分的物品集，寻找这些物品的相似物品集，进行加权平均</p>
 
       
     </div>
@@ -432,8 +423,8 @@ tag(两个重要属性是name和attrs)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/16/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2017/02/19/Beautifulsoup使用/" rel="next" title="Beautifulsoup使用">
+                <i class="fa fa-chevron-left"></i> Beautifulsoup使用
               </a>
             
           </div>
@@ -441,10 +432,6 @@ tag(两个重要属性是name和attrs)
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/20/PCILearning总结/" rel="prev" title="PCILearning总结">
-                PCILearning总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -555,7 +542,7 @@ tag(两个重要属性是name和attrs)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建BeautifulSoup对象"><span class="nav-number">1.</span> <span class="nav-text">创建BeautifulSoup对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四大对象种类"><span class="nav-number">2.</span> <span class="nav-text">四大对象种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历文档树"><span class="nav-number">3.</span> <span class="nav-text">遍历文档树</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PCILearning"><span class="nav-number">1.</span> <span class="nav-text">PCILearning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter2"><span class="nav-number">1.1.</span> <span class="nav-text">chapter2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-基于用户的协作型过滤-user-based-collaborative-filtering"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.基于用户的协作型过滤(user-based collaborative filtering)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-基于物品的协作型过滤-item-based-collaborative-filtering"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.基于物品的协作型过滤(item-based collaborative filtering)</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
