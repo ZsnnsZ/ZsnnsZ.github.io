@@ -87,58 +87,25 @@
 
 
 
-<meta name="description" content="创建BeautifulSoup对象
-导入bs4库  1from bs4 import BeautifulSoup
+<meta name="description" content="文档过滤算法可以对文档进行鉴别分类
 
-
-
-创建beautifulsoup对象  
-1soup = BeautifulSoup(html, &quot;html.parser&quot;)
-
-格式化打印soup对象内容  
-1print(soup.prettify())
-
-
-四大对象种类
-tag(两个重要属性是name和attrs)
-1pri">
+早期采用基于规则的过滤器，有两个问题，规则可能被垃圾制造者获悉，统一的过滤方式不一定适合不同群体。
+为了解决这个问题，需要新的算法能够收集信息学会识别垃圾信息，这样就可以为不同的用户、群组或网站建立起各自的应用实例和数据集，他们对于垃圾信息的界定有自己的观点。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Beautifulsoup使用">
-<meta property="og:url" content="http://yoursite.com/2017/02/19/Beautifulsoup使用/index.html">
+<meta property="og:title" content="[ML]文档过滤">
+<meta property="og:url" content="http://yoursite.com/2017/02/25/ML-文档过滤/index.html">
 <meta property="og:site_name" content="ZSN码疯窝">
-<meta property="og:description" content="创建BeautifulSoup对象
-导入bs4库  1from bs4 import BeautifulSoup
+<meta property="og:description" content="文档过滤算法可以对文档进行鉴别分类
 
-
-
-创建beautifulsoup对象  
-1soup = BeautifulSoup(html, &quot;html.parser&quot;)
-
-格式化打印soup对象内容  
-1print(soup.prettify())
-
-
-四大对象种类
-tag(两个重要属性是name和attrs)
-1pri">
-<meta property="og:updated_time" content="2017-02-19T05:59:00.414Z">
+早期采用基于规则的过滤器，有两个问题，规则可能被垃圾制造者获悉，统一的过滤方式不一定适合不同群体。
+为了解决这个问题，需要新的算法能够收集信息学会识别垃圾信息，这样就可以为不同的用户、群组或网站建立起各自的应用实例和数据集，他们对于垃圾信息的界定有自己的观点。">
+<meta property="og:updated_time" content="2017-02-25T11:01:20.981Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Beautifulsoup使用">
-<meta name="twitter:description" content="创建BeautifulSoup对象
-导入bs4库  1from bs4 import BeautifulSoup
+<meta name="twitter:title" content="[ML]文档过滤">
+<meta name="twitter:description" content="文档过滤算法可以对文档进行鉴别分类
 
-
-
-创建beautifulsoup对象  
-1soup = BeautifulSoup(html, &quot;html.parser&quot;)
-
-格式化打印soup对象内容  
-1print(soup.prettify())
-
-
-四大对象种类
-tag(两个重要属性是name和attrs)
-1pri">
+早期采用基于规则的过滤器，有两个问题，规则可能被垃圾制造者获悉，统一的过滤方式不一定适合不同群体。
+为了解决这个问题，需要新的算法能够收集信息学会识别垃圾信息，这样就可以为不同的用户、群组或网站建立起各自的应用实例和数据集，他们对于垃圾信息的界定有自己的观点。">
 
 
 
@@ -166,13 +133,13 @@ tag(两个重要属性是name和attrs)
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/19/Beautifulsoup使用/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/25/ML-文档过滤/"/>
 
 
 
 
 
-  <title> Beautifulsoup使用 | ZSN码疯窝 </title>
+  <title> [ML]文档过滤 | ZSN码疯窝 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -289,7 +256,7 @@ tag(两个重要属性是name和attrs)
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/19/Beautifulsoup使用/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/25/ML-文档过滤/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="James ZsnnsZ">
@@ -313,7 +280,7 @@ tag(两个重要属性是name和attrs)
             
             
               
-                Beautifulsoup使用
+                [ML]文档过滤
               
             
           </h1>
@@ -328,8 +295,8 @@ tag(两个重要属性是name和attrs)
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-19T12:40:44+08:00">
-                2017-02-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-25T17:53:24+08:00">
+                2017-02-25
               </time>
             
 
@@ -364,44 +331,77 @@ tag(两个重要属性是name和attrs)
       
 
       
-        <h2 id="创建BeautifulSoup对象"><a href="#创建BeautifulSoup对象" class="headerlink" title="创建BeautifulSoup对象"></a>创建BeautifulSoup对象</h2><ul>
-<li>导入bs4库  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>创建beautifulsoup对象  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">soup = BeautifulSoup(html, <span class="string">"html.parser"</span>)</div></pre></td></tr></table></figure>
-</li>
-<li><p>格式化打印soup对象内容  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(soup.prettify())</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="四大对象种类"><a href="#四大对象种类" class="headerlink" title="四大对象种类"></a>四大对象种类</h2><ol>
-<li><p>tag(两个重要属性是name和attrs)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(soup.title)</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(soup.head)</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(soup.a)</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(soup.p)</div></pre></td></tr></table></figure>
-</li>
-<li><p>NavigableString</p>
-<ul>
-<li>获取标签内部的文字  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(soup.p.string)</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>BeautifulSoup<br>表示的是一个文档的全部内容.大部分时候,可以把它当作 Tag 对象，是一个特殊的 Tag</p>
-</li>
-<li>Comment<br>Comment 对象是一个特殊类型的 NavigableString 对象，其实输出的内容仍然不包括注释符号<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> type(soup.a.string)==bs4.element.Comment:</div><div class="line">     <span class="keyword">print</span> soup.a.string</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="遍历文档树"><a href="#遍历文档树" class="headerlink" title="遍历文档树"></a>遍历文档树</h2><ol>
-<li><p>.contents<br>tag 的 .content 属性可以将tag的子节点以列表的方式输出</p>
-</li>
-<li><p>.children<br>它返回的不是一个 list，不过我们可以通过遍历获取所有子节点  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> child <span class="keyword">in</span> soup.body.children:</div><div class="line">    <span class="keyword">print</span> child</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>更多内容见  <a href="http://cuiqingcai.com/1319.html" target="_blank" rel="external">BeautifulSoup使用</a></p>
+        <blockquote>
+<p>文档过滤算法可以对文档进行鉴别分类</p>
+</blockquote>
+<p>早期采用基于规则的过滤器，有两个问题，规则可能被垃圾制造者获悉，统一的过滤方式不一定适合不同群体。</p>
+<p>为了解决这个问题，需要新的算法能够收集信息学会识别垃圾信息，这样就可以为不同的用户、群组或网站建立起各自的应用实例和数据集，他们对于垃圾信息的界定有自己的观点。</p>
+<a id="more"></a>
+<h3 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h3><blockquote>
+<p>分类器要对文档进行鉴别，需要利用其内的某些特征。</p>
+<p>特征必须具备一定的普遍性，但又不能普遍到每一篇文档里都能找到。</p>
+</blockquote>
+<h3 id="对分类器进行训练"><a href="#对分类器进行训练" class="headerlink" title="对分类器进行训练"></a>对分类器进行训练</h3><blockquote>
+<p>通过读取正确答案的样本来进行训练，逐渐增加其确定性</p>
+</blockquote>
+<p>建立一个分类器类，可实例化出不同的实例。</p>
+<pre><code>class classifier:    
+    def __init__(self, getfeatures, filename=None):
+        # Counts of feature/category combinations
+        self.fc = {}
+        # Counts of documents in each category
+        self.cc = {}
+        self.getfeatures = getfeatures
+</code></pre><p>训练即同时增加特征的计数值与分类的计数值。</p>
+<pre><code>def train(self, item, cat):
+    features = self.getfeatures(item)
+    for f in features:
+        self.incf(f, cat)
+    self.incc(cat)
+</code></pre><p>计算概率。</p>
+<blockquote>
+<p>此时计算的是条件概率，P(A|B)，P(word|category)表示对于一个给定的分类某个单词出现的概率。假设概率具有独立性，则P(document|category)=document中所有P(feature|category)相乘。</p>
+<p>在掌握的信息极为有限时，需要根据一个假设的概率来做出判断，给予假设概率一个权重，然后对假设概率和当前概率进行加权平均。</p>
+</blockquote>
+<pre><code>def weightedprob(self,f,cat,prf,weight=1.0,ap=0.5):
+    # Calculate current probability
+    basicprob=prf(f,cat)
+
+    # Count the number of times this feature has appeared in
+    # all categories
+    totals=sum([self.fcount(f,c) for c in self.categories()])
+
+    # Calculate the weighted average
+    bp=((weight*ap)+(totals*basicprob))/(weight+totals)
+    return bp
+</code></pre><h3 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h3><blockquote>
+<p>贝叶斯定理：P(A|B) = P(B|A) * P(A) / P(B)</p>
+</blockquote>
+<p>选择分类</p>
+<blockquote>
+<p>在计算出概率之后，实际判定某个内容项属于某个分类，不是简单的选取概率最大的那个分类。因为有时候承认不知道分类比简单的归类到概率最大的那个分类要好。例如垃圾邮件分类时错过重要邮件。</p>
+</blockquote>
+<p>解决方案：为每个分类确定一个阈值。仅当要被分类到的概率值大于阈值乘以次大概率值时才进行分类，否则归于未知类。</p>
+<h3 id="费舍尔分类器"><a href="#费舍尔分类器" class="headerlink" title="费舍尔分类器"></a>费舍尔分类器</h3><blockquote>
+<p>朴素贝叶斯分类器是利用特征概率来计算整篇文档的概率，而费舍尔方法为每个文档中的每个特征都求得了分类的概率，然后将这些概率组合起来，判断其是否可能属于某个分类。</p>
+</blockquote>
+<p>基于各分类中包含的内容项数量相等的假设：</p>
+<pre><code>def cprob(self,f,cat):
+    # The frequency of this feature in this category    
+    clf=self.fprob(f,cat)
+    if clf==0: return 0
+
+    # The frequency of this feature in all the categories
+    freqsum=sum([self.fprob(f,c) for c in self.categories()])
+
+    # The probability is the frequency in this category divided by
+    # the overall frequency
+    p=clf/(freqsum)
+</code></pre><p>该函数返回的内容代表具备指定特征的内容属于指定分类的可能性。</p>
+<p>计算组合概率：将各概率相乘，取自然对数，然后乘以-2，在用倒置卡方函数求得概率。该概率位于0~1。</p>
+<p>选择分类：为每个分类指定下限，当计算出的概率高于这个下限时才归于该类。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>对于垃圾文档的过滤，费舍尔方法具有更好的表现。</p>
+<h3 id="其他解决方法"><a href="#其他解决方法" class="headerlink" title="其他解决方法"></a>其他解决方法</h3><p>支持向量机(SVM)</p>
 
       
     </div>
@@ -432,8 +432,8 @@ tag(两个重要属性是name和attrs)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/16/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2017/02/23/ML-优化/" rel="next" title="[ML]优化">
+                <i class="fa fa-chevron-left"></i> [ML]优化
               </a>
             
           </div>
@@ -441,10 +441,6 @@ tag(两个重要属性是name和attrs)
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/22/PCILearning总结/" rel="prev" title="PCILearning">
-                PCILearning <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -555,7 +551,7 @@ tag(两个重要属性是name和attrs)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建BeautifulSoup对象"><span class="nav-number">1.</span> <span class="nav-text">创建BeautifulSoup对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四大对象种类"><span class="nav-number">2.</span> <span class="nav-text">四大对象种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历文档树"><span class="nav-number">3.</span> <span class="nav-text">遍历文档树</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#特征提取"><span class="nav-number">1.</span> <span class="nav-text">特征提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对分类器进行训练"><span class="nav-number">2.</span> <span class="nav-text">对分类器进行训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#朴素贝叶斯分类器"><span class="nav-number">3.</span> <span class="nav-text">朴素贝叶斯分类器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#费舍尔分类器"><span class="nav-number">4.</span> <span class="nav-text">费舍尔分类器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他解决方法"><span class="nav-number">6.</span> <span class="nav-text">其他解决方法</span></a></li></ol></div>
             
 
           </div>
