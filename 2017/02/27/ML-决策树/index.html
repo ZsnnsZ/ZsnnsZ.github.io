@@ -89,23 +89,20 @@
 
 <meta name="description" content="决策树模型具有易于解释的特点，对于决策得出的过程有清晰的体现，是对被观测数据进行分类的一种相当直观的方法。广泛应用于商务分析、医疗决策、政策制定等领域的数据挖掘。
 
-CART算法
-分类回归树：CART(Classification And Regression Tree)算法采用一种二分递归分割的技术，将当前的样本集分为两个子样本集，使得生成的的每个非叶子节点都有两个分支。因此，CART算法生成">
+决策树学习本质上是从训练数据集中归纳出一组分类规则，估计条件概率模型的选择应该不仅对训练数据有很好的拟合，而且对未知数据有很好的预测能力。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[ML]决策树">
 <meta property="og:url" content="http://yoursite.com/2017/02/27/ML-决策树/index.html">
 <meta property="og:site_name" content="ZSN码疯窝">
 <meta property="og:description" content="决策树模型具有易于解释的特点，对于决策得出的过程有清晰的体现，是对被观测数据进行分类的一种相当直观的方法。广泛应用于商务分析、医疗决策、政策制定等领域的数据挖掘。
 
-CART算法
-分类回归树：CART(Classification And Regression Tree)算法采用一种二分递归分割的技术，将当前的样本集分为两个子样本集，使得生成的的每个非叶子节点都有两个分支。因此，CART算法生成">
-<meta property="og:updated_time" content="2017-02-27T05:44:52.290Z">
+决策树学习本质上是从训练数据集中归纳出一组分类规则，估计条件概率模型的选择应该不仅对训练数据有很好的拟合，而且对未知数据有很好的预测能力。">
+<meta property="og:updated_time" content="2017-03-02T05:55:42.865Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[ML]决策树">
 <meta name="twitter:description" content="决策树模型具有易于解释的特点，对于决策得出的过程有清晰的体现，是对被观测数据进行分类的一种相当直观的方法。广泛应用于商务分析、医疗决策、政策制定等领域的数据挖掘。
 
-CART算法
-分类回归树：CART(Classification And Regression Tree)算法采用一种二分递归分割的技术，将当前的样本集分为两个子样本集，使得生成的的每个非叶子节点都有两个分支。因此，CART算法生成">
+决策树学习本质上是从训练数据集中归纳出一组分类规则，估计条件概率模型的选择应该不仅对训练数据有很好的拟合，而且对未知数据有很好的预测能力。">
 
 
 
@@ -334,24 +331,57 @@ CART算法
         <blockquote>
 <p>决策树模型具有易于解释的特点，对于决策得出的过程有清晰的体现，是对被观测数据进行分类的一种相当直观的方法。广泛应用于商务分析、医疗决策、政策制定等领域的数据挖掘。</p>
 </blockquote>
-<h3 id="CART算法"><a href="#CART算法" class="headerlink" title="CART算法"></a>CART算法</h3><blockquote>
-<p>分类回归树：CART(Classification And Regression Tree)算法采用一种二分递归分割的技术，将当前的样本集分为两个子样本集，使得生成的的每个非叶子节点都有两个分支。因此，CART算法生成的决策树是结构简洁的二叉树。</p>
-</blockquote>
+<p>决策树学习本质上是从训练数据集中归纳出一组分类规则，估计条件概率模型的选择应该不仅对训练数据有很好的拟合，而且对未知数据有很好的预测能力。</p>
 <a id="more"></a>
-<h4 id="选择合适的拆分方案"><a href="#选择合适的拆分方案" class="headerlink" title="选择合适的拆分方案"></a>选择合适的拆分方案</h4><ul>
-<li><p>基尼不纯度<br>将来自集合中的某种结果随机应用于集合中某一数据项的预期误差率。<br>值(0~1)越高,拆分越不理想。</p>
-</li>
-<li><p>熵  </p>
+<p>决策树学习的损失函数通常是正则化的极大似然函数，学习策略是以损失函数为目标函数的最小化。</p>
+<h3 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h3><p>ID3算法的核心是在决策树的各个结点上应用信息增益准则选择特征，递归的构建决策树。</p>
+<p>从根结点开始，对结点计算所有可能的特征的信息增益，选择信息增益最大的特征作为结点的特征，由该特征的不同取值建立子结点，再对子结点递归调用以上方法，构建决策树；直到所以特征的信息增益都很小或者没有特征可以选取为止。</p>
+<p>相当于用极大似然法进行概率模型的选择。</p>
+<p>缺点：容易过拟合</p>
+<h3 id="C4-5"><a href="#C4-5" class="headerlink" title="C4.5"></a>C4.5</h3><p>在ID3算法的基础上进行改进，选择信息增益比来选择特征。</p>
+<h3 id="CART算法"><a href="#CART算法" class="headerlink" title="CART算法"></a>CART算法</h3><p>分类回归树：CART(Classification And Regression Tree)算法采用一种二分递归分割的技术，将当前的样本集分为两个子样本集，使得生成的的每个非叶子节点都有两个分支。因此，CART算法生成的决策树是结构简洁的二叉树。</p>
 <blockquote>
-<p>代表集合的无序程度  </p>
+<p>CART既可以用于分类也可以用于回归</p>
+</blockquote>
+<p>划分特征选择：<br>对回归树用平方误差最小化准则<br>对生成树用基尼指数最小化准则</p>
+<h3 id="选择合适的拆分方案"><a href="#选择合适的拆分方案" class="headerlink" title="选择合适的拆分方案"></a>选择合适的拆分方案</h3><ul>
+<li><p>基尼不纯度<br>将来自集合中的某种结果随机应用于集合中某一数据项的预期误差率。<br>值(0~1)越高,拆分越不理想。</p>
+<blockquote>
+<p>GINI(P) = sigma(pk<em>(1-pk)) = 1 - sigma(pk</em>pk)</p>
+</blockquote>
+</li>
+<li><p>熵<br>表示随机变量不确定性的度量,H(X) = -sigma(pi*logpi)</p>
+</li>
+</ul>
+<blockquote>
+<p>熵和基尼不纯度之间的主要区别在于，熵达到峰值的过程要相对慢一些。因此，熵对于混乱集合的判罚要更重一些。 熵用得更多。</p>
+</blockquote>
+<ul>
+<li>信息增益<blockquote>
+<p>g(D,A) = H(D) - H(D|A)</p>
 </blockquote>
 </li>
 </ul>
-<p>熵和基尼不纯度之间的主要区别在于，熵达到峰值的过程要相对慢一些。因此，熵对于混乱集合的判罚要更重一些。<br>我们的算法首先求出整个群组的熵，然后尝试利用每个属性的可能取值对群组进行拆分，并求出两个新群组的熵。算法会计算相应的信息增益。信息增益是指当前熵与两个新群组经加权平均后的熵之间的差值。算法会对每个属性计算相应的信息增益，然后从中选出信息增益最大的属性。通过计算每个新生节点的最佳拆分属性，对分支的拆分过程和树的构造过程会不断持续下去。当拆分某个节点所得的信息增益不大于0的时候，对分支的拆分才会停止。</p>
-<h4 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h4><blockquote>
+<blockquote>
+<p>H(D|A) = sigma(Di*H(Di)/D)</p>
+</blockquote>
+<p>在使用特征A对训练数据集D进行划分后，熵的减少值叫做信息增益，切分特征选取的原则就是提取信息增益最大化的特征。</p>
+<blockquote>
+<p>以信息增益作为特征选择的根据，存在选择取值较多的特征的问题，使用信息增益比可以对这一问题进行校正。</p>
+</blockquote>
+<p>我们的算法首先求出整个群组的熵，然后尝试利用每个属性的可能取值对群组进行拆分，并求出两个新群组的熵。算法会计算相应的信息增益。信息增益是指当前熵与两个新群组经加权平均后的熵之间的差值。算法会对每个属性计算相应的信息增益，然后从中选出信息增益最大的属性。通过计算每个新生节点的最佳拆分属性，对分支的拆分过程和树的构造过程会不断持续下去。当拆分某个节点所得的信息增益不大于0的时候，对分支的拆分才会停止。</p>
+<h3 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h3><blockquote>
 <p>过度拟合(overfitted):专门针对训练集所创建的分支，其熵与真实情况相比可能有所降低。过度拟合的决策树给出的决策可能具有特殊性。</p>
 </blockquote>
-<p>解决办法：剪枝<br>剪枝的过程：对具有相同父节点的一组节点进行检查，判断如果将其合并，熵的增加是否会小于某个指定的阈值，如果是，则将这些节点合并。</p>
+<p>解决办法：剪枝</p>
+<blockquote>
+<p>剪枝：将已经生成的树进行简化的过程  </p>
+</blockquote>
+<p>剪枝的策略：最小化loss function 或者 cost function</p>
+<blockquote>
+<p>损失函数：Cα(T) = C(T) + αT<br>说明：T为叶节点个数，反应模型复杂度，C(T)表示模型对训练数据的预测误差。用参数α&gt;=0控制二者的影响。</p>
+</blockquote>
+<p>剪枝的过程：对具有相同父节点的一组节点进行检查，判断如果将其合并，熵的增加是否会小于某个指定的阈值，如果是，则将这些节点合并。</p>
 <h4 id="处理缺失数据"><a href="#处理缺失数据" class="headerlink" title="处理缺失数据"></a>处理缺失数据</h4><blockquote>
 <p>如果有重要数据缺失，那么它的两个分支都走，最终的结果是他们的加权平均。</p>
 </blockquote>
@@ -472,7 +502,7 @@ CART算法
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -522,7 +552,7 @@ CART算法
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CART算法"><span class="nav-number">1.</span> <span class="nav-text">CART算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#选择合适的拆分方案"><span class="nav-number">1.1.</span> <span class="nav-text">选择合适的拆分方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#决策树的剪枝"><span class="nav-number">1.2.</span> <span class="nav-text">决策树的剪枝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理缺失数据"><span class="nav-number">1.3.</span> <span class="nav-text">处理缺失数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候使用决策树"><span class="nav-number">2.</span> <span class="nav-text">什么时候使用决策树</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ID3"><span class="nav-number">1.</span> <span class="nav-text">ID3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C4-5"><span class="nav-number">2.</span> <span class="nav-text">C4.5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CART算法"><span class="nav-number">3.</span> <span class="nav-text">CART算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择合适的拆分方案"><span class="nav-number">4.</span> <span class="nav-text">选择合适的拆分方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#决策树的剪枝"><span class="nav-number">5.</span> <span class="nav-text">决策树的剪枝</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#处理缺失数据"><span class="nav-number">5.1.</span> <span class="nav-text">处理缺失数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候使用决策树"><span class="nav-number">6.</span> <span class="nav-text">什么时候使用决策树</span></a></li></ol></div>
             
 
           </div>

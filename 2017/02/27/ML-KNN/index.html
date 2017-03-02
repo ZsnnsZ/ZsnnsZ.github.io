@@ -87,22 +87,22 @@
 
 
 
-<meta name="description" content="KNN:k-最近邻算法，k表示为了求得最终结果而参与求平均运算的样本数量，为了消除噪声，可以多选取一些近邻，但是选取近邻过多会降低准确性。
+<meta name="description" content="KNN:k-最近邻算法，k表示为了求得最终结果而参与运算的样本数量，k值太小，容易过拟合，k值过大会降低准确性。
 
-如何寻找近邻定义相似度：采用距离度量方法(欧几里得，余弦)来确定两个样本的相似度，对结果进行排序，取前k个作为近邻">
+如何寻找近邻定义相似度：采用距离度量方法(Lp距离，p=2为欧氏距离)来确定两个样本的相似度，对结果进行排序，取前k个作为近邻">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[ML]KNN">
 <meta property="og:url" content="http://yoursite.com/2017/02/27/ML-KNN/index.html">
 <meta property="og:site_name" content="ZSN码疯窝">
-<meta property="og:description" content="KNN:k-最近邻算法，k表示为了求得最终结果而参与求平均运算的样本数量，为了消除噪声，可以多选取一些近邻，但是选取近邻过多会降低准确性。
+<meta property="og:description" content="KNN:k-最近邻算法，k表示为了求得最终结果而参与运算的样本数量，k值太小，容易过拟合，k值过大会降低准确性。
 
-如何寻找近邻定义相似度：采用距离度量方法(欧几里得，余弦)来确定两个样本的相似度，对结果进行排序，取前k个作为近邻">
-<meta property="og:updated_time" content="2017-02-27T05:46:05.143Z">
+如何寻找近邻定义相似度：采用距离度量方法(Lp距离，p=2为欧氏距离)来确定两个样本的相似度，对结果进行排序，取前k个作为近邻">
+<meta property="og:updated_time" content="2017-03-01T15:03:02.004Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[ML]KNN">
-<meta name="twitter:description" content="KNN:k-最近邻算法，k表示为了求得最终结果而参与求平均运算的样本数量，为了消除噪声，可以多选取一些近邻，但是选取近邻过多会降低准确性。
+<meta name="twitter:description" content="KNN:k-最近邻算法，k表示为了求得最终结果而参与运算的样本数量，k值太小，容易过拟合，k值过大会降低准确性。
 
-如何寻找近邻定义相似度：采用距离度量方法(欧几里得，余弦)来确定两个样本的相似度，对结果进行排序，取前k个作为近邻">
+如何寻找近邻定义相似度：采用距离度量方法(Lp距离，p=2为欧氏距离)来确定两个样本的相似度，对结果进行排序，取前k个作为近邻">
 
 
 
@@ -329,9 +329,9 @@
 
       
         <blockquote>
-<p>KNN:k-最近邻算法，k表示为了求得最终结果而参与求平均运算的样本数量，为了消除噪声，可以多选取一些近邻，但是选取近邻过多会降低准确性。</p>
+<p>KNN:k-最近邻算法，k表示为了求得最终结果而参与运算的样本数量，k值太小，容易过拟合，k值过大会降低准确性。</p>
 </blockquote>
-<h3 id="如何寻找近邻"><a href="#如何寻找近邻" class="headerlink" title="如何寻找近邻"></a>如何寻找近邻</h3><p>定义相似度：采用距离度量方法(欧几里得，余弦)来确定两个样本的相似度，对结果进行排序，取前k个作为近邻</p>
+<h3 id="如何寻找近邻"><a href="#如何寻找近邻" class="headerlink" title="如何寻找近邻"></a>如何寻找近邻</h3><p>定义相似度：采用距离度量方法(Lp距离，p=2为欧氏距离)来确定两个样本的相似度，对结果进行排序，取前k个作为近邻</p>
 <a id="more"></a>
 <h3 id="为近邻分配权重"><a href="#为近邻分配权重" class="headerlink" title="为近邻分配权重"></a>为近邻分配权重</h3><blockquote>
 <p>为了解决选择太远的样本作为近邻影响结果，可将距离转换为权重，求加权平均。</p>
@@ -387,6 +387,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/01/ML-搜索排名/" rel="prev" title="[ML]搜索排名">
+                [ML]搜索排名 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -458,7 +462,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

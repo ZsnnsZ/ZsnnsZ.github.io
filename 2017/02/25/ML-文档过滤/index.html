@@ -99,7 +99,7 @@
 
 早期采用基于规则的过滤器，有两个问题，规则可能被垃圾制造者获悉，统一的过滤方式不一定适合不同群体。
 为了解决这个问题，需要新的算法能够收集信息学会识别垃圾信息，这样就可以为不同的用户、群组或网站建立起各自的应用实例和数据集，他们对于垃圾信息的界定有自己的观点。">
-<meta property="og:updated_time" content="2017-02-25T11:01:20.981Z">
+<meta property="og:updated_time" content="2017-03-01T15:28:01.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[ML]文档过滤">
 <meta name="twitter:description" content="文档过滤算法可以对文档进行鉴别分类
@@ -374,8 +374,8 @@
     # Calculate the weighted average
     bp=((weight*ap)+(totals*basicprob))/(weight+totals)
     return bp
-</code></pre><h3 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h3><blockquote>
-<p>贝叶斯定理：P(A|B) = P(B|A) * P(A) / P(B)</p>
+</code></pre><h2 id="原理-朴素贝叶斯分类器"><a href="#原理-朴素贝叶斯分类器" class="headerlink" title="原理:朴素贝叶斯分类器"></a>原理:朴素贝叶斯分类器</h2><blockquote>
+<p>贝叶斯定理：<br>P(A∩B) = P(A) <em> P(B|A) = P(B) </em> P(A|B)<br>P(A|B) = P(B|A) * P(A) / P(B)</p>
 </blockquote>
 <p>选择分类</p>
 <blockquote>
@@ -516,7 +516,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -566,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#特征提取"><span class="nav-number">1.</span> <span class="nav-text">特征提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对分类器进行训练"><span class="nav-number">2.</span> <span class="nav-text">对分类器进行训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#朴素贝叶斯分类器"><span class="nav-number">3.</span> <span class="nav-text">朴素贝叶斯分类器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#费舍尔分类器"><span class="nav-number">4.</span> <span class="nav-text">费舍尔分类器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他解决方法"><span class="nav-number">6.</span> <span class="nav-text">其他解决方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#特征提取"><span class="nav-number">1.</span> <span class="nav-text">特征提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对分类器进行训练"><span class="nav-number">2.</span> <span class="nav-text">对分类器进行训练</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理-朴素贝叶斯分类器"><span class="nav-number"></span> <span class="nav-text">原理:朴素贝叶斯分类器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#费舍尔分类器"><span class="nav-number">1.</span> <span class="nav-text">费舍尔分类器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他解决方法"><span class="nav-number">3.</span> <span class="nav-text">其他解决方法</span></a></li></ol></div>
             
 
           </div>

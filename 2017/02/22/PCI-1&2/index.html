@@ -87,19 +87,16 @@
 
 
 
-<meta name="description" content="优化技术擅长于处理：受多种变量影响，存在许多可能解的问题，结果因这些变量的组合而产生很大的变化。可能解的数目非常大，以至于无法一一尝试。
-利用优化算法解决问题的基本要求是：问题本身可找到一个成本函数，相似的解会产生相似的结果。">
+<meta name="description" content="A brief summary of the first and second chapters of Programming Collective Intelligence">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[ML]优化">
-<meta property="og:url" content="http://yoursite.com/2017/02/23/ML-优化/index.html">
+<meta property="og:title" content="[PCL]1&2">
+<meta property="og:url" content="http://yoursite.com/2017/02/22/PCI-1&2/index.html">
 <meta property="og:site_name" content="ZSN码疯窝">
-<meta property="og:description" content="优化技术擅长于处理：受多种变量影响，存在许多可能解的问题，结果因这些变量的组合而产生很大的变化。可能解的数目非常大，以至于无法一一尝试。
-利用优化算法解决问题的基本要求是：问题本身可找到一个成本函数，相似的解会产生相似的结果。">
-<meta property="og:updated_time" content="2017-02-23T15:42:58.178Z">
+<meta property="og:description" content="A brief summary of the first and second chapters of Programming Collective Intelligence">
+<meta property="og:updated_time" content="2017-03-01T15:19:14.210Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[ML]优化">
-<meta name="twitter:description" content="优化技术擅长于处理：受多种变量影响，存在许多可能解的问题，结果因这些变量的组合而产生很大的变化。可能解的数目非常大，以至于无法一一尝试。
-利用优化算法解决问题的基本要求是：问题本身可找到一个成本函数，相似的解会产生相似的结果。">
+<meta name="twitter:title" content="[PCL]1&2">
+<meta name="twitter:description" content="A brief summary of the first and second chapters of Programming Collective Intelligence">
 
 
 
@@ -127,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/23/ML-优化/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/22/PCI-1&2/"/>
 
 
 
 
 
-  <title> [ML]优化 | ZSN码疯窝 </title>
+  <title> [PCL]1&2 | ZSN码疯窝 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -250,7 +247,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/23/ML-优化/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/22/PCI-1&2/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="James ZsnnsZ">
@@ -274,7 +271,7 @@
             
             
               
-                [ML]优化
+                [PCL]1&2
               
             
           </h1>
@@ -289,8 +286,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-23T22:47:59+08:00">
-                2017-02-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-22T22:22:22+08:00">
+                2017-02-22
               </time>
             
 
@@ -325,46 +322,64 @@
       
 
       
-        <blockquote>
-<p>优化技术擅长于处理：受多种变量影响，存在许多可能解的问题，结果因这些变量的组合而产生很大的变化。可能解的数目非常大，以至于无法一一尝试。</p>
-<p>利用优化算法解决问题的基本要求是：问题本身可找到一个成本函数，相似的解会产生相似的结果。</p>
+        <h2 id="A-brief-summary-of-the-first-and-second-chapters-of-Programming-Collective-Intelligence"><a href="#A-brief-summary-of-the-first-and-second-chapters-of-Programming-Collective-Intelligence" class="headerlink" title="A brief summary of the first and second chapters of Programming Collective Intelligence"></a>A brief summary of the first and second chapters of Programming Collective Intelligence</h2><a id="more"></a>
+<h2 id="chapter2-Making-Recommendations"><a href="#chapter2-Making-Recommendations" class="headerlink" title="chapter2  Making Recommendations"></a>chapter2  Making Recommendations</h2><h3 id="1-基于用户的协作型过滤-user-based-collaborative-filtering"><a href="#1-基于用户的协作型过滤-user-based-collaborative-filtering" class="headerlink" title="1.基于用户的协作型过滤(user-based collaborative filtering)"></a>1.基于用户的协作型过滤(user-based collaborative filtering)</h3><blockquote>
+<p>适用于规模较小的、变化非常频繁的数据集</p>
 </blockquote>
-<a id="more"></a>
-<h3 id="策略一：随机搜索"><a href="#策略一：随机搜索" class="headerlink" title="策略一：随机搜索"></a>策略一：随机搜索</h3><p>随机搜索算法是随机产生较大数目的一组组解的猜测值，计算每组猜测解的代价，选择最小代价的猜测解作为最终解。</p>
-<blockquote>
-<p>这种算法没有充分利用，可以说没有利用到已经发现的优解。效率低下。不推荐使用。</p>
-</blockquote>
-<h3 id="策略二：爬山法（梯度下降）"><a href="#策略二：爬山法（梯度下降）" class="headerlink" title="策略二：爬山法（梯度下降）"></a>策略二：爬山法（梯度下降）</h3><p>爬山法以一个随机解开始，然后在其临近的解集里寻找更优解，直到寻找到局部最优解为止，有一定可能找到全局最优解。</p>
-<h3 id="策略三：模拟退火算法"><a href="#策略三：模拟退火算法" class="headerlink" title="策略三：模拟退火算法"></a>策略三：模拟退火算法</h3><p>退火算法以一个随机解开始。用一个变量表示温度，这个温度在迭代过程中会逐渐降低。<br>解组的更新有两种情况：</p>
-<ol>
-<li>新的解代价更低，新的解替代当前解</li>
-<li>新的解代价更高，但仍可能成为当前解（以一个随机数和与温度相关的温度函数进行比较）</li>
-</ol>
-<h3 id="策略四：遗传算法"><a href="#策略四：遗传算法" class="headerlink" title="策略四：遗传算法"></a>策略四：遗传算法</h3><p>遗传算法以一组随机解开始，然后生成这一组随机解的成本，得到一个有关题解的有序列表，取前N个较优解加入新的解组，采取以下方法生成解组中额外的解：</p>
-<ol>
-<li>变异：对一个既有解采取微小、简单、<strong>随机</strong>的改变</li>
-<li>配对：将两个既有解进行组合为一个新的解</li>
-</ol>
-<p>当算法运行至迭代次数，或连续数代后代都没有改善时结束。</p>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ul>
-<li>组团旅游</li>
-<li>寻找能够给出最佳音效的音乐厅外形</li>
-<li>为超音速飞机设计最佳机翼</li>
-<li>给出最佳的化学制品库</li>
-<li>自动化设计语音识别系统</li>
+<ul>
+<li>1.1 数据集构建使用嵌套字典，表达不同人及其偏好</li>
 </ul>
-<h2 id="涉及偏好的优化"><a href="#涉及偏好的优化" class="headerlink" title="涉及偏好的优化"></a>涉及偏好的优化</h2><p>如何将有限的资源分配给多个表达了偏好的人？资源有限说明无法满足所有人的要求。<br>这类问题的目的是从个体中提取信息，并将其组合起来产生出优化的结果。</p>
-<p>解决这个问题有两种方法：</p>
-<ol>
-<li>使成本函数对无效解产生一个很高的数值。但是这将导致很难寻找到次优解。</li>
-<li>寻找一个能够让每个解都为有效解的方法。有效解未必是优解，只是问题的一种解决办法，可能带来额外成本。在成本函数中，对于偏好外的处理要体现出额外的成本。</li>
-</ol>
-<h2 id="网络可视化"><a href="#网络可视化" class="headerlink" title="网络可视化"></a>网络可视化</h2><p>运用优化算法还可以使可视化的网络变得有序和清晰。<br>采取的优化算法为</p>
-<h3 id="质点弹簧法"><a href="#质点弹簧法" class="headerlink" title="质点弹簧法"></a>质点弹簧法</h3><blockquote>
-<p>各节点彼此向对方施加推力，连线对彼此施加拉力。</p>
+<ul>
+<li>1.2 寻找相近用户</li>
+</ul>
+<ul>
+<li>1.2.1 欧几里得距离：二维空间几何距离<br>策略：返回值 1/（d+1）</li>
+</ul>
+<ul>
+<li>1.2.2 皮尔逊相关度(越相似，值越大)<br>作用：判断两组数据与某一直线的拟合程度，修正‘夸大分值’的情况<br>适用场合：数据不是很规范时（一组普遍偏高，一组普遍偏低）</li>
+</ul>
+<ul>
+<li>1.2.3 曼哈顿距离（A*寻路算法）</li>
+</ul>
+<ul>
+<li>1.2.4 Jaccard系数</li>
+</ul>
+<ul>
+<li>1.3推荐物品<br>对相似用户对物品的评分进行加权平均</li>
+</ul>
+<ul>
+<li>1.4寻找相似物品<br>矩阵转置</li>
+</ul>
+<h3 id="2-基于物品的协作型过滤-item-based-collaborative-filtering"><a href="#2-基于物品的协作型过滤-item-based-collaborative-filtering" class="headerlink" title="2.基于物品的协作型过滤(item-based collaborative filtering)"></a>2.基于物品的协作型过滤(item-based collaborative filtering)</h3><blockquote>
+<p>在拥有大量数据集的情况下，基于物品的协作型过滤更好。<br>物品间的比较不像用户间的比较那么频繁。  </p>
 </blockquote>
-<p>质点弹簧法无法避免交叉线。为了减少交叉线，可以将交叉线的数目纳入成本函数中。</p>
-<p>还有一个问题就是节点的距离太近导致布局不清。对于放置太近的题解可以进行‘惩罚’，增加成本。</p>
+<p>优点：大量计算任务预先执行，更快的给予需要推荐的用户结果<br>缺点：增加了维护物品相似度表达的额外开销</p>
+<p>具体说明：在为某用户提供推荐时，先统计他曾评分的物品集，寻找这些物品的相似物品集，进行加权平均  </p>
+<h2 id="chapter3-Dicovering-Groups"><a href="#chapter3-Dicovering-Groups" class="headerlink" title="chapter3 Dicovering Groups"></a>chapter3 Dicovering Groups</h2><h3 id="1-无监督学习-unsupervised-learning"><a href="#1-无监督学习-unsupervised-learning" class="headerlink" title="1.无监督学习(unsupervised learning)"></a>1.无监督学习(unsupervised learning)</h3><blockquote>
+<p>目标是采集数据，然后从中找出不同的群组</p>
+</blockquote>
+<p>包括： 聚类、非负矩阵因式分解、自组织映射</p>
+<h4 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h4><ul>
+<li><p>分级聚类(Hierarchical Clustering)</p>
+<blockquote>
+<p>通过连续不断地将最为相似的群组两两合并，构造出一个群组的层级结构  </p>
+</blockquote>
+</li>
+<li><p>K-均值聚类(K-Means Clustering)</p>
+<blockquote>
+<p>预先告诉算法希望生成的聚类数量。首先确定K个中心位置，然后将数据项分配给最临近的中心点，待分配完成后，聚类中心就会转移到分配给该聚类的所有节点的平均位置处，然后整个分配过程重新开始。这一过程不断重复至分配结果与上一次结果相同为止。</p>
+</blockquote>
+</li>
+<li><p>针对偏好的聚类</p>
+<blockquote>
+<p>数据集只有0，1两种取值<br>使用Tanimoto系数定义距离，Tanimoto表示交集与并集的比率</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-监督学习-supervised-learning"><a href="#2-监督学习-supervised-learning" class="headerlink" title="2.监督学习(supervised learning)"></a>2.监督学习(supervised learning)</h3><blockquote>
+<p>利用样本输入和期望输出学习如何预测的技术</p>
+</blockquote>
+<p>包括：神经网络、决策树、向量支持机、贝叶斯过滤</p>
 
       
     </div>
@@ -395,8 +410,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/22/PCI-1&2/" rel="next" title="[PCL]1&2">
-                <i class="fa fa-chevron-left"></i> [PCL]1&2
+              <a href="/2017/02/19/Beautifulsoup使用/" rel="next" title="Beautifulsoup使用">
+                <i class="fa fa-chevron-left"></i> Beautifulsoup使用
               </a>
             
           </div>
@@ -405,8 +420,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/25/ML-文档过滤/" rel="prev" title="[ML]文档过滤">
-                [ML]文档过滤 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/23/ML-优化/" rel="prev" title="[ML]优化">
+                [ML]优化 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -529,7 +544,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#策略一：随机搜索"><span class="nav-number">1.</span> <span class="nav-text">策略一：随机搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略二：爬山法（梯度下降）"><span class="nav-number">2.</span> <span class="nav-text">策略二：爬山法（梯度下降）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略三：模拟退火算法"><span class="nav-number">3.</span> <span class="nav-text">策略三：模拟退火算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略四：遗传算法"><span class="nav-number">4.</span> <span class="nav-text">策略四：遗传算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number"></span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#涉及偏好的优化"><span class="nav-number"></span> <span class="nav-text">涉及偏好的优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络可视化"><span class="nav-number"></span> <span class="nav-text">网络可视化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#质点弹簧法"><span class="nav-number">1.</span> <span class="nav-text">质点弹簧法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-brief-summary-of-the-first-and-second-chapters-of-Programming-Collective-Intelligence"><span class="nav-number">1.</span> <span class="nav-text">A brief summary of the first and second chapters of Programming Collective Intelligence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter2-Making-Recommendations"><span class="nav-number">2.</span> <span class="nav-text">chapter2  Making Recommendations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-基于用户的协作型过滤-user-based-collaborative-filtering"><span class="nav-number">2.1.</span> <span class="nav-text">1.基于用户的协作型过滤(user-based collaborative filtering)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-基于物品的协作型过滤-item-based-collaborative-filtering"><span class="nav-number">2.2.</span> <span class="nav-text">2.基于物品的协作型过滤(item-based collaborative filtering)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter3-Dicovering-Groups"><span class="nav-number">3.</span> <span class="nav-text">chapter3 Dicovering Groups</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-无监督学习-unsupervised-learning"><span class="nav-number">3.1.</span> <span class="nav-text">1.无监督学习(unsupervised learning)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#聚类"><span class="nav-number">3.1.1.</span> <span class="nav-text">聚类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-监督学习-supervised-learning"><span class="nav-number">3.2.</span> <span class="nav-text">2.监督学习(supervised learning)</span></a></li></ol></li></ol></div>
             
 
           </div>
