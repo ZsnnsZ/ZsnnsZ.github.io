@@ -245,6 +245,400 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/05/实习-阿里一面引发的总结/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/05/实习-阿里一面引发的总结/" itemprop="url">
+                  [实习]阿里一面引发的总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-05T14:04:14+08:00">
+                2017-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="python基础："><a href="#python基础：" class="headerlink" title="python基础："></a>python基础：</h2><h4 id="1-面向对象三个特性："><a href="#1-面向对象三个特性：" class="headerlink" title="1.面向对象三个特性："></a>1.面向对象三个特性：</h4><p>封装、继承、多态  </p>
+<p>补充:<br>python是动态语言，不要求严格的继承体系—鸭子类型。<br>子类可以向上看作父类类型，通过父类调用子类的同名方法实现多态。<br>多态：同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果。  </p>
+<h4 id="2-list遍历："><a href="#2-list遍历：" class="headerlink" title="2.list遍历："></a>2.list遍历：</h4><pre><code>l = []
+- for x in l:
+      print x
+- for i in range(len(l)):
+      print l[i]
+- for i,x in enumerate(l):
+      print i,x
+</code></pre><p>补充：<br>list是有序可重复集合，删除可用pop(i)、del、remove  </p>
+<h4 id="3-lambda"><a href="#3-lambda" class="headerlink" title="3.lambda"></a>3.lambda</h4><p>关键字lambda表示匿名函数，冒号前面表示函数参数，匿名函数的限制就是只有一个表达式，返回值就是表达式的结果。<br>lambda有自己的命名空间，访问参数范围受限。  </p>
+<p>作用：简洁，避免函数名冲突、在需要传入函数的时候，不需要显式的定义函数，直接传入匿名函数。  </p>
+<p>什么时候用lambda？  </p>
+<h4 id="4-类的三种方法"><a href="#4-类的三种方法" class="headerlink" title="4.类的三种方法"></a>4.类的三种方法</h4><ul>
+<li>实例方法：有self，表示创建的实例(对象)本身。通过‘实例名.方法名’a.foo(x)即foo(a,x)   </li>
+<li>静态方法：在类成员函数前面加上@staticmethod，除了传入的参数，不要其他参数  </li>
+<li>类方法：有cls，在类成员函数前面加上@classmethod，通过’类名.方法名‘调用，A.foo(x)即foo(A,x)  </li>
+</ul>
+<h4 id="5-yield"><a href="#5-yield" class="headerlink" title="5.yield"></a>5.yield</h4><p>理解yield之前要先理解iterables和generators  </p>
+<ul>
+<li>iterables：可以用在for…in…语句中的都是可迭代的:比如lists,strings,files…因为这些可迭代的对象你可以随意的读取,但是你必须把它们的值放到内存里,当它们有很多值时就会消耗太多的内存.  </li>
+<li>generators：生成器也是迭代器的一种,但是你只能迭代它们一次.原因很简单,因为它们不是全部存在内存里,它们只在要调用的时候在内存里生成。  </li>
+</ul>
+<p>直接定义生成器和迭代器的区别就是用()代替[],还有你不能用for i in mygenerator第二次调用生成器  </p>
+<pre><code># 这里你创建node方法的对象将会返回一个生成器
+def node._get_child_candidates(self, distance, min_dist, max_dist):
+
+  # 这里的代码你每次使用生成器对象的时候将会调用
+
+  if self._leftchild and distance - max_dist &lt; self._median:
+      yield self._leftchild
+
+  if self._rightchild and distance + max_dist &gt;= self._median:
+      yield self._rightchild
+
+  # 如果代码运行到这里,生成器就被认为变成了空的
+
+# 创建空列表和一个当前对象索引的列表
+result, candidates = list(), [self]
+
+# 在candidates上进行循环(在开始只保含一个元素)
+while candidates:
+
+    # 获得最后一个condidate然后从列表里删除
+    node = candidates.pop()
+
+    # 获取obj和candidate的distance
+    distance = node._get_dist(obj)
+
+    # 如果distance何时将会填入result
+    if distance &lt;= max_dist and distance &gt;= min_dist:
+        result.extend(node._values)
+
+    candidates.extend(node._get_child_candidates(distance, min_dist, max_dist))
+
+return result
+</code></pre><p>使用了yield的函数在yield的地方就会返回一个生成器对象，当你调用函数的时候,函数里的代码并没有运行.函数仅仅返回生成器对象,这就是它最微妙的地方。  </p>
+<h2 id="机器学习："><a href="#机器学习：" class="headerlink" title="机器学习："></a>机器学习：</h2><p>1.全面分析LR  </p>
+<p>2.sigmoid函数  </p>
+<p>3.举例说明怎么用numpy，pandas，matplotlib  </p>
+<h2 id="python补充："><a href="#python补充：" class="headerlink" title="python补充："></a>python补充：</h2><h4 id="1-实例属性和类属性："><a href="#1-实例属性和类属性：" class="headerlink" title="1.实例属性和类属性："></a>1.实例属性和类属性：</h4><ul>
+<li>实例属性：给实例绑定属性的方法是通过实例变量，或者通过self变量(在<strong>init</strong>)。  </li>
+<li>类属性：在class中定义属性，这种属性是类属性，归Student类所有。<br>注意：相同名称的实例属性将屏蔽掉类属性  </li>
+</ul>
+<h4 id="2-list和dict、set"><a href="#2-list和dict、set" class="headerlink" title="2.list和dict、set"></a>2.list和dict、set</h4><ul>
+<li><p>dict有以下几个特点：<br>查找和插入的速度极快，不会随着key的增加而变慢；<br>需要占用大量的内存，内存浪费多。  </p>
+</li>
+<li><p>而list相反：<br>查找和插入的时间随着元素的增加而增加；<br>占用空间小，浪费内存很少。  </p>
+</li>
+</ul>
+<p>set是数学意义上的无序和无重复元素集合，交&amp;， 并|  </p>
+<h4 id="3-访问限制"><a href="#3-访问限制" class="headerlink" title="3.访问限制"></a>3.访问限制</h4><p>把属性的名称前加上两个下划线<strong>，在Python中，实例的变量名如果以</strong>开头，就变成了一个私有变量。<br>以一个下划线开头的实例变量名，这样的实例变量外部是可以访问的，但是，按照约定俗成的规定，当你看到这样的变量时，意思就是，“虽然我可以被访问，但是，请把我视为私有变量，不要随意访问”。  </p>
+<ul>
+<li>__foo__:一种约定,Python内部的名字,用来区别其他用户自定义的命名,以防冲突.</li>
+<li>_foo:一种约定,用来指定变量私有.程序员用来指定私有变量的一种方式.</li>
+<li>__foo:这个有真正的意义:解析器用_classname__foo来代替这个名字,以区别和其他类相同的命名.  </li>
+</ul>
+<h4 id="4-args，-kwargs"><a href="#4-args，-kwargs" class="headerlink" title="4.args，*kwargs"></a>4.<em>args，*</em>kwargs</h4><ul>
+<li>如果我们不确定要往函数中传入多少个参数，或者我们想往函数中以列表和元组的形式传参数时，那就使要用*args；  </li>
+<li>如果我们不知道要往函数中传入多少个关键词参数，或者想传入字典的值作为关键词参数时，那就要使用**kwargs。  </li>
+</ul>
+<h4 id="5-python中的元类"><a href="#5-python中的元类" class="headerlink" title="5.python中的元类"></a>5.python中的元类</h4><p>metaclass，元类，通俗点就是类的类，可以根据元类来创建类，创建元类要从type派生，在元类中定义函数def <strong>new</strong>(cls,name,bases,attrs)。应用在ORM框架，动态定义类。  </p>
+<h4 id="6-python中的装饰器"><a href="#6-python中的装饰器" class="headerlink" title="6.python中的装饰器"></a>6.python中的装饰器</h4><p>函数也是对象，可以将函数作为参数，在代码运行期间动态增加功能的方式，称之为“装饰器”（Decorator）  </p>
+<pre><code># 字体变粗装饰器,（不传参）
+def makebold(fn):
+    # 装饰器将返回新的函数
+    def wrapper():
+        # 在之前或者之后插入新的代码
+        return &quot;&lt;b&gt;&quot; + fn() + &quot;&lt;/b&gt;&quot;
+    return wrapper
+
+# 日志打印器，(传参)
+&gt;&gt;&gt; def log(fn):
+...     def wrapper(*args, **kw):
+...             print &apos;call %s():&apos; % fn.__name__
+...             fn(*args, **kw)
+...     return wrapper
+&gt;&gt;&gt; @log
+... def now():
+...     print &apos;x&apos;
+... 
+&gt;&gt;&gt; now()
+call now():
+x
+</code></pre><h4 id="7-python中的偏函数"><a href="#7-python中的偏函数" class="headerlink" title="7.python中的偏函数"></a>7.python中的偏函数</h4><p>这是模块functools里面的一个函数，functools.partial的作用就是，把一个函数的某些参数给固定住（也就是设置默认值），返回一个新的函数，调用这个新函数会更简单。  </p>
+<h4 id="8-if-name-’-main-‘"><a href="#8-if-name-’-main-‘" class="headerlink" title="8.if __name__==’__main__‘:"></a>8.if __name__==’__main__‘:</h4><p>在命令行中，python解释器会把__name__变量置为__main__，如果模块中有if __name__==’__main__’:这句话，那么他之后的操作会自动执行。<br>而当我们在其他的py文件里导入这个模块时，__name__的值为模块的名称，if条件不满足，后面的就不会执行。  用途就是测试一个模块。  </p>
+<h4 id="9-判断是否为文件"><a href="#9-判断是否为文件" class="headerlink" title="9.判断是否为文件"></a>9.判断是否为文件</h4><p>os.path.isfile(fname)<br>进阶：</p>
+<ul>
+<li><p>判断是否为目录：<br>先要os.path.join()将当前路径和目标文件夹名合并，再用os.path.isdir()  </p>
+</li>
+<li><p>遍历：<br>os.walk(),不断迭代，每次迭代均返回(dirpath, dirnames, filenames)  </p>
+</li>
+</ul>
+<p>另：os.path.exists()不能分辨是文件还是目录  </p>
+<h4 id="10-python用什么代替switch语句：用字典"><a href="#10-python用什么代替switch语句：用字典" class="headerlink" title="10.python用什么代替switch语句：用字典"></a>10.python用什么代替switch语句：用字典</h4><pre><code>def f(x):
+    return {
+        &apos;a&apos;: 1,
+        &apos;b&apos;: 2,
+    }[x]
+</code></pre><p>如果希望设置默认值还可以用字典的get方法dict.get(x, bar)  </p>
+<h4 id="11-python执行系统命令的方法"><a href="#11-python执行系统命令的方法" class="headerlink" title="11.python执行系统命令的方法"></a>11.python执行系统命令的方法</h4><ul>
+<li>无法获得输出和返回值os.system()  </li>
+<li>可以获得输出os.popen()    </li>
+<li>可以获得输出和返回值commands.getstatusoutput()  </li>
+</ul>
+<h4 id="12-python里面如果要用到枚举怎么办？"><a href="#12-python里面如果要用到枚举怎么办？" class="headerlink" title="12.python里面如果要用到枚举怎么办？"></a>12.python里面如果要用到枚举怎么办？</h4><p>写一个类替代，简单明了或者导入enum  </p>
+<h4 id="13-全局变量"><a href="#13-全局变量" class="headerlink" title="13.全局变量"></a>13.全局变量</h4><p>一个函数里有个全局变量，想在另外的函数里使用，要在被调用全局变量函数的里事先用global声明一下  </p>
+<h4 id="14-super"><a href="#14-super" class="headerlink" title="14.super()"></a>14.super()</h4><p>避免在子类中直接使用父类的名字  </p>
+<h4 id="15-slots"><a href="#15-slots" class="headerlink" title="15.__slots__"></a>15.__slots__</h4><p>在面向对象中，用__slots__来限制类的实例能够添加的属性，子类继承父类不会继承  </p>
+<h4 id="16-append-和-extend的区别（操作list）"><a href="#16-append-和-extend的区别（操作list）" class="headerlink" title="16.append 和 extend的区别（操作list）"></a>16.append 和 extend的区别（操作list）</h4><ul>
+<li>append是将被添加的整体作为一个元素进行添加  </li>
+<li>extend是取出被添加中的元素添加到目标中，可以用+号代替  </li>
+</ul>
+<h4 id="17-字典添加元素的方法"><a href="#17-字典添加元素的方法" class="headerlink" title="17.字典添加元素的方法"></a>17.字典添加元素的方法</h4><ul>
+<li>一个是通过dict[key] = value  </li>
+<li>一个是通过dict.update({key:value})  </li>
+</ul>
+<h4 id="18-去除-n"><a href="#18-去除-n" class="headerlink" title="18.去除\n"></a>18.去除\n</h4><ul>
+<li>字符串两端的空白符可以用str.strip()  </li>
+<li>若有句中的可以用str.replace(‘\n’, ‘’)  </li>
+</ul>
+<h4 id="19-获取列表下标"><a href="#19-获取列表下标" class="headerlink" title="19.获取列表下标"></a>19.获取列表下标</h4><pre><code>&gt;&gt;&gt; [&quot;foo&quot;,&quot;bar&quot;,&quot;baz&quot;].index(&apos;bar&apos;)
+1
+</code></pre><h4 id="20-产生随机数"><a href="#20-产生随机数" class="headerlink" title="20.产生随机数"></a>20.产生随机数</h4><ul>
+<li>random.random()用于生成一个0到1的随机符点数: 0 &lt;= n &lt; 1.0   </li>
+<li>random.randint()的函数原型为：random.randint(a, b)，用于生成一个指定范围内的整数。  </li>
+<li>random.uniform的函数原型为：random.uniform(a, b)，用于生成一个指定范围内的随机符点数  </li>
+<li>random.choice从序列中获取一个随机元素。其函数原型为：random.choice(sequence)。  </li>
+<li>random.sample的函数原型为：random.sample(sequence, k)，从指定序列中随机获取指定长度的片断。  </li>
+</ul>
+<h4 id="21-测量脚本运行时间"><a href="#21-测量脚本运行时间" class="headerlink" title="21.测量脚本运行时间"></a>21.测量脚本运行时间</h4><pre><code>import cProfile
+cProfile.run(&apos;foo()&apos;)
+</code></pre><p>或：  </p>
+<pre><code>python -m cProfile myscript.py
+</code></pre><h4 id="22"><a href="#22" class="headerlink" title="22."></a>22.</h4>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/02/ML-支持向量机/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/02/ML-支持向量机/" itemprop="url">
+                  [ML]支持向量机
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-02T19:03:50+08:00">
+                2017-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/02/ML-逻辑斯谛回归和最大熵模型/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1271,274 +1665,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/19/Beautifulsoup使用/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/19/Beautifulsoup使用/" itemprop="url">
-                  Beautifulsoup使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-19T12:40:44+08:00">
-                2017-02-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="创建BeautifulSoup对象"><a href="#创建BeautifulSoup对象" class="headerlink" title="创建BeautifulSoup对象"></a>创建BeautifulSoup对象</h2><ul>
-<li>导入bs4库  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>创建beautifulsoup对象  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">soup = BeautifulSoup(html, <span class="string">"html.parser"</span>)</div></pre></td></tr></table></figure>
-</li>
-<li><p>格式化打印soup对象内容  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(soup.prettify())</div></pre></td></tr></table></figure>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/02/19/Beautifulsoup使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/16/hello-world/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/16/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-16T13:17:47+08:00">
-                2017-02-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
           
           </div>
@@ -1581,7 +1714,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
