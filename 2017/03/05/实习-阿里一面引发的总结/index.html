@@ -103,7 +103,7 @@
 - for x in l:
       print x
 - for i in range(len(l)):">
-<meta property="og:updated_time" content="2017-03-05T06:34:05.000Z">
+<meta property="og:updated_time" content="2017-03-06T06:12:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[实习]阿里一面引发的总结">
 <meta name="twitter:description" content="python基础：1.面向对象三个特性：封装、继承、多态  
@@ -349,7 +349,7 @@
 </code></pre><p>补充：<br>list是有序可重复集合，删除可用pop(i)、del、remove  </p>
 <h4 id="3-lambda"><a href="#3-lambda" class="headerlink" title="3.lambda"></a>3.lambda</h4><p>关键字lambda表示匿名函数，冒号前面表示函数参数，匿名函数的限制就是只有一个表达式，返回值就是表达式的结果。<br>lambda有自己的命名空间，访问参数范围受限。  </p>
 <p>作用：简洁，避免函数名冲突、在需要传入函数的时候，不需要显式的定义函数，直接传入匿名函数。  </p>
-<p>什么时候用lambda？  </p>
+<p>什么时候用lambda？<br>在函数式编程时。  </p>
 <h4 id="4-类的三种方法"><a href="#4-类的三种方法" class="headerlink" title="4.类的三种方法"></a>4.类的三种方法</h4><ul>
 <li>实例方法：有self，表示创建的实例(对象)本身。通过‘实例名.方法名’a.foo(x)即foo(a,x)   </li>
 <li>静态方法：在类成员函数前面加上@staticmethod，除了传入的参数，不要其他参数  </li>
@@ -463,7 +463,7 @@ x
 <li>可以获得输出和返回值commands.getstatusoutput()  </li>
 </ul>
 <h4 id="12-python里面如果要用到枚举怎么办？"><a href="#12-python里面如果要用到枚举怎么办？" class="headerlink" title="12.python里面如果要用到枚举怎么办？"></a>12.python里面如果要用到枚举怎么办？</h4><p>写一个类替代，简单明了或者导入enum  </p>
-<h4 id="13-全局变量"><a href="#13-全局变量" class="headerlink" title="13.全局变量"></a>13.全局变量</h4><p>一个函数里有个全局变量，想在另外的函数里使用，要在被调用全局变量函数的里事先用global声明一下  </p>
+<h4 id="13-全局变量"><a href="#13-全局变量" class="headerlink" title="13.全局变量"></a>13.全局变量</h4><p>作用域<br>一个函数里有个全局变量，想在另外的函数里使用，要在被调用全局变量函数的里事先用global声明一下  </p>
 <h4 id="14-super"><a href="#14-super" class="headerlink" title="14.super()"></a>14.super()</h4><p>避免在子类中直接使用父类的名字  </p>
 <h4 id="15-slots"><a href="#15-slots" class="headerlink" title="15.__slots__"></a>15.__slots__</h4><p>在面向对象中，用__slots__来限制类的实例能够添加的属性，子类继承父类不会继承  </p>
 <h4 id="16-append-和-extend的区别（操作list）"><a href="#16-append-和-extend的区别（操作list）" class="headerlink" title="16.append 和 extend的区别（操作list）"></a>16.append 和 extend的区别（操作list）</h4><ul>
@@ -491,7 +491,88 @@ x
 cProfile.run(&apos;foo()&apos;)
 </code></pre><p>或：  </p>
 <pre><code>python -m cProfile myscript.py
-</code></pre><h4 id="22"><a href="#22" class="headerlink" title="22."></a>22.</h4>
+</code></pre><h4 id="22-Redis"><a href="#22-Redis" class="headerlink" title="22.Redis"></a>22.Redis</h4><h4 id="23-高阶函数"><a href="#23-高阶函数" class="headerlink" title="23.高阶函数"></a>23.高阶函数</h4><p>在python中，部分支持函数式编程，允许把函数本身作为参数传入另一个函数，还允许返回一个函数。  把函数作为参数传入，这样的函数称为高阶函数。  </p>
+<ul>
+<li><p>map()函数接收两个参数，第一个是函数，另一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回。  </p>
+</li>
+<li><p>reduce()把一个函数作用在一个序列[x1, x2, x3, …]上，这个函数必须接收两个参数，reduce把结果继续和序列的下一个元素做累积计算  </p>
+<p>  from functools import reduce<br>  def char2int(c):</p>
+<pre><code>switch = {&apos;0&apos;: 0, &apos;1&apos;: 1, &apos;2&apos;: 2, &apos;3&apos;: 3, &apos;4&apos;: 4, &apos;5&apos;: 5, &apos;6&apos;: 6, &apos;7&apos;: 7, &apos;8&apos;: 8, &apos;9&apos;: 9}
+return switch[c]
+</code></pre><p>  def str2int(s):</p>
+<pre><code>return reduce(lambda x,y: 10 * x + y, map(char2int, &apos;13579&apos;))
+</code></pre></li>
+<li><p>filter()函数用于过滤序列。<br>和map()类似，filter()也接收一个函数和一个序列。和map()不同的是，filter()把传入的函数依次作用于每个元素，然后根据函数返回值是True还是False决定保留还是丢弃该元素。  </p>
+</li>
+<li><p>sorted()函数也是一个高阶函数，它还可以接收一个key函数来实现自定义的排序。不会改变原序列的值。  </p>
+</li>
+</ul>
+<h4 id="24-异常处理机制"><a href="#24-异常处理机制" class="headerlink" title="24.异常处理机制"></a>24.异常处理机制</h4><ul>
+<li><p>try…except…finally…<br>当我们认为某些代码可能会出错时，就可以用try来运行这段代码，如果执行出错，则后续代码不会继续执行，而是直接跳转至错误处理代码，即except语句块，执行完except后，如果有finally语句块，则执行finally语句块，至此，执行完毕。  </p>
+</li>
+<li><p>assert语句<br>判断assert后面紧跟的语句是True还是False，如果是True则继续执行print，如果是False则中断程序，调用默认的异常处理器，同时输出assert语句逗号后面的提示信息。  </p>
+</li>
+<li><p>with语句<br>如果with语句或语句块中发生异常，会调用默认的异常处理器处理，但文件还是会正常关闭。</p>
+</li>
+</ul>
+<h4 id="25-程序调试"><a href="#25-程序调试" class="headerlink" title="25.程序调试"></a>25.程序调试</h4><ul>
+<li><p>print()</p>
+</li>
+<li><p>assert<br>凡是用print()来辅助查看的地方，都可以用断言（assert）来替代.启动Python解释器时可以用-O参数来关闭assert.</p>
+</li>
+<li><p>logging<br>把print()替换为logging是第3种方式，和assert比，logging不会抛出错误，而且可以输出到文件.可以自定义异常级别。</p>
+</li>
+<li><p>单步执行、设置断点<br>pdb或IDE</p>
+</li>
+</ul>
+<h4 id="26-深拷贝浅拷贝"><a href="#26-深拷贝浅拷贝" class="headerlink" title="26.深拷贝浅拷贝"></a>26.深拷贝浅拷贝</h4><p>考虑到python的内存管理，引用计数器：一个内部跟踪变量，引用计数：每一个对象各有多少个引用</p>
+<ul>
+<li>赋值只是拷贝的对象的引用，对象被改变，那么对象所有的引用都会改变。  </li>
+</ul>
+<p>如果你想修改一个对象,而且想让原始的对象不受影响,那你就需要对象复制。  </p>
+<ul>
+<li>浅拷贝copy.copy()只会拷贝父级对象，不会拷贝其子对象。  </li>
+<li>深拷贝copy.deepcopy()拷贝对象的所有元素(递归拷贝子对象)。  </li>
+</ul>
+<h4 id="27-变量作用域"><a href="#27-变量作用域" class="headerlink" title="27.变量作用域"></a>27.变量作用域</h4><p>python的作用域一共有四种：  </p>
+<ul>
+<li>L （Local） 局部作用域  </li>
+<li>E （Enclosing） 闭包函数外的函数中  </li>
+<li>G （Global） 全局作用域  </li>
+<li>B （Built-in） 内建作用域<br>以 L –&gt; E –&gt; G –&gt;B 的规则查找。<br>Python除了module／def/class/lambda 外，其他如: if/elif/else/ try/except for/while并不能改变其作用域。</li>
+</ul>
+<h4 id="28-新式类和旧式类"><a href="#28-新式类和旧式类" class="headerlink" title="28.新式类和旧式类"></a>28.新式类和旧式类</h4><p>为了统一类(class)和类型(type)。python2.2版本引进新式类，之前的类叫做经典类或旧式类。<br>新式类增加__slots__ 和 __getattribute__,多继承采用广度优先搜索BFS<br>Python 2.x中默认都是经典类。<br>Python 3.x中默认都是新式类。  </p>
+<p>为了确保自己使用的是新式类，有以下方法：  </p>
+<ul>
+<li>把这个赋值语句放在类模块代码的最前面 __metaclass__ = type  </li>
+<li>从内建类object直接或者间接地继承。</li>
+</ul>
+<h4 id="29-init-和-new"><a href="#29-init-和-new" class="headerlink" title="29.__init__ 和 __new__"></a>29.__init__ 和 __new__</h4><p>创建一个新实例时调用<strong>new</strong>,初始化一个实例时用<strong>init</strong>,这是它们最本质的区别。<br>new方法会返回所构造的对象，init则不会.<br>new函数必须以cls作为第一个参数，而init则以self作为其第一个参数.  </p>
+<h4 id="30-python垃圾回收机制"><a href="#30-python垃圾回收机制" class="headerlink" title="30.python垃圾回收机制"></a>30.python垃圾回收机制</h4><p>python垃圾回收主要使用 <em>引用计数</em> （reference counting）来跟踪和回收垃圾；<br>在引用计数的基础上，通过 <em>标记-清除</em>（mark and sweep）解决容器对象可能产生的循环引用问题；<br>通过 <em>分代回收</em>（generation collection）以空间换时间的方法提高垃圾回收效率。  </p>
+<ul>
+<li><p>引用计数<br>在对象内部维护了一个被其他对象引用数的引用计数值，当一个对象的引用被创建或者复制时，对象的引用计数加1；当一个对象的引用被销毁时，对象的引用计数减1；当这个引用计数值为0时，说明这个对象不再被其他对象引用，就可以被回收了。<br>缺点：维护引用消耗资源(可忽略)，执行效率问题，循环引用导致引用计数无法为0，内存无法回收。  </p>
+</li>
+<li><p>标记-清除<br>为了解决循环引用问题。可以包含其他对象引用的容器对象（如list, dict, set，甚至class）都可能产生循环引用。<br>不改动真实的引用计数，而是将集合中对象的引用计数复制一份副本，改动该对象引用的副本。  当完成标记后，unreachable链表中剩下的所有对象就是名副其实的垃圾对象。  </p>
+</li>
+<li><p>分代回收<br>整体思想是：将系统中的所有内存块根据其存活时间划分为不同的集合，每个集合就成为一个“代”，垃圾收集频率随着“代”的存活时间的增大而减小，存活时间通常利用经过几次垃圾回收来度量。  Python默认定义了三代对象集合，索引数越大，对象存活时间越长。  </p>
+</li>
+</ul>
+<h4 id="31-property"><a href="#31-property" class="headerlink" title="31.@property"></a>31.@property</h4><p>在类的定义时，需要对某些属性进行检查，@property装饰器就是负责把一个方法变成属性调用，通过设置@property可以实现实例成员变量的直接访问，又保留了参数的检查。另外通过设置get方法而不定义set方法可以实现成员变量的只读属性。</p>
+<pre><code>class Student(object):
+
+    @property
+    def birth(self):
+        return self._birth
+
+    @birth.setter
+    def birth(self, value):
+        self._birth = value
+
+    @property
+    def age(self):
+        return 2015 - self._birth
+</code></pre><h4 id="32-with-语句"><a href="#32-with-语句" class="headerlink" title="32.with 语句"></a>32.with 语句</h4><p>with语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源，比如文件使用后自动关闭、线程中锁的自动获取和释放等。  </p>
+<h4 id="33"><a href="#33" class="headerlink" title="33."></a>33.</h4>
       
     </div>
 
@@ -521,8 +602,8 @@ cProfile.run(&apos;foo()&apos;)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/02/ML-支持向量机/" rel="next" title="[ML]支持向量机">
-                <i class="fa fa-chevron-left"></i> [ML]支持向量机
+              <a href="/2017/03/02/ML-逻辑斯谛回归和最大熵模型/" rel="next" title="[ML]逻辑斯谛回归和最大熵模型">
+                <i class="fa fa-chevron-left"></i> [ML]逻辑斯谛回归和最大熵模型
               </a>
             
           </div>
@@ -530,6 +611,10 @@ cProfile.run(&apos;foo()&apos;)
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/06/ML-支持向量机/" rel="prev" title="[ML]支持向量机">
+                [ML]支持向量机 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -651,7 +736,7 @@ cProfile.run(&apos;foo()&apos;)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python基础："><span class="nav-number">1.</span> <span class="nav-text">python基础：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-面向对象三个特性："><span class="nav-number">1.0.1.</span> <span class="nav-text">1.面向对象三个特性：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-list遍历："><span class="nav-number">1.0.2.</span> <span class="nav-text">2.list遍历：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-lambda"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.lambda</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-类的三种方法"><span class="nav-number">1.0.4.</span> <span class="nav-text">4.类的三种方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-yield"><span class="nav-number">1.0.5.</span> <span class="nav-text">5.yield</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习："><span class="nav-number">2.</span> <span class="nav-text">机器学习：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python补充："><span class="nav-number">3.</span> <span class="nav-text">python补充：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-实例属性和类属性："><span class="nav-number">3.0.1.</span> <span class="nav-text">1.实例属性和类属性：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-list和dict、set"><span class="nav-number">3.0.2.</span> <span class="nav-text">2.list和dict、set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-访问限制"><span class="nav-number">3.0.3.</span> <span class="nav-text">3.访问限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-args，-kwargs"><span class="nav-number">3.0.4.</span> <span class="nav-text">4.args，*kwargs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-python中的元类"><span class="nav-number">3.0.5.</span> <span class="nav-text">5.python中的元类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-python中的装饰器"><span class="nav-number">3.0.6.</span> <span class="nav-text">6.python中的装饰器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-python中的偏函数"><span class="nav-number">3.0.7.</span> <span class="nav-text">7.python中的偏函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-if-name-’-main-‘"><span class="nav-number">3.0.8.</span> <span class="nav-text">8.if __name__==’__main__‘:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-判断是否为文件"><span class="nav-number">3.0.9.</span> <span class="nav-text">9.判断是否为文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-python用什么代替switch语句：用字典"><span class="nav-number">3.0.10.</span> <span class="nav-text">10.python用什么代替switch语句：用字典</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-python执行系统命令的方法"><span class="nav-number">3.0.11.</span> <span class="nav-text">11.python执行系统命令的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-python里面如果要用到枚举怎么办？"><span class="nav-number">3.0.12.</span> <span class="nav-text">12.python里面如果要用到枚举怎么办？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-全局变量"><span class="nav-number">3.0.13.</span> <span class="nav-text">13.全局变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-super"><span class="nav-number">3.0.14.</span> <span class="nav-text">14.super()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-slots"><span class="nav-number">3.0.15.</span> <span class="nav-text">15.__slots__</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-append-和-extend的区别（操作list）"><span class="nav-number">3.0.16.</span> <span class="nav-text">16.append 和 extend的区别（操作list）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17-字典添加元素的方法"><span class="nav-number">3.0.17.</span> <span class="nav-text">17.字典添加元素的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#18-去除-n"><span class="nav-number">3.0.18.</span> <span class="nav-text">18.去除\n</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-获取列表下标"><span class="nav-number">3.0.19.</span> <span class="nav-text">19.获取列表下标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-产生随机数"><span class="nav-number">3.0.20.</span> <span class="nav-text">20.产生随机数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#21-测量脚本运行时间"><span class="nav-number">3.0.21.</span> <span class="nav-text">21.测量脚本运行时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22"><span class="nav-number">3.0.22.</span> <span class="nav-text">22.</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python基础："><span class="nav-number">1.</span> <span class="nav-text">python基础：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-面向对象三个特性："><span class="nav-number">1.0.1.</span> <span class="nav-text">1.面向对象三个特性：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-list遍历："><span class="nav-number">1.0.2.</span> <span class="nav-text">2.list遍历：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-lambda"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.lambda</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-类的三种方法"><span class="nav-number">1.0.4.</span> <span class="nav-text">4.类的三种方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-yield"><span class="nav-number">1.0.5.</span> <span class="nav-text">5.yield</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习："><span class="nav-number">2.</span> <span class="nav-text">机器学习：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python补充："><span class="nav-number">3.</span> <span class="nav-text">python补充：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-实例属性和类属性："><span class="nav-number">3.0.1.</span> <span class="nav-text">1.实例属性和类属性：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-list和dict、set"><span class="nav-number">3.0.2.</span> <span class="nav-text">2.list和dict、set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-访问限制"><span class="nav-number">3.0.3.</span> <span class="nav-text">3.访问限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-args，-kwargs"><span class="nav-number">3.0.4.</span> <span class="nav-text">4.args，*kwargs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-python中的元类"><span class="nav-number">3.0.5.</span> <span class="nav-text">5.python中的元类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-python中的装饰器"><span class="nav-number">3.0.6.</span> <span class="nav-text">6.python中的装饰器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-python中的偏函数"><span class="nav-number">3.0.7.</span> <span class="nav-text">7.python中的偏函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-if-name-’-main-‘"><span class="nav-number">3.0.8.</span> <span class="nav-text">8.if __name__==’__main__‘:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-判断是否为文件"><span class="nav-number">3.0.9.</span> <span class="nav-text">9.判断是否为文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-python用什么代替switch语句：用字典"><span class="nav-number">3.0.10.</span> <span class="nav-text">10.python用什么代替switch语句：用字典</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-python执行系统命令的方法"><span class="nav-number">3.0.11.</span> <span class="nav-text">11.python执行系统命令的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-python里面如果要用到枚举怎么办？"><span class="nav-number">3.0.12.</span> <span class="nav-text">12.python里面如果要用到枚举怎么办？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-全局变量"><span class="nav-number">3.0.13.</span> <span class="nav-text">13.全局变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-super"><span class="nav-number">3.0.14.</span> <span class="nav-text">14.super()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-slots"><span class="nav-number">3.0.15.</span> <span class="nav-text">15.__slots__</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-append-和-extend的区别（操作list）"><span class="nav-number">3.0.16.</span> <span class="nav-text">16.append 和 extend的区别（操作list）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17-字典添加元素的方法"><span class="nav-number">3.0.17.</span> <span class="nav-text">17.字典添加元素的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#18-去除-n"><span class="nav-number">3.0.18.</span> <span class="nav-text">18.去除\n</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-获取列表下标"><span class="nav-number">3.0.19.</span> <span class="nav-text">19.获取列表下标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-产生随机数"><span class="nav-number">3.0.20.</span> <span class="nav-text">20.产生随机数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#21-测量脚本运行时间"><span class="nav-number">3.0.21.</span> <span class="nav-text">21.测量脚本运行时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22-Redis"><span class="nav-number">3.0.22.</span> <span class="nav-text">22.Redis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#23-高阶函数"><span class="nav-number">3.0.23.</span> <span class="nav-text">23.高阶函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#24-异常处理机制"><span class="nav-number">3.0.24.</span> <span class="nav-text">24.异常处理机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#25-程序调试"><span class="nav-number">3.0.25.</span> <span class="nav-text">25.程序调试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#26-深拷贝浅拷贝"><span class="nav-number">3.0.26.</span> <span class="nav-text">26.深拷贝浅拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#27-变量作用域"><span class="nav-number">3.0.27.</span> <span class="nav-text">27.变量作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#28-新式类和旧式类"><span class="nav-number">3.0.28.</span> <span class="nav-text">28.新式类和旧式类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#29-init-和-new"><span class="nav-number">3.0.29.</span> <span class="nav-text">29.__init__ 和 __new__</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#30-python垃圾回收机制"><span class="nav-number">3.0.30.</span> <span class="nav-text">30.python垃圾回收机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#31-property"><span class="nav-number">3.0.31.</span> <span class="nav-text">31.@property</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#32-with-语句"><span class="nav-number">3.0.32.</span> <span class="nav-text">32.with 语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#33"><span class="nav-number">3.0.33.</span> <span class="nav-text">33.</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

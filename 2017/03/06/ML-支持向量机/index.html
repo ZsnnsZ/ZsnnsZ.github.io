@@ -1,0 +1,707 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="支持向量机（SVM）是在分类与回归中分析数据的监督式学习模型与相关的学习算法。  
+给定一个训练集，寻找分离超平面，每个样本将被标记为属于两个类别中的其中一个，SVM将训练一个模型，将新的样本分类。  
+训练集中（xi，yi）xi是n维特征向量，y取自{-1,+1}  
+优缺点优点：  
+
+使用核函数可以向高维空间进行映射  
+使用核函数可以解决非线性的分类  
+分类思想很简单，就是将样本与决策面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[ML]支持向量机">
+<meta property="og:url" content="http://yoursite.com/2017/03/06/ML-支持向量机/index.html">
+<meta property="og:site_name" content="ZSN码疯窝">
+<meta property="og:description" content="支持向量机（SVM）是在分类与回归中分析数据的监督式学习模型与相关的学习算法。  
+给定一个训练集，寻找分离超平面，每个样本将被标记为属于两个类别中的其中一个，SVM将训练一个模型，将新的样本分类。  
+训练集中（xi，yi）xi是n维特征向量，y取自{-1,+1}  
+优缺点优点：  
+
+使用核函数可以向高维空间进行映射  
+使用核函数可以解决非线性的分类  
+分类思想很简单，就是将样本与决策面">
+<meta property="og:updated_time" content="2017-03-06T13:54:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[ML]支持向量机">
+<meta name="twitter:description" content="支持向量机（SVM）是在分类与回归中分析数据的监督式学习模型与相关的学习算法。  
+给定一个训练集，寻找分离超平面，每个样本将被标记为属于两个类别中的其中一个，SVM将训练一个模型，将新的样本分类。  
+训练集中（xi，yi）xi是n维特征向量，y取自{-1,+1}  
+优缺点优点：  
+
+使用核函数可以向高维空间进行映射  
+使用核函数可以解决非线性的分类  
+分类思想很简单，就是将样本与决策面">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/06/ML-支持向量机/"/>
+
+
+
+
+
+  <title> [ML]支持向量机 | ZSN码疯窝 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">ZSN码疯窝</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/06/ML-支持向量机/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [ML]支持向量机
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-06T19:03:50+08:00">
+                2017-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>支持向量机（SVM）是在分类与回归中分析数据的监督式学习模型与相关的学习算法。  </p>
+<p>给定一个训练集，寻找分离超平面，每个样本将被标记为属于两个类别中的其中一个，SVM将训练一个模型，将新的样本分类。  </p>
+<p>训练集中（xi，yi）xi是n维特征向量，y取自{-1,+1}  </p>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：  </p>
+<ul>
+<li>使用核函数可以向高维空间进行映射  </li>
+<li>使用核函数可以解决非线性的分类  </li>
+<li>分类思想很简单，就是将样本与决策面的间隔最大化  </li>
+<li>分类效果较好  </li>
+</ul>
+<p>缺点：  </p>
+<ul>
+<li>对大规模数据训练比较困难，因为它是用二次规划来求解的  </li>
+<li>无法直接支持多分类，但是可以使用间接的方法来做  </li>
+</ul>
+<h2 id="线性可分支持向量机与硬间隔最大化"><a href="#线性可分支持向量机与硬间隔最大化" class="headerlink" title="线性可分支持向量机与硬间隔最大化"></a>线性可分支持向量机与硬间隔最大化</h2><p>假设输入空间和特征向量空间是两个不同的空间，将输入空间的输入映射为特征空间的特征向量。<br>支持向量机的学习是在特征空间进行的。<br>wx+b=0<br>分类决策函数<br>f(x)=sign(wx+b)</p>
+<h3 id="函数间隔和几何间隔"><a href="#函数间隔和几何间隔" class="headerlink" title="函数间隔和几何间隔"></a>函数间隔和几何间隔</h3><p><em>函数间隔</em><br>一个点距离分离超平面的远近可以表示分类预测的确信程度，wx+b与y的符号是否一致表示分类是否正确。<br>所以可用y(wx+b)来表示分类的正确性及确信度，这就是函数间隔。  </p>
+<p><em>几何间隔</em><br>因为当超平面参数w和b成比例改变时，函数间隔会随之改变。<br>所以，定义几何间隔为函数间隔除以||w||</p>
+<h3 id="间隔最大化"><a href="#间隔最大化" class="headerlink" title="间隔最大化"></a>间隔最大化</h3><p>支持向量机学习的基本想法是求解能够正确划分训练数据集并且几何间隔最大的分离超平面。  </p>
+<p>线性可分支持向量机的最优化问题是一个凸二次规划问题。<br>yi(wxi+b)&gt;=1,min(1/2*||w||^2)  </p>
+<h3 id="得到线性可分支持向量机学习算法——最大间隔法"><a href="#得到线性可分支持向量机学习算法——最大间隔法" class="headerlink" title="得到线性可分支持向量机学习算法——最大间隔法"></a>得到线性可分支持向量机学习算法——最大间隔法</h3><p>输入：线性可分训练数据集<br>输出：最大间隔分离超平面和分类决策函数<br>方法：构造并求解约束最优化问题(yi(wxi+b)&gt;=1,min(1/2*||w||^2))，解得最优解w，b，由此得到分离超平面和分类决策函数  </p>
+<h3 id="对偶算法"><a href="#对偶算法" class="headerlink" title="对偶算法"></a>对偶算法</h3><p>应用拉格朗日对偶性，通过求解对偶问题得到原始问题的最优解。优点在于对偶问题往往更容易求解，二是引入核函数，推广到非线性分类问题。<br>L(w,b,a)=1/2<em>||w||^2-sigma(ai</em>yi(wxi+b))+sigma(ai) 其中a={a1,a2..an}为拉格朗日向量<br>根据对偶性质 原始问题就是求对偶问题的极大极小max[a]min[w,b]L(w,b,a)<br>先求L对w,b的极小，再求对a的极大<br>求min[w,b]L(w,b,a)：<br>L’(w)=w-sigma(aiyixi)=0<br>L’(b)=sigma(aiyi)=0;<br>代入后可得min[w,b]L(w,b,a)=-1/2<em>sigma(sigma(aiajyiyj(xi·xj)))+sigma(ai)<br>求min[w,b]L(w,b,a)对a的极大<br>max[a] -1/2</em>sigma(sigma(aiajyiyj(xi·xj)))+sigma(ai)<br>sigma(aiyi)=0<br>转成等价的对偶形式就是<br>min[a] 1/2*sigma(sigma(aiajyiyj(xi·xj)))-sigma(ai)<br>sigma(aiyi)=0<br>假如求解出来的a为a^=(a1,a2,⋯an)<br>则得到最优的w,b分别为<br>w^=sigma(aiyixi)<br>b^=yj-sigma(aiyi(xi·xj))<br>所以，最终的决策分类面为<br>f=sign(sigma(aiyi(x·xi))+b^<br>也就是说，分类决策函数只依赖于输入x与训练样本的输入的内积  </p>
+<p>与分离超平面最近的样本点称为支持向量  </p>
+<h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><p>经验损失函数:sigma(1-yi(wxi+b)) (注意，如果该值小于0时直接取0即可)<br>合页损失函数：sigma(1-yi(wi+b)) + leama||w||^2 后面的是L2正则项  </p>
+<h2 id="线性支持向量机与软间隔最大化"><a href="#线性支持向量机与软间隔最大化" class="headerlink" title="线性支持向量机与软间隔最大化"></a>线性支持向量机与软间隔最大化</h2><p>通常情况，训练数据集中有一些离群点（outlier），将这些离群点去除后剩下的集合是线性可分的。  </p>
+<p>对每个样本点引入一个松弛变量，则目标函数(最小化)增加一个代价项，代价项又个惩罚参数C，C值小时对离群点的惩罚小，C值大时对离群点的惩罚大。  </p>
+<p>线性支持向量机的最优化问题是一个带代价的凸二次规划问题。  </p>
+<p>这个问题也可通过求对偶问题</p>
+<h2 id="非线性支持向量机与核函数"><a href="#非线性支持向量机与核函数" class="headerlink" title="非线性支持向量机与核函数"></a>非线性支持向量机与核函数</h2><p>核技巧：<br>1.首先用一个变换将原空间的数据映射到新空间<br>2.然后在新空间用线性分类学习方法从训练数据中学习模型  </p>
+<p>在这里通过核技巧可以把输入空间上的超曲面模型转换为特征空间上的超平面模型(支持向量机)进行求解。  </p>
+<h3 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h3><p>将输入特征x（线性不可分）映射到高维特征R空间，可以在R空间上让SVM进行线性可以变，这就是核函数的作用  </p>
+<p>常用核函数：<br>多项式核函数，对应的是p次多项式分类器  K(x,z)=(x*z+1)^p<br>高斯核函数，对应的支持向量机是高斯径向基函数分类器  K(x,z)=exp(-(x-z)^2/a^2) a为均值<br>字符串核函数，核函数还可以定义在离散数据的集合上，字符串核函数应用在文本分类、信息检索、生物信息学方面。两个字符串相同的字串越多，他们就越相似，字符串核函数的值就越大。  </p>
+<h3 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h3><p>由线性支持向量机到非线性支持向量机只需要将对偶形式中的内积换做核函数<br>1.选取适当的核函数和适当的参数C，构造并求解最优化问题，求出最优解alpha<br>2.选取alpha的一个(0，C)之间的正分量，计算b<br>3.构造决策函数  </p>
+<h2 id="SMO"><a href="#SMO" class="headerlink" title="SMO"></a>SMO</h2><p>SMO是用于快速求解SVM的<br>它选择凸二次规划的两个变量，其他的变量保持不变，然后根据这两个变量构建一个二次规划问题，这个二次规划关于这两个变量解会更加的接近原始二次规划的解，通过这样的子问题划分可以大大增加整个算法的计算速度。<br>关于这两个变量：<br>其中一个是严重违反KKT条件的一个变量<br>另一个变量是根据自由约束确定，好像是求剩余变量的最大化来确定的。  </p>
+<h2 id="SVM多分类问题"><a href="#SVM多分类问题" class="headerlink" title="SVM多分类问题"></a>SVM多分类问题</h2><p>直接法  </p>
+<p>直接在目标函数上进行修改，将多个分类面的参数求解合并到一个最优化问题中，通过求解该优化就可以实现多分类（计算复杂度很高，实现起来较为困难）  </p>
+<p>间接法一对多  </p>
+<p>其中某个类为一类，其余n-1个类为另一个类，比如A,B,C,D四个类，第一次A为一个类，{B,C,D}为一个类训练一个分类器，第二次B为一个类,{A,C,D}为另一个类,按这方式共需要训练4个分类器，最后在测试的时候将测试样本经过这4个分类器f1(x),f2(x),f3(x)和f4(x),取其最大值为分类器(这种方式由于是1对M分类，会存在偏置，很不实用)  </p>
+<p>一对一(libsvm实现的方式)  </p>
+<p>任意两个类都训练一个分类器，那么n个类就需要n<em>(n-1)/2个svm分类器。<br>还是以A,B,C,D为例,那么需要{A,B},{A,C},{A,D},{B,C},{B,D},{C,D}为目标共6个分类器，然后在预测的将测试样本通过这6个分类器之后进行投票选择最终结果。<br>（这种方法虽好，但是需要n</em>(n-1)/2个分类器代价太大，不过有好像使用DAG来进行改进）</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/05/实习-阿里一面引发的总结/" rel="next" title="[实习]阿里一面引发的总结">
+                <i class="fa fa-chevron-left"></i> [实习]阿里一面引发的总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="James ZsnnsZ" />
+          <p class="site-author-name" itemprop="name">James ZsnnsZ</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ZsnnsZ" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点"><span class="nav-number">1.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性可分支持向量机与硬间隔最大化"><span class="nav-number">2.</span> <span class="nav-text">线性可分支持向量机与硬间隔最大化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数间隔和几何间隔"><span class="nav-number">2.1.</span> <span class="nav-text">函数间隔和几何间隔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#间隔最大化"><span class="nav-number">2.2.</span> <span class="nav-text">间隔最大化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#得到线性可分支持向量机学习算法——最大间隔法"><span class="nav-number">2.3.</span> <span class="nav-text">得到线性可分支持向量机学习算法——最大间隔法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对偶算法"><span class="nav-number">2.4.</span> <span class="nav-text">对偶算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#损失函数"><span class="nav-number">2.5.</span> <span class="nav-text">损失函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性支持向量机与软间隔最大化"><span class="nav-number">3.</span> <span class="nav-text">线性支持向量机与软间隔最大化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性支持向量机与核函数"><span class="nav-number">4.</span> <span class="nav-text">非线性支持向量机与核函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核函数"><span class="nav-number">4.1.</span> <span class="nav-text">核函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非线性支持向量机"><span class="nav-number">4.2.</span> <span class="nav-text">非线性支持向量机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SMO"><span class="nav-number">5.</span> <span class="nav-text">SMO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVM多分类问题"><span class="nav-number">6.</span> <span class="nav-text">SVM多分类问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">James ZsnnsZ</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
