@@ -245,7 +245,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/09/py-上下文管理器/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/16/[DM]-天池大数据竞赛/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="James ZsnnsZ">
@@ -270,7 +270,631 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/09/py-上下文管理器/" itemprop="url">
+                <a class="post-title-link" href="/2017/03/16/[DM]-天池大数据竞赛/" itemprop="url">
+                  [DM]天池大数据竞赛
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-16T17:04:41+08:00">
+                2017-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="阿里天池移动算法推荐大赛"><a href="#阿里天池移动算法推荐大赛" class="headerlink" title="阿里天池移动算法推荐大赛"></a>阿里天池移动算法推荐大赛</h2><h2 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h2><blockquote>
+<p>datafilter.py、pd_analyse.py</p>
+</blockquote>
+<ul>
+<li><p>1.删除只浏览而没有收藏、购物车、购买行为的ui  </p>
+</li>
+<li><p>2.删除没有购买行为的用户的所有行为  </p>
+</li>
+<li><p>3.删除对商品子集无交互的用户的行为</p>
+</li>
+<li><p>4.删除浏览／购买比值、购物车／购买比值过大的用户，同时保留购买物品数大于20的用户的行为  </p>
+</li>
+</ul>
+<h4 id="pandas使用记录"><a href="#pandas使用记录" class="headerlink" title="pandas使用记录"></a>pandas使用记录</h4><ul>
+<li><p>1.分组计数，并进行位置选择<br>  data = data.groupby[‘user_id’,’behavior_type’].count().iloc[:,:1]</p>
+</li>
+<li><p>2.按列属性选择<br>  data1 = data[data.behavior_type==1]</p>
+</li>
+<li><p>3.给列赋列名<br>  data2.columns = [‘user_id’,’behavior_type4’,’num4’]</p>
+</li>
+<li><p>4.按照某列进行合并<br>  data4 = pd.merge(data1,data2,on=’user_id’)</p>
+</li>
+<li><p>5.得到两列的比值<br>  bizhi14 = data6[‘num’]/data6[‘num4’]</p>
+</li>
+<li><p>6.插入新列<br>  data5.insert(7,’bizhi14’,bizhi14)</p>
+</li>
+<li><p>7.保存为csv，去掉行索引，格式输出<br>  data5.to_csv(‘bizhi.csv’, index = False, float_format = ‘%.1f’)</p>
+</li>
+<li><p>8.条件统计<br>  data6[data6.bizhi14&gt;20].count()<br>  data6[data6.bizhi34==1].count()</p>
+</li>
+</ul>
+<h2 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h2><blockquote>
+<p>fetch_feature.py</p>
+</blockquote>
+<ul>
+<li><p>用户-商品特征<br>  四种行为次数<br>  扩展：加入购物车未购买，最后访问距label日间距，行为天数</p>
+</li>
+<li><p>用户特征<br>  四种行为的次数，四种行为的商品数，行为天数，浏览量／购买量，购物车量／购买量,其他行为量／购买量，浏览商品数／购买商品数，购物车商品数／购买商品数，其他行为商品数／购买商品数<br>  扩展：行为后第二天购买率，平滑处理次数,label日前12小时</p>
+</li>
+<li><p>商品特征<br>  四种行为次数，四种行为的用户数，浏览量／购买量，购物车量／购买量，总行为数／购买次数，浏览用户／购买用户，购物车用户／购买用户,其他行为用户数。购买用户数，用户平均行为次数(4种行为总数／4种行为总人数)，老客户率</p>
+</li>
+<li><p>扩展<br>  交叉特征，时序特征，类别特征</p>
+</li>
+</ul>
+<h4 id="python使用记录"><a href="#python使用记录" class="headerlink" title="python使用记录"></a>python使用记录</h4><ul>
+<li><p>1.统计ui_f时使用列表嵌套字典统计ui行为发生次数，列表为4维对应四种行为</p>
+</li>
+<li><p>2.使用列表来临时存储要打印的结果，方便添加</p>
+</li>
+<li><p>3.a if b成立 else c</p>
+</li>
+<li><p>4.列表添加元素为dict.append()，集合添加元素为set.add()</p>
+</li>
+<li><p>5.统计u_f和i_f时使用列表嵌套字典再嵌套字典的结构，导入了collections中的defaultdict,形式如：<br>  [{u1：{i1:times1,i2:times2…}…},{},{},{}]<br>  [{i1：{u1:times1,u2:times2…}…},{},{},{}]</p>
+</li>
+</ul>
+<p>这样，统计某一用户浏览的商品数可用：<br>    len(u_i_num[0][u])</p>
+<p>统计某用户对所有商品的浏览次数可用：<br>    sum(u_i_num[0][u].values())</p>
+<p>以此类推</p>
+<h2 id="构建训练集"><a href="#构建训练集" class="headerlink" title="构建训练集"></a>构建训练集</h2><blockquote>
+<p>train_samples.py</p>
+</blockquote>
+<ul>
+<li><p>采用了滑动窗口的形式构建训练集，每十天为一个特征提取区段，其后一天贴label</p>
+</li>
+<li><p>批量提取特征后，每个窗口形成数个特征文件，进行csv文件的横向合并(merge):<br>  def combine_feature():</p>
+<pre><code>start = 1
+end = 10
+
+for _ in range(21):
+    name = str(start) + &apos;to&apos; + str(end)
+    filename1 = name + &apos;_i_f.csv&apos;
+    filename2 = name + &apos;_u_f.csv&apos;
+    filename3 = name + &apos;_ui_f.csv&apos;
+    filename4 = name + &apos;_combine.csv&apos;
+
+    df1 = pd.read_csv(&apos;item_feature/&apos; + filename1)
+    df2 = pd.read_csv(&apos;user_feature/&apos; + filename2)
+    df3 = pd.read_csv(&apos;ui_feature/&apos; + filename3)
+    df4 = pd.merge(df1, df2, on=[&apos;user_id&apos;, &apos;item_id&apos;])
+    df4 = pd.merge(df4, df3, on=[&apos;user_id&apos;, &apos;item_id&apos;])
+
+    df4.to_csv(&apos;train_sample/&apos; + filename4, index=False)
+
+    start += 1
+    end += 1
+</code></pre></li>
+<li><p>再将所有窗口的特征进行纵向合并(concat)，去掉u,i两列<br>  def combine_all():</p>
+<pre><code>files = os.listdir(&apos;train_sample/&apos;)
+if &apos;.DS_Store&apos; in files:
+    files.remove(&apos;.DS_Store&apos;)
+
+print len(files)
+
+dfs = [pd.read_csv(f) for f in files]
+total_df = pd.concat(dfs)
+
+totaldf = totaldf.drop(&apos;item_id&apos;, 1)
+totaldf = totaldf.drop(&apos;user_id&apos;, 1)
+
+total_df.to_csv(&apos;train_sample/train_sample.csv&apos;, index=False)
+</code></pre></li>
+</ul>
+<h4 id="pandas使用记录-1"><a href="#pandas使用记录-1" class="headerlink" title="pandas使用记录"></a>pandas使用记录</h4><ul>
+<li><p>横向合并<br>  df4 = pd.merge(df1, df2, on=[‘user_id’, ‘item_id’])</p>
+</li>
+<li><p>纵向合并<br>  dfs = [pd.read_csv(f) for f in files]<br>  total_df = pd.concat(dfs)</p>
+</li>
+</ul>
+<h4 id="macos注意"><a href="#macos注意" class="headerlink" title="macos注意"></a>macos注意</h4><ul>
+<li>可能有记录文件夹窗口形式的文件’.DS_Store’，要去除<br>  files = os.listdir(‘train_sample/‘)<br>  if ‘.DS_Store’ in files:<pre><code>files.remove(&apos;.DS_Store&apos;)
+</code></pre></li>
+</ul>
+<h2 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h2><blockquote>
+<p>train_model.py</p>
+</blockquote>
+<ul>
+<li><p>使用了GBDT进行模型训练，使用GBDT的好处是保证准确率的同时对正负样本分布不均的容忍度较好，避免了采样，对特征的形式无要求，避免特征的预处理。主要是时间不够了。</p>
+</li>
+<li><p>将训练后的模型进行序列化，方便之后做测试和预测<br>  from sklearn.externals import joblib<br>  joblib.dump(model, ‘./model/GBDT.m’)</p>
+</li>
+<li><p>使用sklearn时构建训练的输出数据的方法：<br>  df = pd.read_csv(‘train_sample/‘ + train_data)<br>  train_y = df[‘label’].values  # dataframe to ndarray<br>  train_X = df.drop(‘label’, 1).values</p>
+</li>
+</ul>
+<h2 id="交叉验证及调参"><a href="#交叉验证及调参" class="headerlink" title="交叉验证及调参"></a>交叉验证及调参</h2><blockquote>
+<p>predict.py</p>
+</blockquote>
+<ul>
+<li><p>加载训练好的模型，提取测试数据，用模型进行预测，与真实情况比较，计算Accuracy、AUC Score、F1，从而进行调参</p>
+</li>
+<li><p>GBDT调参：<br>  n_estimators：弱学习器的最大迭代次数<br>  learning_rate：每个弱学习器的权重缩减系数νν，也称作步长<br>  步长和最大迭代次数要一起调参<br>  subsample：子采样，取值为(0,1]，不放回抽样<br>  loss：损失函数，对于分类模型，有对数似然损失函数”deviance”和指数损失函数”exponential”；对于回归模型，有均方差”ls”, 绝对损失”lad”, Huber损失”huber”和分位数损失“quantile”，默认为ls<br>  max_features：划分时考虑的最大特征数<br>  max_depth：决策树最大深度<br>  min_samples_split：内部节点再划分所需最小样本数<br>  min_samples_leaf：叶子节点最少样本数<br>  max_leaf_nodes：最大叶子节点数</p>
+</li>
+</ul>
+<h2 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h2><blockquote>
+<p>predict.py、get_result.py、rule_fiter.py</p>
+</blockquote>
+<ul>
+<li><p>加载训练好的模型，构造线上集进行预测</p>
+</li>
+<li><p>使用规则进行过滤</p>
+</li>
+<li><p>求并集</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/09/ML-EM/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/09/ML-EM/" itemprop="url">
+                  [ML]EM
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T20:33:53+08:00">
+                2017-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/09/ML-GBDT/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/09/ML-GBDT/" itemprop="url">
+                  [ML]GBDT
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T20:33:46+08:00">
+                2017-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/09/ML-随机森林/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/09/ML-随机森林/" itemprop="url">
+                  [ML]随机森林
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T20:33:25+08:00">
+                2017-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/09/py-python进阶问题/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/09/py-python进阶问题/" itemprop="url">
                   [py]python进阶问题
                 </a>
               
@@ -336,7 +960,7 @@
 </code></pre><h4 id="自定义上下文管理器："><a href="#自定义上下文管理器：" class="headerlink" title="自定义上下文管理器："></a>自定义上下文管理器：</h4><p>实现上下文管理协议：<br>    <strong>enter</strong>(self)<br>    <strong>exit</strong>(self, exception_type, exception_value, traceback)</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/09/py-上下文管理器/#more" rel="contents">
+            <a class="btn" href="/2017/03/09/py-python进阶问题/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1031,528 +1655,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/01/ML-搜索排名/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/01/ML-搜索排名/" itemprop="url">
-                  [ML]搜索排名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-01T23:11:40+08:00">
-                2017-03-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="1-索引"><a href="#1-索引" class="headerlink" title="1.索引"></a>1.索引</h3><blockquote>
-<p>索引对应于一个列表，其中包含了所有不同的单词、这些单词所在的文档，以及单词在文档中出现的位置。可以加快搜索速度。</p>
-</blockquote>
-<h3 id="2-数据库设计"><a href="#2-数据库设计" class="headerlink" title="2.数据库设计"></a>2.数据库设计</h3><blockquote>
-<p>这个简易的搜索引擎准备了五张表  </p>
-</blockquote>
-<ul>
-<li>urllist(rowid,url)保存已经过索引的url列表</li>
-<li>wordlist(rowid,word)保存单词列表</li>
-<li>wordlocation(rowid,urlid,wordid,location)保存单词在文档中所处位置的列表</li>
-<li>link(rowid,fromid,toid)保存两个urlid，指明一个表到另一个表的链接关系</li>
-<li>linkwords(rowid,wordid,linkid)利用字段wordid和linkid记录哪些单词和链接实际相关</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/01/ML-搜索排名/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/27/ML-KNN/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/27/ML-KNN/" itemprop="url">
-                  [ML]KNN
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-27T13:07:07+08:00">
-                2017-02-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="KNN和KD树"><a href="#KNN和KD树" class="headerlink" title="KNN和KD树"></a>KNN和KD树</h1><blockquote>
-<p>KNN:k-最近邻算法，k表示为了求得最终结果而参与运算的样本数量，k值太小，容易过拟合，k值过大会降低准确性。<br>适用于客户流失预测、欺诈侦测等（更适合于稀有事件的分类问题）</p>
-</blockquote>
-<h3 id="如何寻找近邻"><a href="#如何寻找近邻" class="headerlink" title="如何寻找近邻"></a>如何寻找近邻</h3><p>定义相似度：采用距离度量方法(Lp距离，p=2为欧氏距离)来确定两个样本的相似度，对结果进行排序，取前k个作为近邻</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/02/27/ML-KNN/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/27/ML-决策树/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/27/ML-决策树/" itemprop="url">
-                  [ML]决策树
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-27T12:23:27+08:00">
-                2017-02-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>决策树模型具有易于解释的特点，对于决策得出的过程有清晰的体现，是对被观测数据进行分类的一种相当直观的方法。广泛应用于商务分析、医疗决策、政策制定等领域的数据挖掘。</p>
-</blockquote>
-<p>决策树学习本质上是从训练数据集中归纳出一组分类规则，估计条件概率模型的选择应该不仅对训练数据有很好的拟合，而且对未知数据有很好的预测能力。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/02/27/ML-决策树/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/25/ML-文档过滤/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/25/ML-文档过滤/" itemprop="url">
-                  [ML]文档过滤
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-25T17:53:24+08:00">
-                2017-02-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>文档过滤算法可以对文档进行鉴别分类</p>
-</blockquote>
-<p>早期采用基于规则的过滤器，有两个问题，规则可能被垃圾制造者获悉，统一的过滤方式不一定适合不同群体。</p>
-<p>为了解决这个问题，需要新的算法能够收集信息学会识别垃圾信息，这样就可以为不同的用户、群组或网站建立起各自的应用实例和数据集，他们对于垃圾信息的界定有自己的观点。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/02/25/ML-文档过滤/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1602,7 +1704,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
