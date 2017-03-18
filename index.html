@@ -324,8 +324,7 @@
 
       
         
-          
-            <h2 id="阿里天池移动算法推荐大赛"><a href="#阿里天池移动算法推荐大赛" class="headerlink" title="阿里天池移动算法推荐大赛"></a>阿里天池移动算法推荐大赛</h2><h2 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h2><blockquote>
+          <h2 id="阿里天池移动推荐算法大赛"><a href="#阿里天池移动推荐算法大赛" class="headerlink" title="阿里天池移动推荐算法大赛"></a>阿里天池移动推荐算法大赛</h2><h2 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h2><blockquote>
 <p>datafilter.py、pd_analyse.py</p>
 </blockquote>
 <ul>
@@ -356,119 +355,134 @@
 <li><p>8.条件统计<br>  data6[data6.bizhi14&gt;20].count()<br>  data6[data6.bizhi34==1].count()</p>
 </li>
 </ul>
-<h2 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h2><blockquote>
-<p>fetch_feature.py</p>
-</blockquote>
-<ul>
-<li><p>用户-商品特征<br>  四种行为次数<br>  扩展：加入购物车未购买，最后访问距label日间距，行为天数</p>
-</li>
-<li><p>用户特征<br>  四种行为的次数，四种行为的商品数，行为天数，浏览量／购买量，购物车量／购买量,其他行为量／购买量，浏览商品数／购买商品数，购物车商品数／购买商品数，其他行为商品数／购买商品数<br>  扩展：行为后第二天购买率，平滑处理次数,label日前12小时</p>
-</li>
-<li><p>商品特征<br>  四种行为次数，四种行为的用户数，浏览量／购买量，购物车量／购买量，总行为数／购买次数，浏览用户／购买用户，购物车用户／购买用户,其他行为用户数。购买用户数，用户平均行为次数(4种行为总数／4种行为总人数)，老客户率</p>
-</li>
-<li><p>扩展<br>  交叉特征，时序特征，类别特征</p>
-</li>
-</ul>
-<h4 id="python使用记录"><a href="#python使用记录" class="headerlink" title="python使用记录"></a>python使用记录</h4><ul>
-<li><p>1.统计ui_f时使用列表嵌套字典统计ui行为发生次数，列表为4维对应四种行为</p>
-</li>
-<li><p>2.使用列表来临时存储要打印的结果，方便添加</p>
-</li>
-<li><p>3.a if b成立 else c</p>
-</li>
-<li><p>4.列表添加元素为dict.append()，集合添加元素为set.add()</p>
-</li>
-<li><p>5.统计u_f和i_f时使用列表嵌套字典再嵌套字典的结构，导入了collections中的defaultdict,形式如：<br>  [{u1：{i1:times1,i2:times2…}…},{},{},{}]<br>  [{i1：{u1:times1,u2:times2…}…},{},{},{}]</p>
-</li>
-</ul>
-<p>这样，统计某一用户浏览的商品数可用：<br>    len(u_i_num[0][u])</p>
-<p>统计某用户对所有商品的浏览次数可用：<br>    sum(u_i_num[0][u].values())</p>
-<p>以此类推</p>
-<h2 id="构建训练集"><a href="#构建训练集" class="headerlink" title="构建训练集"></a>构建训练集</h2><blockquote>
-<p>train_samples.py</p>
-</blockquote>
-<ul>
-<li><p>采用了滑动窗口的形式构建训练集，每十天为一个特征提取区段，其后一天贴label</p>
-</li>
-<li><p>批量提取特征后，每个窗口形成数个特征文件，进行csv文件的横向合并(merge):<br>  def combine_feature():</p>
-<pre><code>start = 1
-end = 10
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/16/[DM]-天池大数据竞赛/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
-for _ in range(21):
-    name = str(start) + &apos;to&apos; + str(end)
-    filename1 = name + &apos;_i_f.csv&apos;
-    filename2 = name + &apos;_u_f.csv&apos;
-    filename3 = name + &apos;_ui_f.csv&apos;
-    filename4 = name + &apos;_combine.csv&apos;
+    <div>
+      
+    </div>
 
-    df1 = pd.read_csv(&apos;item_feature/&apos; + filename1)
-    df2 = pd.read_csv(&apos;user_feature/&apos; + filename2)
-    df3 = pd.read_csv(&apos;ui_feature/&apos; + filename3)
-    df4 = pd.merge(df1, df2, on=[&apos;user_id&apos;, &apos;item_id&apos;])
-    df4 = pd.merge(df4, df3, on=[&apos;user_id&apos;, &apos;item_id&apos;])
+    <div>
+      
+    </div>
 
-    df4.to_csv(&apos;train_sample/&apos; + filename4, index=False)
 
-    start += 1
-    end += 1
-</code></pre></li>
-<li><p>再将所有窗口的特征进行纵向合并(concat)，去掉u,i两列<br>  def combine_all():</p>
-<pre><code>files = os.listdir(&apos;train_sample/&apos;)
-if &apos;.DS_Store&apos; in files:
-    files.remove(&apos;.DS_Store&apos;)
+    <footer class="post-footer">
+      
 
-print len(files)
+      
 
-dfs = [pd.read_csv(f) for f in files]
-total_df = pd.concat(dfs)
+      
 
-totaldf = totaldf.drop(&apos;item_id&apos;, 1)
-totaldf = totaldf.drop(&apos;user_id&apos;, 1)
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
 
-total_df.to_csv(&apos;train_sample/train_sample.csv&apos;, index=False)
-</code></pre></li>
-</ul>
-<h4 id="pandas使用记录-1"><a href="#pandas使用记录-1" class="headerlink" title="pandas使用记录"></a>pandas使用记录</h4><ul>
-<li><p>横向合并<br>  df4 = pd.merge(df1, df2, on=[‘user_id’, ‘item_id’])</p>
-</li>
-<li><p>纵向合并<br>  dfs = [pd.read_csv(f) for f in files]<br>  total_df = pd.concat(dfs)</p>
-</li>
-</ul>
-<h4 id="macos注意"><a href="#macos注意" class="headerlink" title="macos注意"></a>macos注意</h4><ul>
-<li>可能有记录文件夹窗口形式的文件’.DS_Store’，要去除<br>  files = os.listdir(‘train_sample/‘)<br>  if ‘.DS_Store’ in files:<pre><code>files.remove(&apos;.DS_Store&apos;)
-</code></pre></li>
-</ul>
-<h2 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h2><blockquote>
-<p>train_model.py</p>
-</blockquote>
-<ul>
-<li><p>使用了GBDT进行模型训练，使用GBDT的好处是保证准确率的同时对正负样本分布不均的容忍度较好，避免了采样，对特征的形式无要求，避免特征的预处理。主要是时间不够了。</p>
-</li>
-<li><p>将训练后的模型进行序列化，方便之后做测试和预测<br>  from sklearn.externals import joblib<br>  joblib.dump(model, ‘./model/GBDT.m’)</p>
-</li>
-<li><p>使用sklearn时构建训练的输出数据的方法：<br>  df = pd.read_csv(‘train_sample/‘ + train_data)<br>  train_y = df[‘label’].values  # dataframe to ndarray<br>  train_X = df.drop(‘label’, 1).values</p>
-</li>
-</ul>
-<h2 id="交叉验证及调参"><a href="#交叉验证及调参" class="headerlink" title="交叉验证及调参"></a>交叉验证及调参</h2><blockquote>
-<p>predict.py</p>
-</blockquote>
-<ul>
-<li><p>加载训练好的模型，提取测试数据，用模型进行预测，与真实情况比较，计算Accuracy、AUC Score、F1，从而进行调参</p>
-</li>
-<li><p>GBDT调参：<br>  n_estimators：弱学习器的最大迭代次数<br>  learning_rate：每个弱学习器的权重缩减系数νν，也称作步长<br>  步长和最大迭代次数要一起调参<br>  subsample：子采样，取值为(0,1]，不放回抽样<br>  loss：损失函数，对于分类模型，有对数似然损失函数”deviance”和指数损失函数”exponential”；对于回归模型，有均方差”ls”, 绝对损失”lad”, Huber损失”huber”和分位数损失“quantile”，默认为ls<br>  max_features：划分时考虑的最大特征数<br>  max_depth：决策树最大深度<br>  min_samples_split：内部节点再划分所需最小样本数<br>  min_samples_leaf：叶子节点最少样本数<br>  max_leaf_nodes：最大叶子节点数</p>
-</li>
-</ul>
-<h2 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h2><blockquote>
-<p>predict.py、get_result.py、rule_fiter.py</p>
-</blockquote>
-<ul>
-<li><p>加载训练好的模型，构造线上集进行预测</p>
-</li>
-<li><p>使用规则进行过滤</p>
-</li>
-<li><p>求并集</p>
-</li>
-</ul>
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/14/ML-GBDT/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/14/ML-GBDT/" itemprop="url">
+                  [ML]boosting&GBDT
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-14T18:30:23+08:00">
+                2017-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="boosting"><a href="#boosting" class="headerlink" title="boosting"></a>boosting</h2><p>boosting是集成学习(ensemble learning)的一种，Boosting算法的工作机制是首先从训练集用初始权重训练出一个弱学习器1，根据弱学习的学习误差率表现来更新训练样本的权重，使得之前弱学习器1学习误差率高的训练样本点的权重变高，使得这些误差率高的点在后面的弱学习器2中得到更多的重视。然后基本调整权重后的训练集来训练弱学习器2.，如此重复进行，直到弱学习器数达到事先指定的数目T，最终将这T个弱学习器通过集合策略进行整合，得到最终的强学习器。</p>
+<p>Boosting系列算法里最著名算法主要有AdaBoost算法和提升树(boosting tree)系列算法。提升树系列算法里面应用最广泛的是梯度提升树(Gradient Boosting Tree)。</p>
+<h2 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h2><p><a href="http://www.cnblogs.com/pinard/p/6140514.html" target="_blank" rel="external">http://www.cnblogs.com/pinard/p/6140514.html</a></p>
 
           
         
@@ -509,7 +523,7 @@ total_df.to_csv(&apos;train_sample/train_sample.csv&apos;, index=False)
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/09/ML-EM/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/12/ML-EM/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="James ZsnnsZ">
@@ -534,7 +548,7 @@ total_df.to_csv(&apos;train_sample/train_sample.csv&apos;, index=False)
             
               
                 
-                <a class="post-title-link" href="/2017/03/09/ML-EM/" itemprop="url">
+                <a class="post-title-link" href="/2017/03/12/ML-EM/" itemprop="url">
                   [ML]EM
                 </a>
               
@@ -551,8 +565,8 @@ total_df.to_csv(&apos;train_sample/train_sample.csv&apos;, index=False)
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T20:33:53+08:00">
-                2017-03-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-12T20:33:53+08:00">
+                2017-03-12
               </time>
             
 
@@ -629,7 +643,7 @@ total_df.to_csv(&apos;train_sample/train_sample.csv&apos;, index=False)
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/09/ML-GBDT/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/11/ML-随机森林/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="James ZsnnsZ">
@@ -654,8 +668,8 @@ total_df.to_csv(&apos;train_sample/train_sample.csv&apos;, index=False)
             
               
                 
-                <a class="post-title-link" href="/2017/03/09/ML-GBDT/" itemprop="url">
-                  [ML]GBDT
+                <a class="post-title-link" href="/2017/03/11/ML-随机森林/" itemprop="url">
+                  [ML]bagging&RF
                 </a>
               
             
@@ -671,8 +685,8 @@ total_df.to_csv(&apos;train_sample/train_sample.csv&apos;, index=False)
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T20:33:46+08:00">
-                2017-03-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-11T20:33:25+08:00">
+                2017-03-11
               </time>
             
 
@@ -709,127 +723,56 @@ total_df.to_csv(&apos;train_sample/train_sample.csv&apos;, index=False)
       
         
           
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/09/ML-随机森林/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/09/ML-随机森林/" itemprop="url">
-                  [ML]随机森林
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T20:33:25+08:00">
-                2017-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
+            <h2 id="bagging"><a href="#bagging" class="headerlink" title="bagging"></a>bagging</h2><ul>
+<li><p>bagging是集成学习的一种，特点是各个弱分类器之间没有依赖关系，可以进行并行拟合。</p>
+</li>
+<li><p>bagging采用随机抽样的方法，有放回的进行抽样</p>
+</li>
+<li><p>bagging的集合策略也比较简单，对于分类问题，通常使用简单投票法，得到最多票数的类别或者类别之一为最终的模型输出。对于回归问题，通常使用简单平均法，对T个弱学习器得到的回归结果进行算术平均得到最终的模型输出。</p>
+</li>
+<li><p>由于Bagging算法每次都进行采样来训练模型，因此泛化能力很强，对于降低模型的方差很有作用。当然对于训练集的拟合程度就会差一些，也就是模型的偏差会大一些。</p>
+</li>
+</ul>
+<h2 id="随机森林-Random-Forest-以下简称RF"><a href="#随机森林-Random-Forest-以下简称RF" class="headerlink" title="随机森林(Random Forest,以下简称RF)"></a>随机森林(Random Forest,以下简称RF)</h2><blockquote>
+<p>Bagging算法的进化版，也就是说，它的思想仍然是bagging,但是进行了独有的改进。</p>
+</blockquote>
+<ul>
+<li>首先，RF使用了CART决策树作为弱学习器，这让我们想到了梯度提示树GBDT。  </li>
+<li>第二，在使用决策树的基础上，RF对决策树的建立做了改进，对于普通的决策树，我们会在节点上所有的n个样本特征中选择一个最优的特征来做决策树的左右子树划分，但是RF通过随机选择节点上的一部分样本特征，这个数字小于n，假设为n0，然后在这些随机选择的n0个样本特征中，选择一个最优的特征来做决策树的左右子树划分。这样进一步增强了模型的泛化能力。　　　　<br>如果n0=n，则此时RF的CART决策树和普通的CART决策树没有区别。n0越小，则模型约健壮，当然此时对于训练集的拟合程度会变差。也就是说n0越小，模型的方差会减小，但是偏倚会增大。在实际案例中，一般会通过交叉验证调参获取一个合适的n0的值。</li>
+</ul>
+<p>除了上面两点，RF和普通的bagging算法没有什么不同</p>
+<p>下面简单总结下RF的算法。</p>
+<ul>
+<li><p>输入为样本集D={(x,y1),(x2,y2),…(xm,ym)}，弱分类器迭代次数T。</p>
+</li>
+<li><p>输出为最终的强分类器f(x)  </p>
+</li>
+<li><p>对于t=1,2…,T:<br>　a)对训练集进行第t次随机采样，共采集m次，得到包含m个样本的采样集Dm<br>　b)用采样集Dm训练第m个决策树模型Gm(x)，在训练决策树模型的节点的时候， 在节点上所有的样本特征中选择一部分样本特征， 在这些随机选择的部分样本特征中选择一个最优的特征来做决策树的左右子树划分</p>
+</li>
+<li><p>如果是分类算法预测，则T个弱学习器投出最多票数的类别或者类别之一为最终类别。如果是回归算法，T个弱学习器得到的回归结果进行算术平均得到的值为最终的模型输出。</p>
+</li>
+</ul>
+<h3 id="RF的主要优点有："><a href="#RF的主要优点有：" class="headerlink" title="RF的主要优点有："></a>RF的主要优点有：</h3><ul>
+<li><p>训练可以高度并行化，对于大数据时代的大样本训练速度有优势。个人觉得这是的最主要的优点。</p>
+</li>
+<li><p>由于可以随机选择决策树节点划分特征，这样在样本特征维度很高的时候，仍然能高效的训练模型。</p>
+</li>
+<li><p>在训练后，可以给出各个特征对于输出的重要性</p>
+</li>
+<li><p>由于采用了随机采样，训练出的模型的方差小，泛化能力强。</p>
+</li>
+<li><p>相对于Boosting系列的Adaboost和GBDT， RF实现比较简单。</p>
+</li>
+<li><p>对部分特征缺失不敏感。</p>
+</li>
+</ul>
+<h3 id="RF的主要缺点有："><a href="#RF的主要缺点有：" class="headerlink" title="RF的主要缺点有："></a>RF的主要缺点有：</h3><ul>
+<li><p>在某些噪音比较大的样本集上，RF模型容易陷入过拟合。</p>
+</li>
+<li><p>取值划分比较多的特征容易对RF的决策产生更大的影响，从而影响拟合的模型的效果。</p>
+</li>
+</ul>
+<h3 id="内容来源于-刘建平Pinard"><a href="#内容来源于-刘建平Pinard" class="headerlink" title="内容来源于  刘建平Pinard"></a>内容来源于  刘建平Pinard</h3>
           
         
       
@@ -1484,7 +1427,22 @@ total_df.to_csv(&apos;train_sample/train_sample.csv&apos;, index=False)
       
         
           <p>Logistic Regression：逻辑斯谛回归<br>Maximum entropy model:最大熵模型<br>LR回归和最大熵模型都是对数线性模型。  </p>
-<h2 id="LR"><a href="#LR" class="headerlink" title="LR"></a>LR</h2><p>定义：(逻辑斯蒂分布)设X是连续随机变量，X服从逻辑斯蒂分布是指X具有sigmoid形状的分布函数。以(μ，1/2)为中心对称。</p>
+<h2 id="LR"><a href="#LR" class="headerlink" title="LR"></a>LR</h2><p>sklearn中与逻辑回归有关的类主要是LogisticRegression， LogisticRegressionCV 和logistic_regression_path，其中LogisticRegression和LogisticRegressionCV的主要区别是LogisticRegressionCV使用了交叉验证来选择正则化系数C。而LogisticRegression需要自己每次指定一个正则化系数。logistic_regression_path类则比较特殊，它拟合数据后，不能直接来做预测，只能为拟合数据选择合适逻辑回归的系数和正则化系数。主要是用在模型选择的时候  </p>
+<ul>
+<li>正则化选择参数：penalty  <blockquote>
+<p>l2,l1  </p>
+</blockquote>
+</li>
+<li>优化算法选择参数：solver  <blockquote>
+<p>liblinear,lbgfs,newton-cg,sag  </p>
+</blockquote>
+</li>
+<li>类型权重参数： class_weight  <blockquote>
+<p>可以定义class_weight={0:0.9, 1:0.1}，这样类型0的权重为90%，而类型1的权重为10%。<br>如果class_weight选择balanced，那么类库会根据训练样本量来计算权重。某种类型样本量越多，则权重越低，样本量越少，则权重越高。  </p>
+</blockquote>
+</li>
+</ul>
+<p>定义：(逻辑斯蒂分布)设X是连续随机变量，X服从逻辑斯蒂分布是指X具有sigmoid形状的分布函数。以(μ，1/2)为中心对称。</p>
 <blockquote>
 <p>在Ng的ppt中取g(z) = 1/(1+exp(-z))</p>
 </blockquote>

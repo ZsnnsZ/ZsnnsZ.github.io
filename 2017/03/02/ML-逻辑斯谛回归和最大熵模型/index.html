@@ -88,30 +88,18 @@
 
 
 <meta name="description" content="Logistic Regression：逻辑斯谛回归Maximum entropy model:最大熵模型LR回归和最大熵模型都是对数线性模型。  
-LR定义：(逻辑斯蒂分布)设X是连续随机变量，X服从逻辑斯蒂分布是指X具有sigmoid形状的分布函数。以(μ，1/2)为中心对称。
-
-在Ng的ppt中取g(z) = 1/(1+exp(-z))
-
-设h(x) = g(wx) = P(Y=1|X) =">
+LRsklearn中与逻辑回归有关的类主要是LogisticRegression， LogisticRegressionCV 和logistic_regression_path，其中LogisticRegression和LogisticRegress">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[ML]逻辑斯谛回归和最大熵模型">
 <meta property="og:url" content="http://yoursite.com/2017/03/02/ML-逻辑斯谛回归和最大熵模型/index.html">
 <meta property="og:site_name" content="ZSN码疯窝">
 <meta property="og:description" content="Logistic Regression：逻辑斯谛回归Maximum entropy model:最大熵模型LR回归和最大熵模型都是对数线性模型。  
-LR定义：(逻辑斯蒂分布)设X是连续随机变量，X服从逻辑斯蒂分布是指X具有sigmoid形状的分布函数。以(μ，1/2)为中心对称。
-
-在Ng的ppt中取g(z) = 1/(1+exp(-z))
-
-设h(x) = g(wx) = P(Y=1|X) =">
-<meta property="og:updated_time" content="2017-03-02T09:31:20.000Z">
+LRsklearn中与逻辑回归有关的类主要是LogisticRegression， LogisticRegressionCV 和logistic_regression_path，其中LogisticRegression和LogisticRegress">
+<meta property="og:updated_time" content="2017-03-17T01:51:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[ML]逻辑斯谛回归和最大熵模型">
 <meta name="twitter:description" content="Logistic Regression：逻辑斯谛回归Maximum entropy model:最大熵模型LR回归和最大熵模型都是对数线性模型。  
-LR定义：(逻辑斯蒂分布)设X是连续随机变量，X服从逻辑斯蒂分布是指X具有sigmoid形状的分布函数。以(μ，1/2)为中心对称。
-
-在Ng的ppt中取g(z) = 1/(1+exp(-z))
-
-设h(x) = g(wx) = P(Y=1|X) =">
+LRsklearn中与逻辑回归有关的类主要是LogisticRegression， LogisticRegressionCV 和logistic_regression_path，其中LogisticRegression和LogisticRegress">
 
 
 
@@ -338,7 +326,22 @@ LR定义：(逻辑斯蒂分布)设X是连续随机变量，X服从逻辑斯蒂�
 
       
         <p>Logistic Regression：逻辑斯谛回归<br>Maximum entropy model:最大熵模型<br>LR回归和最大熵模型都是对数线性模型。  </p>
-<h2 id="LR"><a href="#LR" class="headerlink" title="LR"></a>LR</h2><p>定义：(逻辑斯蒂分布)设X是连续随机变量，X服从逻辑斯蒂分布是指X具有sigmoid形状的分布函数。以(μ，1/2)为中心对称。</p>
+<h2 id="LR"><a href="#LR" class="headerlink" title="LR"></a>LR</h2><p>sklearn中与逻辑回归有关的类主要是LogisticRegression， LogisticRegressionCV 和logistic_regression_path，其中LogisticRegression和LogisticRegressionCV的主要区别是LogisticRegressionCV使用了交叉验证来选择正则化系数C。而LogisticRegression需要自己每次指定一个正则化系数。logistic_regression_path类则比较特殊，它拟合数据后，不能直接来做预测，只能为拟合数据选择合适逻辑回归的系数和正则化系数。主要是用在模型选择的时候  </p>
+<ul>
+<li>正则化选择参数：penalty  <blockquote>
+<p>l2,l1  </p>
+</blockquote>
+</li>
+<li>优化算法选择参数：solver  <blockquote>
+<p>liblinear,lbgfs,newton-cg,sag  </p>
+</blockquote>
+</li>
+<li>类型权重参数： class_weight  <blockquote>
+<p>可以定义class_weight={0:0.9, 1:0.1}，这样类型0的权重为90%，而类型1的权重为10%。<br>如果class_weight选择balanced，那么类库会根据训练样本量来计算权重。某种类型样本量越多，则权重越低，样本量越少，则权重越高。  </p>
+</blockquote>
+</li>
+</ul>
+<p>定义：(逻辑斯蒂分布)设X是连续随机变量，X服从逻辑斯蒂分布是指X具有sigmoid形状的分布函数。以(μ，1/2)为中心对称。</p>
 <blockquote>
 <p>在Ng的ppt中取g(z) = 1/(1+exp(-z))</p>
 </blockquote>
@@ -346,7 +349,7 @@ LR定义：(逻辑斯蒂分布)设X是连续随机变量，X服从逻辑斯蒂�
 <p>由sigmoid图像可以很简单的看出wx与P(Y=1|X)的关系</p>
 <p>数学推导：对数几率log(P(Y=1|X)/(1-P(Y=1|X))) = wx<br>说明输出Y=1的对数几率是由输入x的线性函数表示的模型。</p>
 <a id="more"></a>
-<h4 id="模型参数估计"><a href="#模型参数估计" class="headerlink" title="模型参数估计"></a>模型参数估计</h4><p>用极大似然估计法估计模型参数。<br>设P(Y=1|x) = h(x),P(Y=0|x) = 1 - h(x)<br>求对数似然函数的极大值，得w的估计值。<br>求解方法用梯度下降法或者拟牛顿法。</p>
+<h4 id="模型参数估计"><a href="#模型参数估计" class="headerlink" title="模型参数估计"></a>模型参数估计</h4><p>用极大似然估计法估计模型参数。<br>设P(Y=1|x) = h(x),P(Y=0|x) = 1 - h(x)<br>写成一个函数<br>求对数似然函数的极大值，得w的估计值。<br>求解方法用梯度下降法或者拟牛顿法。</p>
 <h4 id="LR的过拟合"><a href="#LR的过拟合" class="headerlink" title="LR的过拟合"></a>LR的过拟合</h4><p>关于LR的过拟合问题：  </p>
 <ol>
 <li>减少feature个数（人工定义留多少个feature、算法选取这些feature）</li>
