@@ -245,6 +245,151 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/20/实习-人人编程题解/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/20/实习-人人编程题解/" itemprop="url">
+                  [实习]人人编程题解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-20T14:43:17+08:00">
+                2017-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>人人网的在线笔试是我的第一次在线编程测试，不知道系统如何评分，没搞懂标准输入输出，网咖电脑重启了环境白配了。直接放弃了。浪完之后在自己电脑写，发现其实很简单，再来一次我能全AC。。orz</p>
+<h3 id="t1-神奇的规律（人人网2017春招真题）"><a href="#t1-神奇的规律（人人网2017春招真题）" class="headerlink" title="t1:神奇的规律（人人网2017春招真题）"></a>t1:神奇的规律（人人网2017春招真题）</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><pre><code>小明学习数学的时候发现两个神奇的规律：
+假设现在有一个十进制数字n=a0*1+a1*10+a2*102+a3*103+.....+ak*10k。
+1. 要判断n能否被3整除，只需要验证各位和能否被3整除，即sum=a0+a1+a2+....+ak能否被3整除。如果sum能被3整除，那么n就能被3整除。
+2. 要判断n能否被11整除，只需要验证偶数位和与奇数位和的差能否被11整除，
+即diff=（a0+a2+a4+....）-（a1+a3+a5+...）能否被11整除。如果diff能被11整除，那么n就能被11整除。
+例如81和1243可以用上述方法分别验证能否被3和11整除。
+现在小明想让你帮忙写段程序求出b进制下分别满足上述规律的最小的x和最小的y。
+即n=a0*1+a1*b+a2*b2+a3*b3+.....+ak*bk，
+n能被xi整除，当且仅当sum=a0+a1+a2+....+ak能被xi整除，x为最小的xi。
+n能被yi整除，当且仅当diff=（a0+a2+a4+.....）-（a1+a3+a5+.....）能被yi整除，y为最小的yi。
+</code></pre><ul>
+<li><p>输入<br>输入数据有多组，每组数据包含一个数字b(3&lt;=b&lt;=10^6)  </p>
+</li>
+<li><p>样例输入<br>10<br>120  </p>
+</li>
+<li><p>输出<br>输出x和y  </p>
+</li>
+<li><p>样例输出<br>3 11<br>7 11</p>
+</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/20/实习-人人编程题解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/16/[DM]-天池大数据竞赛/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -722,8 +867,7 @@
 
       
         
-          
-            <h2 id="bagging"><a href="#bagging" class="headerlink" title="bagging"></a>bagging</h2><ul>
+          <h2 id="bagging"><a href="#bagging" class="headerlink" title="bagging"></a>bagging</h2><ul>
 <li><p>bagging是集成学习的一种，特点是各个弱分类器之间没有依赖关系，可以进行并行拟合。</p>
 </li>
 <li><p>bagging采用随机抽样的方法，有放回的进行抽样</p>
@@ -733,47 +877,13 @@
 <li><p>由于Bagging算法每次都进行采样来训练模型，因此泛化能力很强，对于降低模型的方差很有作用。当然对于训练集的拟合程度就会差一些，也就是模型的偏差会大一些。</p>
 </li>
 </ul>
-<h2 id="随机森林-Random-Forest-以下简称RF"><a href="#随机森林-Random-Forest-以下简称RF" class="headerlink" title="随机森林(Random Forest,以下简称RF)"></a>随机森林(Random Forest,以下简称RF)</h2><blockquote>
-<p>Bagging算法的进化版，也就是说，它的思想仍然是bagging,但是进行了独有的改进。</p>
-</blockquote>
-<ul>
-<li>首先，RF使用了CART决策树作为弱学习器，这让我们想到了梯度提示树GBDT。  </li>
-<li>第二，在使用决策树的基础上，RF对决策树的建立做了改进，对于普通的决策树，我们会在节点上所有的n个样本特征中选择一个最优的特征来做决策树的左右子树划分，但是RF通过随机选择节点上的一部分样本特征，这个数字小于n，假设为n0，然后在这些随机选择的n0个样本特征中，选择一个最优的特征来做决策树的左右子树划分。这样进一步增强了模型的泛化能力。　　　　<br>如果n0=n，则此时RF的CART决策树和普通的CART决策树没有区别。n0越小，则模型约健壮，当然此时对于训练集的拟合程度会变差。也就是说n0越小，模型的方差会减小，但是偏倚会增大。在实际案例中，一般会通过交叉验证调参获取一个合适的n0的值。</li>
-</ul>
-<p>除了上面两点，RF和普通的bagging算法没有什么不同</p>
-<p>下面简单总结下RF的算法。</p>
-<ul>
-<li><p>输入为样本集D={(x,y1),(x2,y2),…(xm,ym)}，弱分类器迭代次数T。</p>
-</li>
-<li><p>输出为最终的强分类器f(x)  </p>
-</li>
-<li><p>对于t=1,2…,T:<br>　a)对训练集进行第t次随机采样，共采集m次，得到包含m个样本的采样集Dm<br>　b)用采样集Dm训练第m个决策树模型Gm(x)，在训练决策树模型的节点的时候， 在节点上所有的样本特征中选择一部分样本特征， 在这些随机选择的部分样本特征中选择一个最优的特征来做决策树的左右子树划分</p>
-</li>
-<li><p>如果是分类算法预测，则T个弱学习器投出最多票数的类别或者类别之一为最终类别。如果是回归算法，T个弱学习器得到的回归结果进行算术平均得到的值为最终的模型输出。</p>
-</li>
-</ul>
-<h3 id="RF的主要优点有："><a href="#RF的主要优点有：" class="headerlink" title="RF的主要优点有："></a>RF的主要优点有：</h3><ul>
-<li><p>训练可以高度并行化，对于大数据时代的大样本训练速度有优势。个人觉得这是的最主要的优点。</p>
-</li>
-<li><p>由于可以随机选择决策树节点划分特征，这样在样本特征维度很高的时候，仍然能高效的训练模型。</p>
-</li>
-<li><p>在训练后，可以给出各个特征对于输出的重要性</p>
-</li>
-<li><p>由于采用了随机采样，训练出的模型的方差小，泛化能力强。</p>
-</li>
-<li><p>相对于Boosting系列的Adaboost和GBDT， RF实现比较简单。</p>
-</li>
-<li><p>对部分特征缺失不敏感。</p>
-</li>
-</ul>
-<h3 id="RF的主要缺点有："><a href="#RF的主要缺点有：" class="headerlink" title="RF的主要缺点有："></a>RF的主要缺点有：</h3><ul>
-<li><p>在某些噪音比较大的样本集上，RF模型容易陷入过拟合。</p>
-</li>
-<li><p>取值划分比较多的特征容易对RF的决策产生更大的影响，从而影响拟合的模型的效果。</p>
-</li>
-</ul>
-<h3 id="内容来源于-刘建平Pinard"><a href="#内容来源于-刘建平Pinard" class="headerlink" title="内容来源于  刘建平Pinard"></a>内容来源于  刘建平Pinard</h3>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/11/ML-随机森林/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1485,134 +1595,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/01/ML-朴素贝叶斯/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/01/ML-朴素贝叶斯/" itemprop="url">
-                  [ML]朴素贝叶斯
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-01T23:29:24+08:00">
-                2017-03-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="朴素贝叶斯原理"><a href="#朴素贝叶斯原理" class="headerlink" title="朴素贝叶斯原理"></a>朴素贝叶斯原理</h2><blockquote>
-<p>朴素贝叶斯的思想基础是这样的：对于给出的待分类项，求解在此项出现的条件下各个类别出现的概率，哪个最大，就认为此待分类项属于哪个类别</p>
-<p>公式：由P(A∩B) = P(A) <em> P(B|A) = P(B) </em> P(A|B)<br>得到P(A|B) = P(B|A) * P(A) / P(B)</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/01/ML-朴素贝叶斯/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1662,7 +1644,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
