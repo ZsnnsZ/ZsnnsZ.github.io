@@ -245,6 +245,153 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/02/ML-逻辑斯谛回归和最大熵模型/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/02/ML-逻辑斯谛回归和最大熵模型/" itemprop="url">
+                  [ML]逻辑斯谛回归和最大熵模型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-02T15:49:14+08:00">
+                2017-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Logistic Regression：逻辑斯谛回归<br>Maximum entropy model:最大熵模型<br>LR回归和最大熵模型都是对数线性模型。  </p>
+<h2 id="LR"><a href="#LR" class="headerlink" title="LR"></a>LR</h2><p>sklearn中与逻辑回归有关的类主要是LogisticRegression， LogisticRegressionCV 和logistic_regression_path，其中LogisticRegression和LogisticRegressionCV的主要区别是LogisticRegressionCV使用了交叉验证来选择正则化系数C。而LogisticRegression需要自己每次指定一个正则化系数。logistic_regression_path类则比较特殊，它拟合数据后，不能直接来做预测，只能为拟合数据选择合适逻辑回归的系数和正则化系数。主要是用在模型选择的时候  </p>
+<ul>
+<li>正则化选择参数：penalty  <blockquote>
+<p>l2,l1  </p>
+</blockquote>
+</li>
+<li>优化算法选择参数：solver  <blockquote>
+<p>liblinear,lbgfs,newton-cg,sag  </p>
+</blockquote>
+</li>
+<li>类型权重参数： class_weight  <blockquote>
+<p>可以定义class_weight={0:0.9, 1:0.1}，这样类型0的权重为90%，而类型1的权重为10%。<br>如果class_weight选择balanced，那么类库会根据训练样本量来计算权重。某种类型样本量越多，则权重越低，样本量越少，则权重越高。  </p>
+</blockquote>
+</li>
+</ul>
+<p>定义：(逻辑斯蒂分布)设X是连续随机变量，X服从逻辑斯蒂分布是指X具有sigmoid形状的分布函数。以(μ，1/2)为中心对称。</p>
+<blockquote>
+<p>在Ng的ppt中取g(z) = 1/(1+exp(-z))</p>
+</blockquote>
+<p>设h(x) = g(wx) = P(Y=1|X) = exp(wx)/(1+exp(wx))</p>
+<p>由sigmoid图像可以很简单的看出wx与P(Y=1|X)的关系</p>
+<p>数学推导：对数几率log(P(Y=1|X)/(1-P(Y=1|X))) = wx<br>说明输出Y=1的对数几率是由输入x的线性函数表示的模型。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/02/ML-逻辑斯谛回归和最大熵模型/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/01/ML-朴素贝叶斯/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1453,7 +1600,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

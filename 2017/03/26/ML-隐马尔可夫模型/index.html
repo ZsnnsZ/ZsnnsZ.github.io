@@ -87,16 +87,28 @@
 
 
 
-<meta name="description" content="A brief summary of the first and second chapters of Programming Collective Intelligence">
+<meta name="description" content="隐马尔可夫（HMM）
+隐马尔可夫模型（Hidden Markov Model，HMM）是关于时序的概率模型，描述一个由隐藏的马尔可夫链随机生成隐藏状态序列，再由隐藏的状态序列生成观测序列的过程。
+
+HMM的应用？可用于标注问题，这时的隐藏状态对应着标记，应用于语音识别，自然语言处理，生物信息，模式识别领域。
+定义：一个隐马尔可夫模型由隐藏状态，观测状态，状态转移概率矩阵(隐藏状态转移概率矩阵)，观">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[PCL]1&2">
-<meta property="og:url" content="http://yoursite.com/2017/02/22/PCI-推荐/index.html">
+<meta property="og:title" content="[ML]隐马尔可夫模型">
+<meta property="og:url" content="http://yoursite.com/2017/03/26/ML-隐马尔可夫模型/index.html">
 <meta property="og:site_name" content="ZSN码疯窝">
-<meta property="og:description" content="A brief summary of the first and second chapters of Programming Collective Intelligence">
-<meta property="og:updated_time" content="2017-03-01T15:19:14.000Z">
+<meta property="og:description" content="隐马尔可夫（HMM）
+隐马尔可夫模型（Hidden Markov Model，HMM）是关于时序的概率模型，描述一个由隐藏的马尔可夫链随机生成隐藏状态序列，再由隐藏的状态序列生成观测序列的过程。
+
+HMM的应用？可用于标注问题，这时的隐藏状态对应着标记，应用于语音识别，自然语言处理，生物信息，模式识别领域。
+定义：一个隐马尔可夫模型由隐藏状态，观测状态，状态转移概率矩阵(隐藏状态转移概率矩阵)，观">
+<meta property="og:updated_time" content="2017-03-26T07:27:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[PCL]1&2">
-<meta name="twitter:description" content="A brief summary of the first and second chapters of Programming Collective Intelligence">
+<meta name="twitter:title" content="[ML]隐马尔可夫模型">
+<meta name="twitter:description" content="隐马尔可夫（HMM）
+隐马尔可夫模型（Hidden Markov Model，HMM）是关于时序的概率模型，描述一个由隐藏的马尔可夫链随机生成隐藏状态序列，再由隐藏的状态序列生成观测序列的过程。
+
+HMM的应用？可用于标注问题，这时的隐藏状态对应着标记，应用于语音识别，自然语言处理，生物信息，模式识别领域。
+定义：一个隐马尔可夫模型由隐藏状态，观测状态，状态转移概率矩阵(隐藏状态转移概率矩阵)，观">
 
 
 
@@ -124,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/22/PCI-推荐/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/26/ML-隐马尔可夫模型/"/>
 
 
 
 
 
-  <title> [PCL]1&2 | ZSN码疯窝 </title>
+  <title> [ML]隐马尔可夫模型 | ZSN码疯窝 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -247,7 +259,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/22/PCI-推荐/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/26/ML-隐马尔可夫模型/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="James ZsnnsZ">
@@ -271,7 +283,7 @@
             
             
               
-                [PCL]1&2
+                [ML]隐马尔可夫模型
               
             
           </h1>
@@ -286,8 +298,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-22T22:22:22+08:00">
-                2017-02-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-26T13:41:18+08:00">
+                2017-03-26
               </time>
             
 
@@ -322,64 +334,49 @@
       
 
       
-        <h2 id="A-brief-summary-of-the-first-and-second-chapters-of-Programming-Collective-Intelligence"><a href="#A-brief-summary-of-the-first-and-second-chapters-of-Programming-Collective-Intelligence" class="headerlink" title="A brief summary of the first and second chapters of Programming Collective Intelligence"></a>A brief summary of the first and second chapters of Programming Collective Intelligence</h2><a id="more"></a>
-<h2 id="chapter2-Making-Recommendations"><a href="#chapter2-Making-Recommendations" class="headerlink" title="chapter2  Making Recommendations"></a>chapter2  Making Recommendations</h2><h3 id="1-基于用户的协作型过滤-user-based-collaborative-filtering"><a href="#1-基于用户的协作型过滤-user-based-collaborative-filtering" class="headerlink" title="1.基于用户的协作型过滤(user-based collaborative filtering)"></a>1.基于用户的协作型过滤(user-based collaborative filtering)</h3><blockquote>
-<p>适用于规模较小的、变化非常频繁的数据集</p>
+        <h3 id="隐马尔可夫（HMM）"><a href="#隐马尔可夫（HMM）" class="headerlink" title="隐马尔可夫（HMM）"></a>隐马尔可夫（HMM）</h3><blockquote>
+<p>隐马尔可夫模型（Hidden Markov Model，HMM）是关于时序的概率模型，描述一个由隐藏的马尔可夫链随机生成隐藏状态序列，再由隐藏的状态序列生成观测序列的过程。</p>
 </blockquote>
+<h4 id="HMM的应用？"><a href="#HMM的应用？" class="headerlink" title="HMM的应用？"></a>HMM的应用？</h4><p>可用于标注问题，这时的隐藏状态对应着标记，应用于语音识别，自然语言处理，生物信息，模式识别领域。</p>
+<p>定义：一个隐马尔可夫模型由隐藏状态，观测状态，状态转移概率矩阵(隐藏状态转移概率矩阵)，观测概率矩阵(隐藏状态下的观测状态概率矩阵)，初始隐藏状态概率向量(各隐藏状态的概率)<br>这五个元素构成。</p>
+<a id="more"></a>
+<h4 id="HMM的三要素-参数-？"><a href="#HMM的三要素-参数-？" class="headerlink" title="HMM的三要素(参数)？"></a>HMM的三要素(参数)？</h4><p>状态转移概率矩阵，观测矩阵，初始概率向量</p>
 <ul>
-<li>1.1 数据集构建使用嵌套字典，表达不同人及其偏好</li>
+<li>初始隐藏状态概率向量和状态转移概率矩阵决定了隐马尔可夫链，生成不可观测的状态序列</li>
+<li>观测状态矩阵确定了如何从状态生成观测，与状态序列综合确定了如何产生观测序列</li>
 </ul>
+<h4 id="HMM的两个基本假设？"><a href="#HMM的两个基本假设？" class="headerlink" title="HMM的两个基本假设？"></a>HMM的两个基本假设？</h4><ul>
+<li>齐次马尔可夫性假设：假设任意时刻的隐藏状态只与前一时刻的隐藏状态相关</li>
+<li>观测独立性假设：假设任意时刻的观测状态只与该时刻的隐藏状态相关</li>
+</ul>
+<h4 id="HMM的三个基本问题"><a href="#HMM的三个基本问题" class="headerlink" title="HMM的三个基本问题"></a>HMM的三个基本问题</h4><ul>
+<li><p>概率计算问题<br>问题定义：<br>计算在给定的HMM模型下，一个观测序列出现的概率<br>求解方法：<br>使用前向与后向两种算法。<br>因为按照概率公式直接计算的时间复杂度很大，设观测状态数量为T则复杂度为O(TNT)</p>
 <ul>
-<li>1.2 寻找相近用户</li>
+<li>前向算法：<br>使用前向概率递推来进行计算，从初始状态向量开始，每增加一个观测状态就相当于增加一个计算层，一个计算层有隐藏状态数量个算元，观测序列算完之后对最后一层求和即得对给定观测序列的概率值，时间复杂度为O(TN2)</li>
+<li>后向算法：<br>跟前向算法非常相似，从1出发，从观测序列尾部出发，的每增加一个观测状态就增加一个计算层，一直到观测序列头部，最后对递推到初始状态向量的概率求和</li>
 </ul>
-<ul>
-<li>1.2.1 欧几里得距离：二维空间几何距离<br>策略：返回值 1/（d+1）</li>
-</ul>
-<ul>
-<li>1.2.2 皮尔逊相关度(越相似，值越大)<br>作用：判断两组数据与某一直线的拟合程度，修正‘夸大分值’的情况<br>适用场合：数据不是很规范时（一组普遍偏高，一组普遍偏低）</li>
-</ul>
-<ul>
-<li>1.2.3 曼哈顿距离（A*寻路算法）</li>
-</ul>
-<ul>
-<li>1.2.4 Jaccard系数</li>
-</ul>
-<ul>
-<li>1.3推荐物品<br>对相似用户对物品的评分进行加权平均</li>
-</ul>
-<ul>
-<li>1.4寻找相似物品<br>矩阵转置</li>
-</ul>
-<h3 id="2-基于物品的协作型过滤-item-based-collaborative-filtering"><a href="#2-基于物品的协作型过滤-item-based-collaborative-filtering" class="headerlink" title="2.基于物品的协作型过滤(item-based collaborative filtering)"></a>2.基于物品的协作型过滤(item-based collaborative filtering)</h3><blockquote>
-<p>在拥有大量数据集的情况下，基于物品的协作型过滤更好。<br>物品间的比较不像用户间的比较那么频繁。  </p>
-</blockquote>
-<p>优点：大量计算任务预先执行，更快的给予需要推荐的用户结果<br>缺点：增加了维护物品相似度表达的额外开销</p>
-<p>具体说明：在为某用户提供推荐时，先统计他曾评分的物品集，寻找这些物品的相似物品集，进行加权平均  </p>
-<h2 id="chapter3-Dicovering-Groups"><a href="#chapter3-Dicovering-Groups" class="headerlink" title="chapter3 Dicovering Groups"></a>chapter3 Dicovering Groups</h2><h3 id="1-无监督学习-unsupervised-learning"><a href="#1-无监督学习-unsupervised-learning" class="headerlink" title="1.无监督学习(unsupervised learning)"></a>1.无监督学习(unsupervised learning)</h3><blockquote>
-<p>目标是采集数据，然后从中找出不同的群组</p>
-</blockquote>
-<p>包括： 聚类、非负矩阵因式分解、自组织映射</p>
-<h4 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h4><ul>
-<li><p>分级聚类(Hierarchical Clustering)</p>
-<blockquote>
-<p>通过连续不断地将最为相似的群组两两合并，构造出一个群组的层级结构  </p>
-</blockquote>
 </li>
-<li><p>K-均值聚类(K-Means Clustering)</p>
-<blockquote>
-<p>预先告诉算法希望生成的聚类数量。首先确定K个中心位置，然后将数据项分配给最临近的中心点，待分配完成后，聚类中心就会转移到分配给该聚类的所有节点的平均位置处，然后整个分配过程重新开始。这一过程不断重复至分配结果与上一次结果相同为止。</p>
-</blockquote>
+<li><p>学习问题<br>问题定义：已知观测序列，估计HMM模型的参数，使得在该参数下的模型出现此观测序列的概率最大。<br>用极大似然估计法求解。<br>求解方法：<br>HMM的学习，根据训练集是包括观测序列和对应的状态序列还是只有观测序列两种，分别由监督学习和非监督学习实现。</p>
+<ul>
+<li><p>监督学习<br>训练集包括观测序列和对应的状态序列</p>
 </li>
-<li><p>针对偏好的聚类</p>
-<blockquote>
-<p>数据集只有0，1两种取值<br>使用Tanimoto系数定义距离，Tanimoto表示交集与并集的比率</p>
-</blockquote>
+<li><p>非监督学习<br>此时HMM模型为含有隐变量的概率模型，使用EM算法</p>
+<ul>
+<li>确定对观测序列与隐藏序列的完全数据的对数似然函数</li>
+<li>EM算法的E步为求Q函数，Q函数是当前HMM参数的估计值和要极大化的参数的函数</li>
+<li>M步为极大化Q函数，对各项分别极大化求出参数(A，B，pi)</li>
+</ul>
 </li>
 </ul>
-<h3 id="2-监督学习-supervised-learning"><a href="#2-监督学习-supervised-learning" class="headerlink" title="2.监督学习(supervised learning)"></a>2.监督学习(supervised learning)</h3><blockquote>
-<p>利用样本输入和期望输出学习如何预测的技术</p>
-</blockquote>
-<p>包括：神经网络、决策树、向量支持机、贝叶斯过滤</p>
+</li>
+</ul>
+<ul>
+<li>预测问题<br>问题定义：已知HMM模型和观测序列，求概率最大的状态序列<br>求解方法：<br>近似算法，维特比算法<ul>
+<li>近似算法就是贪婪的思想，每出现一个观测状态都找出现这个观测状态概率最大的隐藏状态，不能保证整体最优</li>
+<li>维特比算法是动态规划的思想，求解概率最大的路径</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -410,8 +407,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/19/Beautifulsoup使用/" rel="next" title="Beautifulsoup使用">
-                <i class="fa fa-chevron-left"></i> Beautifulsoup使用
+              <a href="/2017/03/24/ML-EM/" rel="next" title="[ML]EM">
+                <i class="fa fa-chevron-left"></i> [ML]EM
               </a>
             
           </div>
@@ -419,10 +416,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/23/ML-优化/" rel="prev" title="[ML]优化">
-                [ML]优化 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -544,7 +537,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-brief-summary-of-the-first-and-second-chapters-of-Programming-Collective-Intelligence"><span class="nav-number">1.</span> <span class="nav-text">A brief summary of the first and second chapters of Programming Collective Intelligence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter2-Making-Recommendations"><span class="nav-number">2.</span> <span class="nav-text">chapter2  Making Recommendations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-基于用户的协作型过滤-user-based-collaborative-filtering"><span class="nav-number">2.1.</span> <span class="nav-text">1.基于用户的协作型过滤(user-based collaborative filtering)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-基于物品的协作型过滤-item-based-collaborative-filtering"><span class="nav-number">2.2.</span> <span class="nav-text">2.基于物品的协作型过滤(item-based collaborative filtering)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter3-Dicovering-Groups"><span class="nav-number">3.</span> <span class="nav-text">chapter3 Dicovering Groups</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-无监督学习-unsupervised-learning"><span class="nav-number">3.1.</span> <span class="nav-text">1.无监督学习(unsupervised learning)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#聚类"><span class="nav-number">3.1.1.</span> <span class="nav-text">聚类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-监督学习-supervised-learning"><span class="nav-number">3.2.</span> <span class="nav-text">2.监督学习(supervised learning)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#隐马尔可夫（HMM）"><span class="nav-number">1.</span> <span class="nav-text">隐马尔可夫（HMM）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HMM的应用？"><span class="nav-number">1.1.</span> <span class="nav-text">HMM的应用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HMM的三要素-参数-？"><span class="nav-number">1.2.</span> <span class="nav-text">HMM的三要素(参数)？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HMM的两个基本假设？"><span class="nav-number">1.3.</span> <span class="nav-text">HMM的两个基本假设？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HMM的三个基本问题"><span class="nav-number">1.4.</span> <span class="nav-text">HMM的三个基本问题</span></a></li></ol></li></ol></div>
             
 
           </div>
