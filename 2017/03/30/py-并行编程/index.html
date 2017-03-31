@@ -87,25 +87,22 @@
 
 
 
-<meta name="description" content="EM算法EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。
-EM算法过程将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。
-EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。
-构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)">
+<meta name="description" content="并行编程关于GIL：GIL全称Global Interpreter Lock，是CPython中为了防止多线程并发执行python机器代码的一个互斥锁，因为CPython的内存管理是非线程安全的。
+注意：GIL并不是python的特性，它只是实现python解析器CPython时所引入的，在JPython中无GIL。
+CPython是大部分环境默认的python执行环境，因为GIL的存在，Pyth">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[ML]EM">
-<meta property="og:url" content="http://yoursite.com/2017/03/24/ML-EM/index.html">
+<meta property="og:title" content="[py]并行编程">
+<meta property="og:url" content="http://yoursite.com/2017/03/30/py-并行编程/index.html">
 <meta property="og:site_name" content="ZSN码疯窝">
-<meta property="og:description" content="EM算法EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。
-EM算法过程将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。
-EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。
-构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)">
-<meta property="og:updated_time" content="2017-03-26T08:18:49.000Z">
+<meta property="og:description" content="并行编程关于GIL：GIL全称Global Interpreter Lock，是CPython中为了防止多线程并发执行python机器代码的一个互斥锁，因为CPython的内存管理是非线程安全的。
+注意：GIL并不是python的特性，它只是实现python解析器CPython时所引入的，在JPython中无GIL。
+CPython是大部分环境默认的python执行环境，因为GIL的存在，Pyth">
+<meta property="og:updated_time" content="2017-03-31T02:55:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[ML]EM">
-<meta name="twitter:description" content="EM算法EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。
-EM算法过程将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。
-EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。
-构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)">
+<meta name="twitter:title" content="[py]并行编程">
+<meta name="twitter:description" content="并行编程关于GIL：GIL全称Global Interpreter Lock，是CPython中为了防止多线程并发执行python机器代码的一个互斥锁，因为CPython的内存管理是非线程安全的。
+注意：GIL并不是python的特性，它只是实现python解析器CPython时所引入的，在JPython中无GIL。
+CPython是大部分环境默认的python执行环境，因为GIL的存在，Pyth">
 
 
 
@@ -133,13 +130,13 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/24/ML-EM/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/30/py-并行编程/"/>
 
 
 
 
 
-  <title> [ML]EM | ZSN码疯窝 </title>
+  <title> [py]并行编程 | ZSN码疯窝 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +253,7 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/24/ML-EM/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/py-并行编程/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="James ZsnnsZ">
@@ -280,7 +277,7 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
             
             
               
-                [ML]EM
+                [py]并行编程
               
             
           </h1>
@@ -295,8 +292,8 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-24T20:33:53+08:00">
-                2017-03-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T16:31:52+08:00">
+                2017-03-30
               </time>
             
 
@@ -331,16 +328,21 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
       
 
       
-        <h3 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h3><p>EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。</p>
-<h4 id="EM算法过程"><a href="#EM算法过程" class="headerlink" title="EM算法过程"></a>EM算法过程</h4><p>将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。</p>
-<p>EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。</p>
-<p>构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)，在一般条件(P(Y|θ)有上界)下EM算法是收敛的，但不能保证收敛到全局最优(可选择多组初始θ进行迭代，最后选择较优解)。</p>
-<p>迭代过程：</p>
-<ul>
-<li>E步：求期望，称为Q函数,Q(θ,θi) = sigma(logP(Y,Z|θ)P(Z|Y,θi))</li>
-<li>M步：求极大，极大化Q函数，得到参数的新估计值</li>
-<li>重复E、M直至收敛</li>
+        <h3 id="并行编程"><a href="#并行编程" class="headerlink" title="并行编程"></a>并行编程</h3><p>关于GIL：GIL全称Global Interpreter Lock，是CPython中为了防止多线程并发执行python机器代码的一个互斥锁，因为CPython的内存管理是非线程安全的。</p>
+<p>注意：GIL并不是python的特性，它只是实现python解析器CPython时所引入的，在JPython中无GIL。</p>
+<p>CPython是大部分环境默认的python执行环境，因为GIL的存在，Python很难充分利用多核CPU的优势。但是，可以通过内置的模块multiprocessing实现下面几种并行模式：</p>
+<h4 id="1-多进程："><a href="#1-多进程：" class="headerlink" title="1.多进程："></a>1.多进程：</h4><p>对于CPU密集型的程序，可以使用multiprocessing的Process,Pool等封装好的类，通过多进程的方式实现并行计算，每个进程有自己的GIL，避免了进程之间的争抢。但是因为进程中的通信成本比较大(在主线程中使用queue)，对于进程之间需要大量数据交互的程序效率未必有大的提高。</p>
+<h4 id="2-多线程："><a href="#2-多线程：" class="headerlink" title="2.多线程："></a>2.多线程：</h4><p>对于IO密集型的程序，multiprocessing.dummy模块使用multiprocessing的接口封装threading，使得多线程编程也变得非常轻松(比如可以使用Pool的map接口，简洁高效)。如果有至少一个CPU密集型线程存在，那么多线程效率会由于GIL的存在而大幅降低。</p>
+<h4 id="什么时候并行？"><a href="#什么时候并行？" class="headerlink" title="什么时候并行？"></a>什么时候并行？</h4><ul>
+<li>为功能而线程化<br>分配不同的线程来完成应用程序的不同功能，这是最容易的方法，因为功能重叠的机会很罕见。 在一个应用程序中控制并发功能的执行是比较容易的。 即使在计算间没有直接的影响，功能之间的依赖性还会维持。<br>多线程应用举例：为了简化代码，为下列部分设计不同的线程：输入、图形用户界面、计算和输出。</li>
+<li>为性能而线程化<br>通过将执行在并行环境下的大量的计算分解开来进行应用程序的并行化，能够提高计算的性能。线程化是为了改善周转周期和吞吐量 。<br>比如： 搜索太空实验室碎片， 把全部搜索区域分成多个分段，并安排一个工人去搜索一个分段 。<ul>
+<li>为缩短周转周期而线程化<br>用可能的最小的时间完成一个任务<br>举例：安排一个饭桌时候的不同任务：<br>一个侍者摆放盘子。<br>一个侍者折叠和放置餐巾。<br>一个侍者摆放花和蜡烛。<br>一个侍者摆放器皿、汤匙、刀子和叉子<br>一个侍者放玻璃杯</li>
+<li>为了吞吐量而线程化<br>在固定的时间内完成最多的任务<br>举例：安排一个饭局时候的不同任务<br>对多个侍者的安排： 每个桌子安排一个侍者。 一个侍者能摆放所有桌子的所有盘子；另一个可以摆放所有的玻璃杯；以此类推。 </li>
 </ul>
+</li>
+</ul>
+<p>分布式：multiprocessing中的Managers类提供了可以在不同进程之共享数据的方式，可以在此基础上开发出分布式的程序。</p>
+<p>不同的业务场景可以选择其中的一种或几种的组合实现程序性能的优化。</p>
 
       
     </div>
@@ -371,8 +373,8 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/20/实习-在线编程题解/" rel="next" title="[实习]在线编程题解">
-                <i class="fa fa-chevron-left"></i> [实习]在线编程题解
+              <a href="/2017/03/30/py-运行效率/" rel="next" title="[py]运行效率">
+                <i class="fa fa-chevron-left"></i> [py]运行效率
               </a>
             
           </div>
@@ -381,8 +383,8 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/26/ML-隐马尔可夫模型/" rel="prev" title="[ML]隐马尔可夫模型">
-                [ML]隐马尔可夫模型 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/31/py-赋值与拷贝/" rel="prev" title="[py]赋值与拷贝">
+                [py]赋值与拷贝 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -505,7 +507,7 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#EM算法"><span class="nav-number">1.</span> <span class="nav-text">EM算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EM算法过程"><span class="nav-number">1.1.</span> <span class="nav-text">EM算法过程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#并行编程"><span class="nav-number">1.</span> <span class="nav-text">并行编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-多进程："><span class="nav-number">1.1.</span> <span class="nav-text">1.多进程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-多线程："><span class="nav-number">1.2.</span> <span class="nav-text">2.多线程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么时候并行？"><span class="nav-number">1.3.</span> <span class="nav-text">什么时候并行？</span></a></li></ol></li></ol></div>
             
 
           </div>

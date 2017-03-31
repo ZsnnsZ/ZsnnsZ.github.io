@@ -95,7 +95,7 @@ LRsklearn中与逻辑回归有关的类主要是LogisticRegression， LogisticRe
 <meta property="og:site_name" content="ZSN码疯窝">
 <meta property="og:description" content="Logistic Regression：逻辑斯谛回归Maximum entropy model:最大熵模型LR回归和最大熵模型都是对数线性模型。  
 LRsklearn中与逻辑回归有关的类主要是LogisticRegression， LogisticRegressionCV 和logistic_regression_path，其中LogisticRegression和LogisticRegress">
-<meta property="og:updated_time" content="2017-03-17T01:51:36.000Z">
+<meta property="og:updated_time" content="2017-03-26T12:18:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[ML]逻辑斯谛回归和最大熵模型">
 <meta name="twitter:description" content="Logistic Regression：逻辑斯谛回归Maximum entropy model:最大熵模型LR回归和最大熵模型都是对数线性模型。  
@@ -328,15 +328,18 @@ LRsklearn中与逻辑回归有关的类主要是LogisticRegression， LogisticRe
         <p>Logistic Regression：逻辑斯谛回归<br>Maximum entropy model:最大熵模型<br>LR回归和最大熵模型都是对数线性模型。  </p>
 <h2 id="LR"><a href="#LR" class="headerlink" title="LR"></a>LR</h2><p>sklearn中与逻辑回归有关的类主要是LogisticRegression， LogisticRegressionCV 和logistic_regression_path，其中LogisticRegression和LogisticRegressionCV的主要区别是LogisticRegressionCV使用了交叉验证来选择正则化系数C。而LogisticRegression需要自己每次指定一个正则化系数。logistic_regression_path类则比较特殊，它拟合数据后，不能直接来做预测，只能为拟合数据选择合适逻辑回归的系数和正则化系数。主要是用在模型选择的时候  </p>
 <ul>
-<li>正则化选择参数：penalty  <blockquote>
-<p>l2,l1  </p>
+<li><p>正则化选择参数：penalty  </p>
+<blockquote>
+<p>l2,l1</p>
 </blockquote>
 </li>
-<li>优化算法选择参数：solver  <blockquote>
+<li><p>优化算法选择参数：solver  </p>
+<blockquote>
 <p>liblinear,lbgfs,newton-cg,sag  </p>
 </blockquote>
 </li>
-<li>类型权重参数： class_weight  <blockquote>
+<li><p>类型权重参数： class_weight  </p>
+<blockquote>
 <p>可以定义class_weight={0:0.9, 1:0.1}，这样类型0的权重为90%，而类型1的权重为10%。<br>如果class_weight选择balanced，那么类库会根据训练样本量来计算权重。某种类型样本量越多，则权重越低，样本量越少，则权重越高。  </p>
 </blockquote>
 </li>
@@ -413,8 +416,8 @@ LRsklearn中与逻辑回归有关的类主要是LogisticRegression， LogisticRe
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/05/实习-阿里一面引发的总结/" rel="prev" title="[实习]阿里一面引发的总结">
-                [实习]阿里一面引发的总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/05/实习-问题小结/" rel="prev" title="问题小结">
+                问题小结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -487,7 +490,7 @@ LRsklearn中与逻辑回归有关的类主要是LogisticRegression， LogisticRe
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -87,25 +87,25 @@
 
 
 
-<meta name="description" content="EM算法EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。
-EM算法过程将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。
-EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。
-构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)">
+<meta name="description" content="在 python 中对象赋值实际上是引用的复制，当可变数据对象(dict，set)和不可变对象（str,数字，tuple）有多个引用(别名)时要注意是否应该深拷贝或者浅拷贝，来得到一个新的对象。
+copy浅拷贝，deepcopy深拷贝(递归拷贝)在python中，对象赋值实际上是对引用的复制，要进行真正意义上的复制需要用到copy模块
+from copy import copy
+1.直接赋值复制引">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[ML]EM">
-<meta property="og:url" content="http://yoursite.com/2017/03/24/ML-EM/index.html">
+<meta property="og:title" content="[py]赋值与拷贝">
+<meta property="og:url" content="http://yoursite.com/2017/03/31/py-赋值与拷贝/index.html">
 <meta property="og:site_name" content="ZSN码疯窝">
-<meta property="og:description" content="EM算法EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。
-EM算法过程将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。
-EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。
-构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)">
-<meta property="og:updated_time" content="2017-03-26T08:18:49.000Z">
+<meta property="og:description" content="在 python 中对象赋值实际上是引用的复制，当可变数据对象(dict，set)和不可变对象（str,数字，tuple）有多个引用(别名)时要注意是否应该深拷贝或者浅拷贝，来得到一个新的对象。
+copy浅拷贝，deepcopy深拷贝(递归拷贝)在python中，对象赋值实际上是对引用的复制，要进行真正意义上的复制需要用到copy模块
+from copy import copy
+1.直接赋值复制引">
+<meta property="og:updated_time" content="2017-03-31T03:27:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[ML]EM">
-<meta name="twitter:description" content="EM算法EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。
-EM算法过程将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。
-EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。
-构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)">
+<meta name="twitter:title" content="[py]赋值与拷贝">
+<meta name="twitter:description" content="在 python 中对象赋值实际上是引用的复制，当可变数据对象(dict，set)和不可变对象（str,数字，tuple）有多个引用(别名)时要注意是否应该深拷贝或者浅拷贝，来得到一个新的对象。
+copy浅拷贝，deepcopy深拷贝(递归拷贝)在python中，对象赋值实际上是对引用的复制，要进行真正意义上的复制需要用到copy模块
+from copy import copy
+1.直接赋值复制引">
 
 
 
@@ -133,13 +133,13 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/24/ML-EM/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/31/py-赋值与拷贝/"/>
 
 
 
 
 
-  <title> [ML]EM | ZSN码疯窝 </title>
+  <title> [py]赋值与拷贝 | ZSN码疯窝 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +256,7 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/24/ML-EM/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/py-赋值与拷贝/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="James ZsnnsZ">
@@ -280,7 +280,7 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
             
             
               
-                [ML]EM
+                [py]赋值与拷贝
               
             
           </h1>
@@ -295,8 +295,8 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-24T20:33:53+08:00">
-                2017-03-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-31T11:01:44+08:00">
+                2017-03-31
               </time>
             
 
@@ -331,15 +331,35 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
       
 
       
-        <h3 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h3><p>EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。</p>
-<h4 id="EM算法过程"><a href="#EM算法过程" class="headerlink" title="EM算法过程"></a>EM算法过程</h4><p>将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。</p>
-<p>EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。</p>
-<p>构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)，在一般条件(P(Y|θ)有上界)下EM算法是收敛的，但不能保证收敛到全局最优(可选择多组初始θ进行迭代，最后选择较优解)。</p>
-<p>迭代过程：</p>
+        <p>在 python 中对象赋值实际上是引用的复制，当可变数据对象(dict，set)和不可变对象（str,数字，tuple）有多个引用(别名)时要注意是否应该深拷贝或者浅拷贝，来得到一个新的对象。</p>
+<h3 id="copy浅拷贝，deepcopy深拷贝-递归拷贝"><a href="#copy浅拷贝，deepcopy深拷贝-递归拷贝" class="headerlink" title="copy浅拷贝，deepcopy深拷贝(递归拷贝)"></a>copy浅拷贝，deepcopy深拷贝(递归拷贝)</h3><p>在python中，对象赋值实际上是对引用的复制，要进行真正意义上的复制需要用到copy模块</p>
+<pre><code>from copy import copy
+</code></pre><p>1.直接赋值<br>复制引用，对某一引用的改变会引起所有引用的改变</p>
+<p>2.copy<br>浅拷贝，没有拷贝子对象，即浅拷贝出的对象，其子对象还是只复制了引用</p>
+<p>3.deepcopy<br>深拷贝，对原始对象进行递归拷贝，完全复制</p>
+<pre><code>&gt;&gt;&gt; from copy import copy
+&gt;&gt;&gt; a = [1,2,3,[4,5]]
+&gt;&gt;&gt; b = a
+&gt;&gt;&gt; c = copy(a)
+&gt;&gt;&gt; from copy import deepcopy
+&gt;&gt;&gt; d = deepcopy(a)
+&gt;&gt;&gt; a[0] = 6
+&gt;&gt;&gt; a,b,c,d
+([6, 2, 3, [4, 5]], [6, 2, 3, [4, 5]], [1, 2, 3, [4, 5]], [1, 2, 3, [4, 5]])
+&gt;&gt;&gt; a[-1][0] = 7
+&gt;&gt;&gt; a,b,c,d
+([6, 2, 3, [7, 5]], [6, 2, 3, [7, 5]], [1, 2, 3, [7, 5]], [1, 2, 3, [4, 5]])
+&gt;&gt;&gt; 
+</code></pre><h3 id="关于多个引用指向同一个对象时通过一个引用进行赋值是否会引起所有引用的改变："><a href="#关于多个引用指向同一个对象时通过一个引用进行赋值是否会引起所有引用的改变：" class="headerlink" title="关于多个引用指向同一个对象时通过一个引用进行赋值是否会引起所有引用的改变："></a>关于多个引用指向同一个对象时通过一个引用进行赋值是否会引起所有引用的改变：</h3><ul>
+<li><p>会：字典和列表是可变数据对象，即可以通过引用其元素改变对象自身，改变的是对象自身，所有引用的指向并没有变，只不过对象的值变了。<br>  L1 = [1,2,3]<br>  L2 = L1<br>  L1[0] = 10<br>  此时L1,L2指向同一对象</p>
+</li>
+<li><p>不会：对于字符串、数字、元组，不能改变对象本身，只能改变引用的指向，称为不可变数据对象。这时对多个引用的其中一个改变值时，就创建了一个新的对象，并且这个引用指向这个新的对象，剩下的引用还是指向原来那个对象。<br>  a = 5<br>  b = a<br>  a = a + 2<br>  此时a,b指向不同对象</p>
+</li>
+</ul>
+<h3 id="关于函数传递对象时是否会改变原对象的值："><a href="#关于函数传递对象时是否会改变原对象的值：" class="headerlink" title="关于函数传递对象时是否会改变原对象的值："></a>关于函数传递对象时是否会改变原对象的值：</h3><p>对象在传入函数中时时创建了一个新的引用指向该对象，在函数中操作是通过这个引用进行的。对这个引用改变其值时，原对象是否会改变：</p>
 <ul>
-<li>E步：求期望，称为Q函数,Q(θ,θi) = sigma(logP(Y,Z|θ)P(Z|Y,θi))</li>
-<li>M步：求极大，极大化Q函数，得到参数的新估计值</li>
-<li>重复E、M直至收敛</li>
+<li>会：传递的是可变数据对象即字典，列表，因为通过新创建的引用改变了原对象</li>
+<li>不会：传递的是不可变数据对象即字符串、数字、元组，因为创建了新的对象</li>
 </ul>
 
       
@@ -371,8 +391,8 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/20/实习-在线编程题解/" rel="next" title="[实习]在线编程题解">
-                <i class="fa fa-chevron-left"></i> [实习]在线编程题解
+              <a href="/2017/03/30/py-并行编程/" rel="next" title="[py]并行编程">
+                <i class="fa fa-chevron-left"></i> [py]并行编程
               </a>
             
           </div>
@@ -380,10 +400,6 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/26/ML-隐马尔可夫模型/" rel="prev" title="[ML]隐马尔可夫模型">
-                [ML]隐马尔可夫模型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -505,7 +521,7 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#EM算法"><span class="nav-number">1.</span> <span class="nav-text">EM算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EM算法过程"><span class="nav-number">1.1.</span> <span class="nav-text">EM算法过程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#copy浅拷贝，deepcopy深拷贝-递归拷贝"><span class="nav-number">1.</span> <span class="nav-text">copy浅拷贝，deepcopy深拷贝(递归拷贝)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于多个引用指向同一个对象时通过一个引用进行赋值是否会引起所有引用的改变："><span class="nav-number">2.</span> <span class="nav-text">关于多个引用指向同一个对象时通过一个引用进行赋值是否会引起所有引用的改变：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于函数传递对象时是否会改变原对象的值："><span class="nav-number">3.</span> <span class="nav-text">关于函数传递对象时是否会改变原对象的值：</span></a></li></ol></div>
             
 
           </div>

@@ -87,25 +87,37 @@
 
 
 
-<meta name="description" content="EM算法EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。
-EM算法过程将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。
-EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。
-构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)">
+<meta name="description" content="动态类型python的变量不需要声明，而是在运行时自动判断变量这个对象的类型和内存地址引用和对象分离是动态类型的核心：
+
+程序中的对象名只是指向这一对象的引用
+函数的参数传递，实际上只是传递的对象的引用
+
+python内存管理机制python的内存管理可以从三个方面来看：
+引用计数对于python中的每一个对象，都会对其维护一个指向该对象的引用计数
+引用计数的增加：1.对象被创建：x = 42.赋">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[ML]EM">
-<meta property="og:url" content="http://yoursite.com/2017/03/24/ML-EM/index.html">
+<meta property="og:title" content="[py]动态类型内存管理">
+<meta property="og:url" content="http://yoursite.com/2017/03/30/py-动态类型内存管理/index.html">
 <meta property="og:site_name" content="ZSN码疯窝">
-<meta property="og:description" content="EM算法EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。
-EM算法过程将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。
-EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。
-构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)">
-<meta property="og:updated_time" content="2017-03-26T08:18:49.000Z">
+<meta property="og:description" content="动态类型python的变量不需要声明，而是在运行时自动判断变量这个对象的类型和内存地址引用和对象分离是动态类型的核心：
+
+程序中的对象名只是指向这一对象的引用
+函数的参数传递，实际上只是传递的对象的引用
+
+python内存管理机制python的内存管理可以从三个方面来看：
+引用计数对于python中的每一个对象，都会对其维护一个指向该对象的引用计数
+引用计数的增加：1.对象被创建：x = 42.赋">
+<meta property="og:updated_time" content="2017-03-30T10:16:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[ML]EM">
-<meta name="twitter:description" content="EM算法EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。
-EM算法过程将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。
-EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。
-构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)">
+<meta name="twitter:title" content="[py]动态类型内存管理">
+<meta name="twitter:description" content="动态类型python的变量不需要声明，而是在运行时自动判断变量这个对象的类型和内存地址引用和对象分离是动态类型的核心：
+
+程序中的对象名只是指向这一对象的引用
+函数的参数传递，实际上只是传递的对象的引用
+
+python内存管理机制python的内存管理可以从三个方面来看：
+引用计数对于python中的每一个对象，都会对其维护一个指向该对象的引用计数
+引用计数的增加：1.对象被创建：x = 42.赋">
 
 
 
@@ -133,13 +145,13 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/24/ML-EM/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/30/py-动态类型内存管理/"/>
 
 
 
 
 
-  <title> [ML]EM | ZSN码疯窝 </title>
+  <title> [py]动态类型内存管理 | ZSN码疯窝 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +268,7 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/24/ML-EM/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/py-动态类型内存管理/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="James ZsnnsZ">
@@ -280,7 +292,7 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
             
             
               
-                [ML]EM
+                [py]动态类型内存管理
               
             
           </h1>
@@ -295,8 +307,8 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-24T20:33:53+08:00">
-                2017-03-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T16:23:48+08:00">
+                2017-03-30
               </time>
             
 
@@ -331,16 +343,27 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
       
 
       
-        <h3 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h3><p>EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。</p>
-<h4 id="EM算法过程"><a href="#EM算法过程" class="headerlink" title="EM算法过程"></a>EM算法过程</h4><p>将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。</p>
-<p>EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。</p>
-<p>构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)，在一般条件(P(Y|θ)有上界)下EM算法是收敛的，但不能保证收敛到全局最优(可选择多组初始θ进行迭代，最后选择较优解)。</p>
-<p>迭代过程：</p>
+        <h3 id="动态类型"><a href="#动态类型" class="headerlink" title="动态类型"></a>动态类型</h3><p>python的变量不需要声明，而是在运行时自动判断变量这个对象的类型和内存地址<br>引用和对象分离是动态类型的核心：</p>
 <ul>
-<li>E步：求期望，称为Q函数,Q(θ,θi) = sigma(logP(Y,Z|θ)P(Z|Y,θi))</li>
-<li>M步：求极大，极大化Q函数，得到参数的新估计值</li>
-<li>重复E、M直至收敛</li>
+<li>程序中的对象名只是指向这一对象的引用</li>
+<li>函数的参数传递，实际上只是传递的对象的引用</li>
 </ul>
+<h3 id="python内存管理机制"><a href="#python内存管理机制" class="headerlink" title="python内存管理机制"></a>python内存管理机制</h3><p>python的内存管理可以从三个方面来看：</p>
+<h4 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h4><p>对于python中的每一个对象，都会对其维护一个指向该对象的引用计数</p>
+<p>引用计数的增加：<br>1.对象被创建：x = 4<br>2.赋值：y = x<br>3.被作为参数传递给函数：foo(x)<br>4.作为容器对象的一个元素：a = [1,x,’33’]</p>
+<p>引用计数的减少：<br>1.一个本地引用离开了它的作用域。比如上面的foo(x)函数结束时，x指向的对象引用减1。<br>2.对象的别名被显式的销毁：del x ；或者del y<br>3.对象的一个别名被赋值给其他对象：x = 789<br>4.对象从一个容器对象中移除：myList.remove(x)<br>5.容器对象本身被销毁：del myList，或者容器对象本身离开了作用域。</p>
+<h4 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h4><p>python垃圾回收主要使用 <em>引用计数</em> （reference counting）来跟踪和回收垃圾；<br>在引用计数的基础上，通过 <em>标记-清除</em>（mark and sweep）解决容器对象可能产生的循环引用问题；<br>通过 <em>分代回收</em>（generation collection）以空间换时间的方法提高垃圾回收效率。</p>
+<p>何时启动垃圾回收？频繁的垃圾回收会降低运行效率，所以python会设置一个阈值，当分配对象和取消分配对象的差值达到这个阈值后才会进行回收。</p>
+<p>回收策略：</p>
+<ul>
+<li><p>引用计数<br>在对象内部维护了一个被其他对象引用数的引用计数值，当这个引用计数值为0时，说明这个对象不再被其他对象引用，就可以被回收了。<br>缺点：维护引用消耗资源(可忽略)，执行效率问题，循环引用导致引用计数无法为0，内存无法回收。  </p>
+</li>
+<li><p>标记-清除<br>为了解决循环引用问题。可以包含其他对象引用的容器对象（如list, dict, set，甚至class）都可能产生循环引用。<br>不改动真实的引用计数，而是将集合中对象的引用计数复制一份副本，改动该对象引用的副本。  当完成标记后，unreachable链表中剩下的所有对象就是名副其实的垃圾对象。</p>
+</li>
+<li><p>分代回收<br>python将所有的对象分为0，1，2三代，所有的新建对象是0代，当某一代对象经过垃圾回收，依然存活，就会归入下一代，垃圾回收启动的时候，一定会对0代对象进行扫描，如果0代的扫描达到一定次数后，就会对1代也进行扫描，同样的，2代也是如此。</p>
+</li>
+</ul>
+<h4 id="内存池机制"><a href="#内存池机制" class="headerlink" title="内存池机制"></a>内存池机制</h4><p>为了加速Python的执行效率，Python引入了一个内存池机制，用于管理对小块内存的申请和释放。当申请的内存小于设定值，一般是256字节时，会在内存池中分配内存，经由内存池登记的内存到最后还是会回收到内存池,并不会被释放掉.以便下次使用，大于时就使用malloc申请内存</p>
 
       
     </div>
@@ -371,8 +394,8 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/20/实习-在线编程题解/" rel="next" title="[实习]在线编程题解">
-                <i class="fa fa-chevron-left"></i> [实习]在线编程题解
+              <a href="/2017/03/30/py-上下文管理器/" rel="next" title="[py]上下文管理器">
+                <i class="fa fa-chevron-left"></i> [py]上下文管理器
               </a>
             
           </div>
@@ -381,8 +404,8 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/26/ML-隐马尔可夫模型/" rel="prev" title="[ML]隐马尔可夫模型">
-                [ML]隐马尔可夫模型 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/30/py-高阶函数/" rel="prev" title="[py]高阶函数">
+                [py]高阶函数 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -505,7 +528,7 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#EM算法"><span class="nav-number">1.</span> <span class="nav-text">EM算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EM算法过程"><span class="nav-number">1.1.</span> <span class="nav-text">EM算法过程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态类型"><span class="nav-number">1.</span> <span class="nav-text">动态类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python内存管理机制"><span class="nav-number">2.</span> <span class="nav-text">python内存管理机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#引用计数"><span class="nav-number">2.1.</span> <span class="nav-text">引用计数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#垃圾回收"><span class="nav-number">2.2.</span> <span class="nav-text">垃圾回收</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存池机制"><span class="nav-number">2.3.</span> <span class="nav-text">内存池机制</span></a></li></ol></li></ol></div>
             
 
           </div>

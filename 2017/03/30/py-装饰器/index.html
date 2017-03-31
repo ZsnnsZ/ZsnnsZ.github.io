@@ -87,25 +87,22 @@
 
 
 
-<meta name="description" content="EM算法EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。
-EM算法过程将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。
-EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。
-构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)">
+<meta name="description" content="py2.5，函数也是对象，可以将函数作为参数，在代码运行期间动态为其增加功能，修饰其他函数的函数被称为“装饰器”（Decorator），py2.6后，装饰器还可以对类或方法进行加工。
+装饰器可以增加函数的功能
+被装饰器装饰后的函数，函数签名变成了装饰函数的名字，在下面的例子中now.__name__就会变成wrapper，如果程序里有依赖函数签名的代码，就会出现问题。为了解决这个问题，可以导入 f">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[ML]EM">
-<meta property="og:url" content="http://yoursite.com/2017/03/24/ML-EM/index.html">
+<meta property="og:title" content="[py]装饰器">
+<meta property="og:url" content="http://yoursite.com/2017/03/30/py-装饰器/index.html">
 <meta property="og:site_name" content="ZSN码疯窝">
-<meta property="og:description" content="EM算法EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。
-EM算法过程将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。
-EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。
-构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)">
-<meta property="og:updated_time" content="2017-03-26T08:18:49.000Z">
+<meta property="og:description" content="py2.5，函数也是对象，可以将函数作为参数，在代码运行期间动态为其增加功能，修饰其他函数的函数被称为“装饰器”（Decorator），py2.6后，装饰器还可以对类或方法进行加工。
+装饰器可以增加函数的功能
+被装饰器装饰后的函数，函数签名变成了装饰函数的名字，在下面的例子中now.__name__就会变成wrapper，如果程序里有依赖函数签名的代码，就会出现问题。为了解决这个问题，可以导入 f">
+<meta property="og:updated_time" content="2017-03-31T03:28:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[ML]EM">
-<meta name="twitter:description" content="EM算法EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。
-EM算法过程将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。
-EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。
-构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)">
+<meta name="twitter:title" content="[py]装饰器">
+<meta name="twitter:description" content="py2.5，函数也是对象，可以将函数作为参数，在代码运行期间动态为其增加功能，修饰其他函数的函数被称为“装饰器”（Decorator），py2.6后，装饰器还可以对类或方法进行加工。
+装饰器可以增加函数的功能
+被装饰器装饰后的函数，函数签名变成了装饰函数的名字，在下面的例子中now.__name__就会变成wrapper，如果程序里有依赖函数签名的代码，就会出现问题。为了解决这个问题，可以导入 f">
 
 
 
@@ -133,13 +130,13 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/24/ML-EM/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/30/py-装饰器/"/>
 
 
 
 
 
-  <title> [ML]EM | ZSN码疯窝 </title>
+  <title> [py]装饰器 | ZSN码疯窝 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +253,7 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/24/ML-EM/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/py-装饰器/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="James ZsnnsZ">
@@ -280,7 +277,7 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
             
             
               
-                [ML]EM
+                [py]装饰器
               
             
           </h1>
@@ -295,8 +292,8 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-24T20:33:53+08:00">
-                2017-03-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T16:23:25+08:00">
+                2017-03-30
               </time>
             
 
@@ -331,16 +328,26 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
       
 
       
-        <h3 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h3><p>EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。</p>
-<h4 id="EM算法过程"><a href="#EM算法过程" class="headerlink" title="EM算法过程"></a>EM算法过程</h4><p>将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。</p>
-<p>EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。</p>
-<p>构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)，在一般条件(P(Y|θ)有上界)下EM算法是收敛的，但不能保证收敛到全局最优(可选择多组初始θ进行迭代，最后选择较优解)。</p>
-<p>迭代过程：</p>
+        <p>py2.5，函数也是对象，可以将函数作为参数，在代码运行期间动态为其增加功能，修饰其他函数的函数被称为“装饰器”（Decorator），py2.6后，装饰器还可以对类或方法进行加工。</p>
+<p>装饰器可以增加函数的功能</p>
+<p>被装饰器装饰后的函数，函数签名变成了装饰函数的名字，在下面的例子中now.__name__就会变成wrapper，如果程序里有依赖函数签名的代码，就会出现问题。<br>为了解决这个问题，可以导入 from functools import wraps<br>再装饰函数前使用@wraps，便可将原属性复制</p>
+<a id="more"></a>
 <ul>
-<li>E步：求期望，称为Q函数,Q(θ,θi) = sigma(logP(Y,Z|θ)P(Z|Y,θi))</li>
-<li>M步：求极大，极大化Q函数，得到参数的新估计值</li>
-<li>重复E、M直至收敛</li>
+<li><p>原函数无参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 字体变粗装饰器,（不传参）</div><div class="line">def makebold(fn):</div><div class="line">    # 装饰器将返回新的函数</div><div class="line">    @wraps</div><div class="line">    def wrapper():</div><div class="line">        # 在之前或者之后插入新的代码</div><div class="line">        return &quot;&lt;b&gt;&quot; + fn() + &quot;&lt;/b&gt;&quot;</div><div class="line">    return wrapper</div></pre></td></tr></table></figure>
+</li>
+<li><p>原函数有参数：<br>因为不确定要修饰的函数的参数，所以wrapper函数使用可变参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"># 日志打印器，(传参)</div><div class="line">def log(fn):</div><div class="line">    @wraps</div><div class="line">    def wrapper(*args, **kw):</div><div class="line">        print &apos;call %s():&apos; % fn.__name__</div><div class="line">            fn(*args, **kw)</div><div class="line">    return wrapper</div><div class="line"></div><div class="line">@log</div><div class="line">def add(a,b):</div><div class="line">    print a+b</div><div class="line"></div><div class="line">&gt;&gt;&gt; now()</div><div class="line">call now():</div><div class="line">x</div></pre></td></tr></table></figure>
+</li>
+<li><p>装饰器有参数：<br>装饰函数再增加一层,先返回decorator函数，再返回wrapper函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">def log(text):</div><div class="line">    def decorator(func):</div><div class="line">        @wraps</div><div class="line">        def wrapper(*args, **kw):</div><div class="line">            print(&apos;%s %s():&apos; % (text, func.__name__))</div><div class="line">            return func(*args, **kw)</div><div class="line">        return wrapper</div><div class="line">    return decorator</div></pre></td></tr></table></figure>
+</li>
 </ul>
+<h3 id="property"><a href="#property" class="headerlink" title="@property"></a>@property</h3><p>在类的定义时，需要对某些属性进行检查，@property装饰器就是负责把一个方法变成属性。</p>
+<p>通过设置@property可以实现实例成员变量的直接访问,又保留了参数的检查。</p>
+<p>对score方法使用@property时会创建score.setter方法，可以使用这个装饰器来定义setter方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Student():</div><div class="line">    @property</div><div class="line">    def score(self):</div><div class="line">        return self._score</div><div class="line"></div><div class="line">    @score.setter</div><div class="line">    def score(self, value):</div><div class="line">        if not isinstance(value, int):</div><div class="line">            raise ValueError(&apos;score should be int&apos;)</div><div class="line">        if score &lt; 0 or score &gt; 100:</div><div class="line">            raise ValueError(&apos;score must in 0~100&apos;)</div><div class="line">        self._score = value</div></pre></td></tr></table></figure></p>
+<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; s = Student()</div><div class="line">&gt;&gt;&gt; s.score = 60 # OK，实际转化为s.set_score(60)</div><div class="line">&gt;&gt;&gt; s.score # OK，实际转化为s.get_score()</div><div class="line">60</div><div class="line">&gt;&gt;&gt; s.score = 9999</div><div class="line">Traceback (most recent call last):</div><div class="line">  ...</div><div class="line">ValueError: score must between 0 ~ 100!</div></pre></td></tr></table></figure></p>
+<p>另外通过设置get方法而不定义set方法可以实现成员变量的只读属性。如下面的age<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Student(object):</div><div class="line">    @property</div><div class="line">    def birth(self):</div><div class="line">        return self._birth</div><div class="line"></div><div class="line">    @birth.setter</div><div class="line">    def birth(self, value):</div><div class="line">        self._birth = value</div><div class="line"></div><div class="line">    @property</div><div class="line">    def age(self):</div><div class="line">        return 2017 - self._birth</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -371,8 +378,8 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/20/实习-在线编程题解/" rel="next" title="[实习]在线编程题解">
-                <i class="fa fa-chevron-left"></i> [实习]在线编程题解
+              <a href="/2017/03/26/ML-隐马尔可夫模型/" rel="next" title="[ML]隐马尔可夫模型">
+                <i class="fa fa-chevron-left"></i> [ML]隐马尔可夫模型
               </a>
             
           </div>
@@ -381,8 +388,8 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/26/ML-隐马尔可夫模型/" rel="prev" title="[ML]隐马尔可夫模型">
-                [ML]隐马尔可夫模型 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/30/py-生成器/" rel="prev" title="[py]生成器">
+                [py]生成器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -505,7 +512,7 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#EM算法"><span class="nav-number">1.</span> <span class="nav-text">EM算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EM算法过程"><span class="nav-number">1.1.</span> <span class="nav-text">EM算法过程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#property"><span class="nav-number">1.</span> <span class="nav-text">@property</span></a></li></ol></div>
             
 
           </div>

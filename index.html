@@ -245,6 +245,1245 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/py-赋值与拷贝/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/31/py-赋值与拷贝/" itemprop="url">
+                  [py]赋值与拷贝
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-31T11:01:44+08:00">
+                2017-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在 python 中对象赋值实际上是引用的复制，当可变数据对象(dict，set)和不可变对象（str,数字，tuple）有多个引用(别名)时要注意是否应该深拷贝或者浅拷贝，来得到一个新的对象。</p>
+<h3 id="copy浅拷贝，deepcopy深拷贝-递归拷贝"><a href="#copy浅拷贝，deepcopy深拷贝-递归拷贝" class="headerlink" title="copy浅拷贝，deepcopy深拷贝(递归拷贝)"></a>copy浅拷贝，deepcopy深拷贝(递归拷贝)</h3><p>在python中，对象赋值实际上是对引用的复制，要进行真正意义上的复制需要用到copy模块</p>
+<pre><code>from copy import copy
+</code></pre><p>1.直接赋值<br>复制引用，对某一引用的改变会引起所有引用的改变</p>
+<p>2.copy<br>浅拷贝，没有拷贝子对象，即浅拷贝出的对象，其子对象还是只复制了引用</p>
+<p>3.deepcopy<br>深拷贝，对原始对象进行递归拷贝，完全复制</p>
+<pre><code>&gt;&gt;&gt; from copy import copy
+&gt;&gt;&gt; a = [1,2,3,[4,5]]
+&gt;&gt;&gt; b = a
+&gt;&gt;&gt; c = copy(a)
+&gt;&gt;&gt; from copy import deepcopy
+&gt;&gt;&gt; d = deepcopy(a)
+&gt;&gt;&gt; a[0] = 6
+&gt;&gt;&gt; a,b,c,d
+([6, 2, 3, [4, 5]], [6, 2, 3, [4, 5]], [1, 2, 3, [4, 5]], [1, 2, 3, [4, 5]])
+&gt;&gt;&gt; a[-1][0] = 7
+&gt;&gt;&gt; a,b,c,d
+([6, 2, 3, [7, 5]], [6, 2, 3, [7, 5]], [1, 2, 3, [7, 5]], [1, 2, 3, [4, 5]])
+&gt;&gt;&gt; 
+</code></pre><h3 id="关于多个引用指向同一个对象时通过一个引用进行赋值是否会引起所有引用的改变："><a href="#关于多个引用指向同一个对象时通过一个引用进行赋值是否会引起所有引用的改变：" class="headerlink" title="关于多个引用指向同一个对象时通过一个引用进行赋值是否会引起所有引用的改变："></a>关于多个引用指向同一个对象时通过一个引用进行赋值是否会引起所有引用的改变：</h3><ul>
+<li><p>会：字典和列表是可变数据对象，即可以通过引用其元素改变对象自身，改变的是对象自身，所有引用的指向并没有变，只不过对象的值变了。<br>  L1 = [1,2,3]<br>  L2 = L1<br>  L1[0] = 10<br>  此时L1,L2指向同一对象</p>
+</li>
+<li><p>不会：对于字符串、数字、元组，不能改变对象本身，只能改变引用的指向，称为不可变数据对象。这时对多个引用的其中一个改变值时，就创建了一个新的对象，并且这个引用指向这个新的对象，剩下的引用还是指向原来那个对象。<br>  a = 5<br>  b = a<br>  a = a + 2<br>  此时a,b指向不同对象</p>
+</li>
+</ul>
+<h3 id="关于函数传递对象时是否会改变原对象的值："><a href="#关于函数传递对象时是否会改变原对象的值：" class="headerlink" title="关于函数传递对象时是否会改变原对象的值："></a>关于函数传递对象时是否会改变原对象的值：</h3><p>对象在传入函数中时时创建了一个新的引用指向该对象，在函数中操作是通过这个引用进行的。对这个引用改变其值时，原对象是否会改变：</p>
+<ul>
+<li>会：传递的是可变数据对象即字典，列表，因为通过新创建的引用改变了原对象</li>
+<li>不会：传递的是不可变数据对象即字符串、数字、元组，因为创建了新的对象</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/py-并行编程/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/30/py-并行编程/" itemprop="url">
+                  [py]并行编程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T16:31:52+08:00">
+                2017-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="并行编程"><a href="#并行编程" class="headerlink" title="并行编程"></a>并行编程</h3><p>关于GIL：GIL全称Global Interpreter Lock，是CPython中为了防止多线程并发执行python机器代码的一个互斥锁，因为CPython的内存管理是非线程安全的。</p>
+<p>注意：GIL并不是python的特性，它只是实现python解析器CPython时所引入的，在JPython中无GIL。</p>
+<p>CPython是大部分环境默认的python执行环境，因为GIL的存在，Python很难充分利用多核CPU的优势。但是，可以通过内置的模块multiprocessing实现下面几种并行模式：</p>
+<h4 id="1-多进程："><a href="#1-多进程：" class="headerlink" title="1.多进程："></a>1.多进程：</h4><p>对于CPU密集型的程序，可以使用multiprocessing的Process,Pool等封装好的类，通过多进程的方式实现并行计算，每个进程有自己的GIL，避免了进程之间的争抢。但是因为进程中的通信成本比较大(在主线程中使用queue)，对于进程之间需要大量数据交互的程序效率未必有大的提高。</p>
+<h4 id="2-多线程："><a href="#2-多线程：" class="headerlink" title="2.多线程："></a>2.多线程：</h4><p>对于IO密集型的程序，multiprocessing.dummy模块使用multiprocessing的接口封装threading，使得多线程编程也变得非常轻松(比如可以使用Pool的map接口，简洁高效)。如果有至少一个CPU密集型线程存在，那么多线程效率会由于GIL的存在而大幅降低。</p>
+<h4 id="什么时候并行？"><a href="#什么时候并行？" class="headerlink" title="什么时候并行？"></a>什么时候并行？</h4><ul>
+<li>为功能而线程化<br>分配不同的线程来完成应用程序的不同功能，这是最容易的方法，因为功能重叠的机会很罕见。 在一个应用程序中控制并发功能的执行是比较容易的。 即使在计算间没有直接的影响，功能之间的依赖性还会维持。<br>多线程应用举例：为了简化代码，为下列部分设计不同的线程：输入、图形用户界面、计算和输出。</li>
+<li>为性能而线程化<br>通过将执行在并行环境下的大量的计算分解开来进行应用程序的并行化，能够提高计算的性能。线程化是为了改善周转周期和吞吐量 。<br>比如： 搜索太空实验室碎片， 把全部搜索区域分成多个分段，并安排一个工人去搜索一个分段 。<ul>
+<li>为缩短周转周期而线程化<br>用可能的最小的时间完成一个任务<br>举例：安排一个饭桌时候的不同任务：<br>一个侍者摆放盘子。<br>一个侍者折叠和放置餐巾。<br>一个侍者摆放花和蜡烛。<br>一个侍者摆放器皿、汤匙、刀子和叉子<br>一个侍者放玻璃杯</li>
+<li>为了吞吐量而线程化<br>在固定的时间内完成最多的任务<br>举例：安排一个饭局时候的不同任务<br>对多个侍者的安排： 每个桌子安排一个侍者。 一个侍者能摆放所有桌子的所有盘子；另一个可以摆放所有的玻璃杯；以此类推。 </li>
+</ul>
+</li>
+</ul>
+<p>分布式：multiprocessing中的Managers类提供了可以在不同进程之共享数据的方式，可以在此基础上开发出分布式的程序。</p>
+<p>不同的业务场景可以选择其中的一种或几种的组合实现程序性能的优化。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/py-运行效率/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/30/py-运行效率/" itemprop="url">
+                  [py]运行效率
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T16:29:56+08:00">
+                2017-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="python数据结构的底层实现"><a href="#python数据结构的底层实现" class="headerlink" title="python数据结构的底层实现"></a>python数据结构的底层实现</h3><p>list底层是数组实现，不是链表。<br>set的底层实现是hash表。<br>dict的底层实现也是hash表。</p>
+<p>在python中要使用链表应该使用标准库collections中的deque，deque是双向链表</p>
+<p>判断一个元素是否在某个集合中，list的时间复杂度是O(n),set、dict是O(1)</p>
+<ul>
+<li><p>dict有以下几个特点：<br>查找和插入的速度极快，不会随着key的增加而变慢；<br>需要占用大量的内存，内存浪费多。  </p>
+</li>
+<li><p>而list相反：<br>查找和插入的时间随着元素的增加而增加；<br>占用空间小，浪费内存很少。  </p>
+</li>
+<li><p>set<br>是数学意义上的无序和无重复元素集合，交&amp;， 并|</p>
+</li>
+</ul>
+<h3 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h3><ul>
+<li>交换两个数字：a, b = b, a</li>
+<li>列表推导式：[x for x in range(100) if x%2 == 0]</li>
+<li>‘’.join</li>
+<li>enumerate</li>
+<li>in/not in</li>
+<li>dict的get()方法或者setdefault()方法可以传递默认值  </li>
+<li>if is 比 if == 速度快</li>
+<li>while 1 比 while True 更快</li>
+<li>使用**替代pow()，计算更快</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/py-异常处理机制/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/30/py-异常处理机制/" itemprop="url">
+                  [py]异常处理机制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T16:25:24+08:00">
+                2017-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="异常处理机制"><a href="#异常处理机制" class="headerlink" title="异常处理机制"></a>异常处理机制</h3><p>一般情况下，在python无法正常处理程序时就会产生一个异常，异常是一个对象，如果不对异常进行捕获那么发生异常时程序就会终止执行。</p>
+<ul>
+<li><p>try…except…finally…<br>也可以拆分为try…except…和try…finally…<br>当我们认为某些代码可能会出错时，就可以用try来运行这段代码，如果执行出错，则后续代码不会继续执行，而是直接跳转至错误处理代码，即except语句块，执行完except后，如果有finally语句块，则执行finally语句块，至此，执行完毕。  </p>
+</li>
+<li><p>assert语句<br>判断assert后面紧跟的语句是True还是False，如果是True则继续执行，如果是False则中断程序，调用默认的异常处理器，同时输出assert语句逗号后面的提示信息。</p>
+<p>  assert False,’error…’<br>  print ‘continue’</p>
+</li>
+<li><p>with语句<br>如果with语句或语句块中发生异常，会调用默认的异常处理器处理，但文件还是会正常关闭。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/py-高阶函数/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/30/py-高阶函数/" itemprop="url">
+                  [py]高阶函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T16:25:09+08:00">
+                2017-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h3><blockquote>
+<p>在python中，部分支持函数式编程，允许把函数本身作为参数传入另一个函数，还允许返回一个函数。  把函数作为参数传入，这样的函数称为高阶函数。  </p>
+</blockquote>
+<ul>
+<li><p>map()<br>函数接收两个参数，第一个是函数，另一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回。  </p>
+</li>
+<li><p>reduce()<br>把一个函数作用在一个序列[x1, x2, x3, …]上，这个函数必须接收两个参数，reduce把结果继续和序列的下一个元素做累积计算</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from functools import reduce</div><div class="line">def char2int(c):</div><div class="line">    switch = &#123;&apos;0&apos;: 0, &apos;1&apos;: 1, &apos;2&apos;: 2, &apos;3&apos;: 3, &apos;4&apos;: 4, &apos;5&apos;: 5, &apos;6&apos;: 6, &apos;7&apos;: 7, &apos;8&apos;: 8, &apos;9&apos;: 9&#125;</div><div class="line">    return switch[c]</div><div class="line"></div><div class="line">def str2int(s):</div><div class="line">    return reduce(lambda x,y: 10 * x + y, map(char2int, &apos;13579&apos;))</div></pre></td></tr></table></figure>
+</li>
+<li><p>filter()<br>函数用于过滤序列。<br>和map()类似，filter()也接收一个函数和一个序列。和map()不同的是，filter()把传入的函数依次作用于每个元素，然后根据函数返回值是True还是False决定保留还是丢弃该元素。  </p>
+</li>
+<li><p>sorted()<br>它可以接收一个key函数来实现自定义的排序。不会改变原序列的值。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/py-动态类型内存管理/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/30/py-动态类型内存管理/" itemprop="url">
+                  [py]动态类型内存管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T16:23:48+08:00">
+                2017-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="动态类型"><a href="#动态类型" class="headerlink" title="动态类型"></a>动态类型</h3><p>python的变量不需要声明，而是在运行时自动判断变量这个对象的类型和内存地址<br>引用和对象分离是动态类型的核心：</p>
+<ul>
+<li>程序中的对象名只是指向这一对象的引用</li>
+<li>函数的参数传递，实际上只是传递的对象的引用</li>
+</ul>
+<h3 id="python内存管理机制"><a href="#python内存管理机制" class="headerlink" title="python内存管理机制"></a>python内存管理机制</h3><p>python的内存管理可以从三个方面来看：</p>
+<h4 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h4><p>对于python中的每一个对象，都会对其维护一个指向该对象的引用计数</p>
+<p>引用计数的增加：<br>1.对象被创建：x = 4<br>2.赋值：y = x<br>3.被作为参数传递给函数：foo(x)<br>4.作为容器对象的一个元素：a = [1,x,’33’]</p>
+<p>引用计数的减少：<br>1.一个本地引用离开了它的作用域。比如上面的foo(x)函数结束时，x指向的对象引用减1。<br>2.对象的别名被显式的销毁：del x ；或者del y<br>3.对象的一个别名被赋值给其他对象：x = 789<br>4.对象从一个容器对象中移除：myList.remove(x)<br>5.容器对象本身被销毁：del myList，或者容器对象本身离开了作用域。</p>
+<h4 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h4><p>python垃圾回收主要使用 <em>引用计数</em> （reference counting）来跟踪和回收垃圾；<br>在引用计数的基础上，通过 <em>标记-清除</em>（mark and sweep）解决容器对象可能产生的循环引用问题；<br>通过 <em>分代回收</em>（generation collection）以空间换时间的方法提高垃圾回收效率。</p>
+<p>何时启动垃圾回收？频繁的垃圾回收会降低运行效率，所以python会设置一个阈值，当分配对象和取消分配对象的差值达到这个阈值后才会进行回收。</p>
+<p>回收策略：</p>
+<ul>
+<li><p>引用计数<br>在对象内部维护了一个被其他对象引用数的引用计数值，当这个引用计数值为0时，说明这个对象不再被其他对象引用，就可以被回收了。<br>缺点：维护引用消耗资源(可忽略)，执行效率问题，循环引用导致引用计数无法为0，内存无法回收。  </p>
+</li>
+<li><p>标记-清除<br>为了解决循环引用问题。可以包含其他对象引用的容器对象（如list, dict, set，甚至class）都可能产生循环引用。<br>不改动真实的引用计数，而是将集合中对象的引用计数复制一份副本，改动该对象引用的副本。  当完成标记后，unreachable链表中剩下的所有对象就是名副其实的垃圾对象。</p>
+</li>
+<li><p>分代回收<br>python将所有的对象分为0，1，2三代，所有的新建对象是0代，当某一代对象经过垃圾回收，依然存活，就会归入下一代，垃圾回收启动的时候，一定会对0代对象进行扫描，如果0代的扫描达到一定次数后，就会对1代也进行扫描，同样的，2代也是如此。</p>
+</li>
+</ul>
+<h4 id="内存池机制"><a href="#内存池机制" class="headerlink" title="内存池机制"></a>内存池机制</h4><p>为了加速Python的执行效率，Python引入了一个内存池机制，用于管理对小块内存的申请和释放。当申请的内存小于设定值，一般是256字节时，会在内存池中分配内存，经由内存池登记的内存到最后还是会回收到内存池,并不会被释放掉.以便下次使用，大于时就使用malloc申请内存</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/py-上下文管理器/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/30/py-上下文管理器/" itemprop="url">
+                  [py]上下文管理器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T16:23:40+08:00">
+                2017-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="上下文管理器"><a href="#上下文管理器" class="headerlink" title="上下文管理器"></a>上下文管理器</h2><blockquote>
+<p>上下文管理器（ContextManager）是python2.5开始支持的一种语法，用于规定某个对象的使用范围，可以通过上下文管理器来控制代码块执行前的准备动作以及执行后的收尾动作。</p>
+</blockquote>
+<p>在编程的时候，经常会遇到这样的场景：先执行一些准备操作，然后执行自己的业务逻辑，等业务逻辑完成以后，再执行一些清理操作。</p>
+<p>比如，打开文件，处理文件内容，最后关闭文件。又如，当多线程程序需要访问临界资源的时候，线程首先需要获取互斥锁，当执行完成并准备退出临界区的时候，需要释放互斥锁。</p>
+<p>在python中，使用with… as…语句来支持上下文管理</p>
+<h4 id="with的应用场景："><a href="#with的应用场景：" class="headerlink" title="with的应用场景："></a>with的应用场景：</h4><p>with语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源，比如文件使用后自动关闭、线程中锁的自动获取和释放等。</p>
+<ul>
+<li>打开文件，处理文件内容，关闭文件<br>  with open(filename) as f:</li>
+<li>多线程访问临界资源，线程获得互斥锁，当执行完毕并准备退出临界区时释放互斥锁<br>  with self.lock</li>
+<li>管理数据库游标cursor<br>  with conn as cur:</li>
+<li>控制运算精度<br>  with decimal.localcontext() as ctx</li>
+</ul>
+<h4 id="上下文管理器可以同时管理多个资源"><a href="#上下文管理器可以同时管理多个资源" class="headerlink" title="上下文管理器可以同时管理多个资源:"></a>上下文管理器可以同时管理多个资源:</h4><pre><code>with open(filename1) as f1, open(filename2) as f2:
+</code></pre><h4 id="自定义上下文管理器："><a href="#自定义上下文管理器：" class="headerlink" title="自定义上下文管理器："></a>自定义上下文管理器：</h4><p>实现上下文管理协议:</p>
+<pre><code>\_\_enter\_\_(self)  
+\_\_exit\_\_(self, exception_type, exception_value, traceback)
+</code></pre><p>任何实现了这两个方法的对象都可以用于上下文管理器</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/py-生成器/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/30/py-生成器/" itemprop="url">
+                  [py]生成器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T16:23:31+08:00">
+                2017-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果列表元素可以按照某种算法推算出来，那我们是否可以在循环的过程中不断推算出后续的元素呢？这样就不必创建完整的list，从而节省大量的空间。在Python中，这种一边循环一边计算的机制，称为生成器：generator。<br>创建generator的常用方法：</p>
+<h3 id="将列表生成式的-改为（）"><a href="#将列表生成式的-改为（）" class="headerlink" title="将列表生成式的[ ]改为（）"></a>将列表生成式的[ ]改为（）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; L = [x * x for x in range(10)]</div><div class="line">&gt;&gt;&gt; L</div><div class="line">[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</div><div class="line">&gt;&gt;&gt; g = (x * x for x in range(10))</div><div class="line">&gt;&gt;&gt; g</div><div class="line">&lt;generator object &lt;genexpr&gt; at 0x1022ef630&gt;</div></pre></td></tr></table></figure>
+<p>不能用for i in mygenerator第二次调用生成器</p>
+<h3 id="可以在函数中用yield实现复杂逻辑的生成器"><a href="#可以在函数中用yield实现复杂逻辑的生成器" class="headerlink" title="可以在函数中用yield实现复杂逻辑的生成器"></a>可以在函数中用yield实现复杂逻辑的生成器</h3><p>理解yield之前要先理解iterables和generators  </p>
+<ul>
+<li><p>iterables：可以用在for…in…语句中的都是可迭代的:比如lists,strings,files…因为这些可迭代的对象你可以随意的读取,但是你必须把它们的值放到内存里,当它们有很多值时就会消耗太多的内存.</p>
+</li>
+<li><p>generators：生成器也是迭代器的一种,但是你只能迭代它们一次.原因很简单,因为它们不是全部存在内存里,它们只在要调用的时候在内存里生成。</p>
+</li>
+</ul>
+<p>生成器在Python中是一个非常强大的编程结构，可以用更少地中间变量些流式代码，此外，相比其它容器对象它更能节省内存和CPU，当然它可以用更少的代码来实现相似的功能。但凡看到类似：</p>
+<pre><code>def something():
+    result = []
+    for ... in ...:
+        result.append(x)
+    return result
+</code></pre><p>都可以用生成器函数进行替换：</p>
+<pre><code>def iter_something():
+    for ... in ...:
+        yield x
+</code></pre><p>eg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">def triangles():</div><div class="line">    L=[1]</div><div class="line">    while 1:</div><div class="line">        yield L</div><div class="line">        L=[1]+[L[i]+L[i+1] for i in range(len(L)-1)]+[1]</div><div class="line">n = 0</div><div class="line">for t in triangles():</div><div class="line">    print(t)</div><div class="line">    n = n + 1</div><div class="line">    if n == 10:</div><div class="line">        break</div><div class="line">输出：</div><div class="line"># [1]</div><div class="line"># [1, 1]</div><div class="line"># [1, 2, 1]</div><div class="line"># [1, 3, 3, 1]</div><div class="line"># [1, 4, 6, 4, 1]</div><div class="line"># [1, 5, 10, 10, 5, 1]</div><div class="line"># [1, 6, 15, 20, 15, 6, 1]</div><div class="line"># [1, 7, 21, 35, 35, 21, 7, 1]</div><div class="line"># [1, 8, 28, 56, 70, 56, 28, 8, 1]</div><div class="line"># [1, 9, 36, 84, 126, 126, 84, 36, 9, 1]</div></pre></td></tr></table></figure></p>
+<p>使用了yield的函数在yield的地方就会返回一个生成器对象，当你调用函数的时候,函数里的代码并没有运行。函数仅仅返回生成器对象,这就是它最微妙的地方。  </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/py-装饰器/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/30/py-装饰器/" itemprop="url">
+                  [py]装饰器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T16:23:25+08:00">
+                2017-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>py2.5，函数也是对象，可以将函数作为参数，在代码运行期间动态为其增加功能，修饰其他函数的函数被称为“装饰器”（Decorator），py2.6后，装饰器还可以对类或方法进行加工。</p>
+<p>装饰器可以增加函数的功能</p>
+<p>被装饰器装饰后的函数，函数签名变成了装饰函数的名字，在下面的例子中now.__name__就会变成wrapper，如果程序里有依赖函数签名的代码，就会出现问题。<br>为了解决这个问题，可以导入 from functools import wraps<br>再装饰函数前使用@wraps，便可将原属性复制</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/30/py-装饰器/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/26/ML-隐马尔可夫模型/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -365,1232 +1604,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/24/ML-EM/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/24/ML-EM/" itemprop="url">
-                  [ML]EM
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-24T20:33:53+08:00">
-                2017-03-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h3><p>EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。</p>
-<h4 id="EM算法过程"><a href="#EM算法过程" class="headerlink" title="EM算法过程"></a>EM算法过程</h4><p>将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。</p>
-<p>EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。</p>
-<p>构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)，在一般条件(P(Y|θ)有上界)下EM算法是收敛的，但不能保证收敛到全局最优(可选择多组初始θ进行迭代，最后选择较优解)。</p>
-<p>迭代过程：</p>
-<ul>
-<li>E步：求期望，称为Q函数,Q(θ,θi) = sigma(logP(Y,Z|θ)P(Z|Y,θi))</li>
-<li>M步：求极大，极大化Q函数，得到参数的新估计值</li>
-<li>重复E、M直至收敛</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/20/实习-在线编程题解/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/20/实习-在线编程题解/" itemprop="url">
-                  [实习]在线编程题解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-20T14:43:17+08:00">
-                2017-03-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="t1-神奇的规律（人人网2017春招真题）"><a href="#t1-神奇的规律（人人网2017春招真题）" class="headerlink" title="t1:神奇的规律（人人网2017春招真题）"></a>t1:神奇的规律（人人网2017春招真题）</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><pre><code>小明学习数学的时候发现两个神奇的规律：
-假设现在有一个十进制数字n=a0*1+a1*10+a2*102+a3*103+.....+ak*10k。
-1. 要判断n能否被3整除，只需要验证各位和能否被3整除，即sum=a0+a1+a2+....+ak能否被3整除。如果sum能被3整除，那么n就能被3整除。
-2. 要判断n能否被11整除，只需要验证偶数位和与奇数位和的差能否被11整除，
-即diff=（a0+a2+a4+....）-（a1+a3+a5+...）能否被11整除。如果diff能被11整除，那么n就能被11整除。
-例如81和1243可以用上述方法分别验证能否被3和11整除。
-现在小明想让你帮忙写段程序求出b进制下分别满足上述规律的最小的x和最小的y。
-即n=a0*1+a1*b+a2*b2+a3*b3+.....+ak*bk，
-n能被xi整除，当且仅当sum=a0+a1+a2+....+ak能被xi整除，x为最小的xi。
-n能被yi整除，当且仅当diff=（a0+a2+a4+.....）-（a1+a3+a5+.....）能被yi整除，y为最小的yi。
-</code></pre><ul>
-<li><p>输入<br>输入数据有多组，每组数据包含一个数字b(3&lt;=b&lt;=10^6)  </p>
-</li>
-<li><p>样例输入<br>10<br>120  </p>
-</li>
-<li><p>输出<br>输出x和y  </p>
-</li>
-<li><p>样例输出<br>3 11<br>7 11</p>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/实习-在线编程题解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/16/[DM]-天池大数据竞赛/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/16/[DM]-天池大数据竞赛/" itemprop="url">
-                  [DM]天池大数据竞赛
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-16T17:04:41+08:00">
-                2017-03-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="阿里天池移动推荐算法大赛"><a href="#阿里天池移动推荐算法大赛" class="headerlink" title="阿里天池移动推荐算法大赛"></a>阿里天池移动推荐算法大赛</h2><h2 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h2><blockquote>
-<p>datafilter.py、pd_analyse.py</p>
-</blockquote>
-<ul>
-<li><p>1.删除只浏览而没有收藏、购物车、购买行为的ui  </p>
-</li>
-<li><p>2.删除没有购买行为的用户的所有行为  </p>
-</li>
-<li><p>3.删除对商品子集无交互的用户的行为</p>
-</li>
-<li><p>4.删除浏览／购买比值、购物车／购买比值过大的用户，同时保留购买物品数大于20的用户的行为  </p>
-</li>
-</ul>
-<h4 id="pandas使用记录"><a href="#pandas使用记录" class="headerlink" title="pandas使用记录"></a>pandas使用记录</h4><ul>
-<li><p>1.分组计数，并进行位置选择<br>  data = data.groupby[‘user_id’,’behavior_type’].count().iloc[:,:1]</p>
-</li>
-<li><p>2.按列属性选择<br>  data1 = data[data.behavior_type==1]</p>
-</li>
-<li><p>3.给列赋列名<br>  data2.columns = [‘user_id’,’behavior_type4’,’num4’]</p>
-</li>
-<li><p>4.按照某列进行合并<br>  data4 = pd.merge(data1,data2,on=’user_id’)</p>
-</li>
-<li><p>5.得到两列的比值<br>  bizhi14 = data6[‘num’]/data6[‘num4’]</p>
-</li>
-<li><p>6.插入新列<br>  data5.insert(7,’bizhi14’,bizhi14)</p>
-</li>
-<li><p>7.保存为csv，去掉行索引，格式输出<br>  data5.to_csv(‘bizhi.csv’, index = False, float_format = ‘%.1f’)</p>
-</li>
-<li><p>8.条件统计<br>  data6[data6.bizhi14&gt;20].count()<br>  data6[data6.bizhi34==1].count()</p>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/16/[DM]-天池大数据竞赛/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/14/ML-GBDT/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/14/ML-GBDT/" itemprop="url">
-                  [ML]boosting&GBDT
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-14T18:30:23+08:00">
-                2017-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="boosting"><a href="#boosting" class="headerlink" title="boosting"></a>boosting</h2><p>boosting是集成学习(ensemble learning)的一种，Boosting算法的工作机制是首先从训练集用初始权重训练出一个弱学习器1，根据弱学习的学习误差率表现来更新训练样本的权重，使得之前弱学习器1学习误差率高的训练样本点的权重变高，使得这些误差率高的点在后面的弱学习器2中得到更多的重视。然后基本调整权重后的训练集来训练弱学习器2.，如此重复进行，直到弱学习器数达到事先指定的数目T，最终将这T个弱学习器通过集合策略进行整合，得到最终的强学习器。</p>
-<p>Boosting系列算法里最著名算法主要有AdaBoost算法和提升树(boosting tree)系列算法。提升树系列算法里面应用最广泛的是梯度提升树(Gradient Boosting Tree)。</p>
-<h2 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h2><p><a href="http://www.cnblogs.com/pinard/p/6140514.html" target="_blank" rel="external">http://www.cnblogs.com/pinard/p/6140514.html</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/11/ML-随机森林/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/ML-随机森林/" itemprop="url">
-                  [ML]bagging&RF
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-11T20:33:25+08:00">
-                2017-03-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="bagging"><a href="#bagging" class="headerlink" title="bagging"></a>bagging</h2><ul>
-<li><p>bagging是集成学习的一种，特点是各个弱分类器之间没有依赖关系，可以进行并行拟合。</p>
-</li>
-<li><p>bagging采用随机抽样的方法，有放回的进行抽样</p>
-</li>
-<li><p>bagging的集合策略也比较简单，对于分类问题，通常使用简单投票法，得到最多票数的类别或者类别之一为最终的模型输出。对于回归问题，通常使用简单平均法，对T个弱学习器得到的回归结果进行算术平均得到最终的模型输出。</p>
-</li>
-<li><p>由于Bagging算法每次都进行采样来训练模型，因此泛化能力很强，对于降低模型的方差很有作用。当然对于训练集的拟合程度就会差一些，也就是模型的偏差会大一些。</p>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/11/ML-随机森林/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/09/py-python进阶问题/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/09/py-python进阶问题/" itemprop="url">
-                  [py]python进阶问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T18:54:09+08:00">
-                2017-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="1-上下文管理器"><a href="#1-上下文管理器" class="headerlink" title="1.上下文管理器"></a>1.上下文管理器</h3><p>在编程的时候，经常会遇到这样的场景：先执行一些准备操作，然后执行自己的业务逻辑，等业务逻辑完成以后，再执行一些清理操作。<br>比如，打开文件，处理文件内容，最后关闭文件。又如，当多线程程序需要访问临界资源的时候，线程首先需要获取互斥锁，当执行完成并准备退出临界区的时候，需要释放互斥锁。对于这些情况，Python中提供了上下文管理器（Context Manager）的概念，可以通过上下文管理器来控制代码块执行前的准备动作以及执行后的收尾动作。</p>
-<p>在python中，使用with语句来支持上下文管理</p>
-<h4 id="with的应用场景："><a href="#with的应用场景：" class="headerlink" title="with的应用场景："></a>with的应用场景：</h4><ul>
-<li>打开文件，处理文件内容，关闭文件<br>  with open(filename) as f:</li>
-<li>多线程访问临街资源，线程获得互斥锁，当执行完毕并准备退出临界区时释放互斥锁<br>  with self.lock</li>
-<li>管理数据库游标cursor<br>  with conn as cur:</li>
-<li>控制运算精度？<br>  with decimal.localcontext() as ctx</li>
-</ul>
-<h4 id="上下文管理器可以同时管理多个资源："><a href="#上下文管理器可以同时管理多个资源：" class="headerlink" title="上下文管理器可以同时管理多个资源："></a>上下文管理器可以同时管理多个资源：</h4><pre><code>with open(filename1) as f1, open(filename2) as f2:
-</code></pre><h4 id="自定义上下文管理器："><a href="#自定义上下文管理器：" class="headerlink" title="自定义上下文管理器："></a>自定义上下文管理器：</h4><p>实现上下文管理协议：<br>    <strong>enter</strong>(self)<br>    <strong>exit</strong>(self, exception_type, exception_value, traceback)</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/09/py-python进阶问题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/09/基础-常见排序算法/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/09/基础-常见排序算法/" itemprop="url">
-                  [基础]常见排序算法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T15:51:43+08:00">
-                2017-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="常见排序算法"><a href="#常见排序算法" class="headerlink" title="常见排序算法"></a>常见排序算法</h2><p>比较排序：  </p>
-<blockquote>
-<p>插入排序法：插入排序，希尔排序<br>交换排序法：快速排序，冒泡排序<br>选择排序法：选择排序，堆排序<br>合并排序法：归并排序<br>基数排序法：基数排序  </p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/09/基础-常见排序算法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/06/ML-支持向量机/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/06/ML-支持向量机/" itemprop="url">
-                  [ML]支持向量机
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-06T19:03:50+08:00">
-                2017-03-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>支持向量机（SVM）是在分类与回归中分析数据的监督式学习模型与相关的学习算法。  </p>
-<p>给定一个训练集，寻找分离超平面，每个样本将被标记为属于两个类别中的其中一个，SVM将训练一个模型，将新的样本分类。  </p>
-<p>训练集中（xi，yi）xi是n维特征向量，y取自{-1,+1}  </p>
-<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：  </p>
-<ul>
-<li>使用核函数可以向高维空间进行映射  </li>
-<li>使用核函数可以解决非线性的分类  </li>
-<li>分类思想很简单，就是将样本与决策面的间隔最大化  </li>
-<li>分类效果较好  </li>
-</ul>
-<p>缺点：  </p>
-<ul>
-<li>对大规模数据训练比较困难，因为它是用二次规划来求解的  </li>
-<li>无法直接支持多分类，但是可以使用间接的方法来做  </li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/06/ML-支持向量机/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/05/实习-阿里一面引发的总结/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="James ZsnnsZ">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="ZSN码疯窝">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/05/实习-阿里一面引发的总结/" itemprop="url">
-                  [实习]阿里一面引发的总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-05T14:04:14+08:00">
-                2017-03-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="python基础："><a href="#python基础：" class="headerlink" title="python基础："></a>python基础：</h2><h4 id="1-面向对象三个特性："><a href="#1-面向对象三个特性：" class="headerlink" title="1.面向对象三个特性："></a>1.面向对象三个特性：</h4><p>封装、继承、多态  </p>
-<p>补充:<br>python是动态语言，不要求严格的继承体系—鸭子类型。<br>子类可以向上看作父类类型，通过父类调用子类的同名方法实现多态。<br>多态：同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果。  </p>
-<h4 id="2-list遍历："><a href="#2-list遍历：" class="headerlink" title="2.list遍历："></a>2.list遍历：</h4><pre><code>l = []
-- for x in l:
-      print x
-- for i in range(len(l)):
-      print l[i]
-- for i,x in enumerate(l):
-      print i,x
-</code></pre><p>补充：<br>list是有序可重复集合，删除可用pop(i)、del、remove  </p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/05/实习-阿里一面引发的总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1635,7 +1653,7 @@ n能被yi整除，当且仅当diff=（a0+a2+a4+.....）-（a1+a3+a5+.....）能�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -87,25 +87,22 @@
 
 
 
-<meta name="description" content="EM算法EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。
-EM算法过程将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。
-EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。
-构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)">
+<meta name="description" content="异常处理机制一般情况下，在python无法正常处理程序时就会产生一个异常，异常是一个对象，如果不对异常进行捕获那么发生异常时程序就会终止执行。
+
+try…except…finally…也可以拆分为try…except…和try…finally…当我们认为某些代码可能会出错时，就可以用try来运行这段代码，如果执行出错，则后续代码不会继续执行，而是直接跳转至错误处理代码，即except语句块，执行完">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[ML]EM">
-<meta property="og:url" content="http://yoursite.com/2017/03/24/ML-EM/index.html">
+<meta property="og:title" content="[py]异常处理机制">
+<meta property="og:url" content="http://yoursite.com/2017/03/30/py-异常处理机制/index.html">
 <meta property="og:site_name" content="ZSN码疯窝">
-<meta property="og:description" content="EM算法EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。
-EM算法过程将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。
-EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。
-构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)">
-<meta property="og:updated_time" content="2017-03-26T08:18:49.000Z">
+<meta property="og:description" content="异常处理机制一般情况下，在python无法正常处理程序时就会产生一个异常，异常是一个对象，如果不对异常进行捕获那么发生异常时程序就会终止执行。
+
+try…except…finally…也可以拆分为try…except…和try…finally…当我们认为某些代码可能会出错时，就可以用try来运行这段代码，如果执行出错，则后续代码不会继续执行，而是直接跳转至错误处理代码，即except语句块，执行完">
+<meta property="og:updated_time" content="2017-03-30T08:48:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[ML]EM">
-<meta name="twitter:description" content="EM算法EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。
-EM算法过程将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。
-EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。
-构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)">
+<meta name="twitter:title" content="[py]异常处理机制">
+<meta name="twitter:description" content="异常处理机制一般情况下，在python无法正常处理程序时就会产生一个异常，异常是一个对象，如果不对异常进行捕获那么发生异常时程序就会终止执行。
+
+try…except…finally…也可以拆分为try…except…和try…finally…当我们认为某些代码可能会出错时，就可以用try来运行这段代码，如果执行出错，则后续代码不会继续执行，而是直接跳转至错误处理代码，即except语句块，执行完">
 
 
 
@@ -133,13 +130,13 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/24/ML-EM/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/30/py-异常处理机制/"/>
 
 
 
 
 
-  <title> [ML]EM | ZSN码疯窝 </title>
+  <title> [py]异常处理机制 | ZSN码疯窝 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +253,7 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/24/ML-EM/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/py-异常处理机制/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="James ZsnnsZ">
@@ -280,7 +277,7 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
             
             
               
-                [ML]EM
+                [py]异常处理机制
               
             
           </h1>
@@ -295,8 +292,8 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-24T20:33:53+08:00">
-                2017-03-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T16:25:24+08:00">
+                2017-03-30
               </time>
             
 
@@ -331,15 +328,15 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
       
 
       
-        <h3 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h3><p>EM算法是含有隐变量的概率模型极大似然估计的迭代算法，它是个一般方法，不具有具体模型。</p>
-<h4 id="EM算法过程"><a href="#EM算法过程" class="headerlink" title="EM算法过程"></a>EM算法过程</h4><p>将含有隐变量的概率模型表示为P(Y,Z|θ)，Y是观测变量的数据，Z是隐变量的数据，θ是模型参数。</p>
-<p>EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的极大化，实现极大似然估计。</p>
-<p>构建EM算法时，定义Q函数是关键，在每次迭代过程中通过极大化Q函数来增大对数似然函数L(θ)，在一般条件(P(Y|θ)有上界)下EM算法是收敛的，但不能保证收敛到全局最优(可选择多组初始θ进行迭代，最后选择较优解)。</p>
-<p>迭代过程：</p>
+        <h3 id="异常处理机制"><a href="#异常处理机制" class="headerlink" title="异常处理机制"></a>异常处理机制</h3><p>一般情况下，在python无法正常处理程序时就会产生一个异常，异常是一个对象，如果不对异常进行捕获那么发生异常时程序就会终止执行。</p>
 <ul>
-<li>E步：求期望，称为Q函数,Q(θ,θi) = sigma(logP(Y,Z|θ)P(Z|Y,θi))</li>
-<li>M步：求极大，极大化Q函数，得到参数的新估计值</li>
-<li>重复E、M直至收敛</li>
+<li><p>try…except…finally…<br>也可以拆分为try…except…和try…finally…<br>当我们认为某些代码可能会出错时，就可以用try来运行这段代码，如果执行出错，则后续代码不会继续执行，而是直接跳转至错误处理代码，即except语句块，执行完except后，如果有finally语句块，则执行finally语句块，至此，执行完毕。  </p>
+</li>
+<li><p>assert语句<br>判断assert后面紧跟的语句是True还是False，如果是True则继续执行，如果是False则中断程序，调用默认的异常处理器，同时输出assert语句逗号后面的提示信息。</p>
+<p>  assert False,’error…’<br>  print ‘continue’</p>
+</li>
+<li><p>with语句<br>如果with语句或语句块中发生异常，会调用默认的异常处理器处理，但文件还是会正常关闭。</p>
+</li>
 </ul>
 
       
@@ -371,8 +368,8 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/20/实习-在线编程题解/" rel="next" title="[实习]在线编程题解">
-                <i class="fa fa-chevron-left"></i> [实习]在线编程题解
+              <a href="/2017/03/30/py-高阶函数/" rel="next" title="[py]高阶函数">
+                <i class="fa fa-chevron-left"></i> [py]高阶函数
               </a>
             
           </div>
@@ -381,8 +378,8 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/26/ML-隐马尔可夫模型/" rel="prev" title="[ML]隐马尔可夫模型">
-                [ML]隐马尔可夫模型 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/30/py-运行效率/" rel="prev" title="[py]运行效率">
+                [py]运行效率 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -505,7 +502,7 @@ EM算法通过迭代求解观测数据的对数似然函数L(θ)=logP(Y|θ)的�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#EM算法"><span class="nav-number">1.</span> <span class="nav-text">EM算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EM算法过程"><span class="nav-number">1.1.</span> <span class="nav-text">EM算法过程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#异常处理机制"><span class="nav-number">1.</span> <span class="nav-text">异常处理机制</span></a></li></ol></div>
             
 
           </div>
