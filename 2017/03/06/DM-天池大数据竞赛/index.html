@@ -1,0 +1,837 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="阿里天池移动推荐算法大赛数据预处理
+datafilter.py、pd_analyse.py
+
+
+1.删除只浏览而没有收藏、购物车、购买行为的ui  
+
+2.删除没有购买行为的用户的所有行为  
+
+3.删除对商品子集无交互的用户的行为
+
+4.删除浏览／购买比值、购物车／购买比值过大的用户，同时保留购买物品数大于20的用户的行为  
+
+
+pandas使用记录
+1.分组计数，并进行位置选择  data">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[DM]天池大数据竞赛">
+<meta property="og:url" content="http://yoursite.com/2017/03/06/DM-天池大数据竞赛/index.html">
+<meta property="og:site_name" content="ZSN码疯窝">
+<meta property="og:description" content="阿里天池移动推荐算法大赛数据预处理
+datafilter.py、pd_analyse.py
+
+
+1.删除只浏览而没有收藏、购物车、购买行为的ui  
+
+2.删除没有购买行为的用户的所有行为  
+
+3.删除对商品子集无交互的用户的行为
+
+4.删除浏览／购买比值、购物车／购买比值过大的用户，同时保留购买物品数大于20的用户的行为  
+
+
+pandas使用记录
+1.分组计数，并进行位置选择  data">
+<meta property="og:updated_time" content="2017-04-05T11:14:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[DM]天池大数据竞赛">
+<meta name="twitter:description" content="阿里天池移动推荐算法大赛数据预处理
+datafilter.py、pd_analyse.py
+
+
+1.删除只浏览而没有收藏、购物车、购买行为的ui  
+
+2.删除没有购买行为的用户的所有行为  
+
+3.删除对商品子集无交互的用户的行为
+
+4.删除浏览／购买比值、购物车／购买比值过大的用户，同时保留购买物品数大于20的用户的行为  
+
+
+pandas使用记录
+1.分组计数，并进行位置选择  data">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/06/DM-天池大数据竞赛/"/>
+
+
+
+
+
+  <title> [DM]天池大数据竞赛 | ZSN码疯窝 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">ZSN码疯窝</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/06/DM-天池大数据竞赛/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="James ZsnnsZ">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="ZSN码疯窝">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="ZSN码疯窝" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [DM]天池大数据竞赛
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-06T17:04:41+08:00">
+                2017-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="阿里天池移动推荐算法大赛"><a href="#阿里天池移动推荐算法大赛" class="headerlink" title="阿里天池移动推荐算法大赛"></a>阿里天池移动推荐算法大赛</h2><h2 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h2><blockquote>
+<p>datafilter.py、pd_analyse.py</p>
+</blockquote>
+<ul>
+<li><p>1.删除只浏览而没有收藏、购物车、购买行为的ui  </p>
+</li>
+<li><p>2.删除没有购买行为的用户的所有行为  </p>
+</li>
+<li><p>3.删除对商品子集无交互的用户的行为</p>
+</li>
+<li><p>4.删除浏览／购买比值、购物车／购买比值过大的用户，同时保留购买物品数大于20的用户的行为  </p>
+</li>
+</ul>
+<h4 id="pandas使用记录"><a href="#pandas使用记录" class="headerlink" title="pandas使用记录"></a>pandas使用记录</h4><ul>
+<li><p>1.分组计数，并进行位置选择<br>  data = data.groupby[‘user_id’,’behavior_type’].count().iloc[:,:1]</p>
+</li>
+<li><p>2.按列属性选择<br>  data1 = data[data.behavior_type==1]</p>
+</li>
+<li><p>3.给列赋列名<br>  data2.columns = [‘user_id’,’behavior_type4’,’num4’]</p>
+</li>
+<li><p>4.按照某列进行合并<br>  data4 = pd.merge(data1,data2,on=’user_id’)</p>
+</li>
+<li><p>5.得到两列的比值<br>  bizhi14 = data6[‘num’]/data6[‘num4’]</p>
+</li>
+<li><p>6.插入新列<br>  data5.insert(7,’bizhi14’,bizhi14)</p>
+</li>
+<li><p>7.保存为csv，去掉行索引，格式输出<br>  data5.to_csv(‘bizhi.csv’, index = False, float_format = ‘%.1f’)</p>
+</li>
+<li><p>8.条件统计<br>  data6[data6.bizhi14&gt;20].count()<br>  data6[data6.bizhi34==1].count()</p>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h2><blockquote>
+<p>fetch_feature.py</p>
+</blockquote>
+<ul>
+<li><p>用户-商品特征<br>  四种行为次数<br>  扩展：加入购物车未购买，最后访问距label日间距，行为天数</p>
+</li>
+<li><p>用户特征<br>  四种行为的次数，四种行为的商品数，行为天数，浏览量／购买量，购物车量／购买量,其他行为量／购买量，浏览商品数／购买商品数，购物车商品数／购买商品数，其他行为商品数／购买商品数<br>  扩展：行为后第二天购买率，平滑处理次数,label日前12小时</p>
+</li>
+<li><p>商品特征<br>  四种行为次数，四种行为的用户数，浏览量／购买量，购物车量／购买量，总行为数／购买次数，浏览用户／购买用户，购物车用户／购买用户,其他行为用户数。购买用户数，用户平均行为次数(4种行为总数／4种行为总人数)，老客户率</p>
+</li>
+<li><p>扩展<br>  交叉特征，时序特征，类别特征</p>
+</li>
+</ul>
+<h4 id="python使用记录"><a href="#python使用记录" class="headerlink" title="python使用记录"></a>python使用记录</h4><ul>
+<li><p>1.统计ui_f时使用列表嵌套字典统计ui行为发生次数，列表为4维对应四种行为</p>
+</li>
+<li><p>2.使用列表来临时存储要打印的结果，方便添加</p>
+</li>
+<li><p>3.a if b成立 else c</p>
+</li>
+<li><p>4.列表添加元素为dict.append()，集合添加元素为set.add()</p>
+</li>
+<li><p>5.统计u_f和i_f时使用列表嵌套字典再嵌套字典的结构，导入了collections中的defaultdict,形式如：<br>  [{u1：{i1:times1,i2:times2…}…},{},{},{}]<br>  [{i1：{u1:times1,u2:times2…}…},{},{},{}]</p>
+</li>
+</ul>
+<p>这样，统计某一用户浏览的商品数可用：<br>    len(u_i_num[0][u])</p>
+<p>统计某用户对所有商品的浏览次数可用：<br>    sum(u_i_num[0][u].values())</p>
+<p>以此类推</p>
+<h2 id="构建训练集"><a href="#构建训练集" class="headerlink" title="构建训练集"></a>构建训练集</h2><blockquote>
+<p>train_samples.py</p>
+</blockquote>
+<ul>
+<li><p>采用了滑动窗口的形式构建训练集，每十天为一个特征提取区段，其后一天贴label</p>
+</li>
+<li><p>批量提取特征后，每个窗口形成数个特征文件，进行csv文件的横向合并(merge):<br>  def combine_feature():</p>
+<pre><code>start = 1
+end = 10
+
+for _ in range(21):
+    name = str(start) + &apos;to&apos; + str(end)
+    filename1 = name + &apos;_i_f.csv&apos;
+    filename2 = name + &apos;_u_f.csv&apos;
+    filename3 = name + &apos;_ui_f.csv&apos;
+    filename4 = name + &apos;_combine.csv&apos;
+
+    df1 = pd.read_csv(&apos;item_feature/&apos; + filename1)
+    df2 = pd.read_csv(&apos;user_feature/&apos; + filename2)
+    df3 = pd.read_csv(&apos;ui_feature/&apos; + filename3)
+    df4 = pd.merge(df1, df2, on=[&apos;user_id&apos;, &apos;item_id&apos;])
+    df4 = pd.merge(df4, df3, on=[&apos;user_id&apos;, &apos;item_id&apos;])
+
+    df4.to_csv(&apos;train_sample/&apos; + filename4, index=False)
+
+    start += 1
+    end += 1
+</code></pre></li>
+<li><p>再将所有窗口的特征进行纵向合并(concat)，去掉u,i两列<br>  def combine_all():</p>
+<pre><code>files = os.listdir(&apos;train_sample/&apos;)
+if &apos;.DS_Store&apos; in files:
+    files.remove(&apos;.DS_Store&apos;)
+
+print len(files)
+
+dfs = [pd.read_csv(f) for f in files]
+total_df = pd.concat(dfs)
+
+totaldf = totaldf.drop(&apos;item_id&apos;, 1)
+totaldf = totaldf.drop(&apos;user_id&apos;, 1)
+
+total_df.to_csv(&apos;train_sample/train_sample.csv&apos;, index=False)
+</code></pre></li>
+</ul>
+<h4 id="pandas使用记录-1"><a href="#pandas使用记录-1" class="headerlink" title="pandas使用记录"></a>pandas使用记录</h4><ul>
+<li><p>横向合并<br>  df4 = pd.merge(df1, df2, on=[‘user_id’, ‘item_id’])</p>
+</li>
+<li><p>纵向合并<br>  dfs = [pd.read_csv(f) for f in files]<br>  total_df = pd.concat(dfs)</p>
+</li>
+</ul>
+<h4 id="macos注意"><a href="#macos注意" class="headerlink" title="macos注意"></a>macos注意</h4><ul>
+<li>可能有记录文件夹窗口形式的文件’.DS_Store’，要去除<br>  files = os.listdir(‘train_sample/‘)<br>  if ‘.DS_Store’ in files:<pre><code>files.remove(&apos;.DS_Store&apos;)
+</code></pre></li>
+</ul>
+<h2 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h2><blockquote>
+<p>train_model.py</p>
+</blockquote>
+<ul>
+<li><p>使用了GBDT进行模型训练，使用GBDT的好处是保证准确率的同时对正负样本分布不均的容忍度较好，避免了采样，对特征的形式无要求，避免特征的预处理。主要是时间不够了。</p>
+</li>
+<li><p>将训练后的模型进行序列化，方便之后做测试和预测<br>  from sklearn.externals import joblib<br>  joblib.dump(model, ‘./model/GBDT.m’)</p>
+</li>
+<li><p>使用sklearn时构建训练的输出数据的方法：<br>  df = pd.read_csv(‘train_sample/‘ + train_data)<br>  train_y = df[‘label’].values  # dataframe to ndarray<br>  train_X = df.drop(‘label’, 1).values</p>
+</li>
+</ul>
+<h2 id="交叉验证及调参"><a href="#交叉验证及调参" class="headerlink" title="交叉验证及调参"></a>交叉验证及调参</h2><blockquote>
+<p>predict.py</p>
+</blockquote>
+<ul>
+<li><p>加载训练好的模型，提取测试数据，用模型进行预测，与真实情况比较，计算Accuracy、AUC Score、F1，从而进行调参</p>
+</li>
+<li><p>GBDT调参：<br>  n_estimators：弱学习器的最大迭代次数<br>  learning_rate：每个弱学习器的权重缩减系数νν，也称作步长<br>  步长和最大迭代次数要一起调参<br>  subsample：子采样，取值为(0,1]，不放回抽样<br>  loss：损失函数，对于分类模型，有对数似然损失函数”deviance”和指数损失函数”exponential”；对于回归模型，有均方差”ls”, 绝对损失”lad”, Huber损失”huber”和分位数损失“quantile”，默认为ls<br>  max_features：划分时考虑的最大特征数<br>  max_depth：决策树最大深度<br>  min_samples_split：内部节点再划分所需最小样本数<br>  min_samples_leaf：叶子节点最少样本数<br>  max_leaf_nodes：最大叶子节点数</p>
+</li>
+</ul>
+<h2 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h2><blockquote>
+<p>predict.py、get_result.py、rule_fiter.py</p>
+</blockquote>
+<ul>
+<li><p>加载训练好的模型，构造线上集进行预测</p>
+</li>
+<li><p>使用规则进行过滤</p>
+</li>
+<li><p>求并集</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/05/实习-问题小结/" rel="next" title="问题小结">
+                <i class="fa fa-chevron-left"></i> 问题小结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/06/ML-支持向量机/" rel="prev" title="[ML]支持向量机">
+                [ML]支持向量机 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="James ZsnnsZ" />
+          <p class="site-author-name" itemprop="name">James ZsnnsZ</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ZsnnsZ" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#阿里天池移动推荐算法大赛"><span class="nav-number">1.</span> <span class="nav-text">阿里天池移动推荐算法大赛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据预处理"><span class="nav-number">2.</span> <span class="nav-text">数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pandas使用记录"><span class="nav-number">2.0.1.</span> <span class="nav-text">pandas使用记录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征工程"><span class="nav-number">3.</span> <span class="nav-text">特征工程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#python使用记录"><span class="nav-number">3.0.1.</span> <span class="nav-text">python使用记录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建训练集"><span class="nav-number">4.</span> <span class="nav-text">构建训练集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pandas使用记录-1"><span class="nav-number">4.0.1.</span> <span class="nav-text">pandas使用记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#macos注意"><span class="nav-number">4.0.2.</span> <span class="nav-text">macos注意</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型训练"><span class="nav-number">5.</span> <span class="nav-text">模型训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交叉验证及调参"><span class="nav-number">6.</span> <span class="nav-text">交叉验证及调参</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预测"><span class="nav-number">7.</span> <span class="nav-text">预测</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">James ZsnnsZ</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
