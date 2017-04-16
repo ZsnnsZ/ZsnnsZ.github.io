@@ -101,7 +101,7 @@
 类的三种方法
 实例方法：有self，表示创建的实例(对象)本身。通过‘实例名.方法名’a.foo(x)即foo(a,x)   
 静态方法：在类成员函数">
-<meta property="og:updated_time" content="2017-03-31T03:27:00.000Z">
+<meta property="og:updated_time" content="2017-04-13T08:25:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="问题小结">
 <meta name="twitter:description" content="面向对象：面向对象三个特性：封装、继承、多态  
@@ -401,8 +401,9 @@
 </ul>
 <h4 id="args，-kwargs"><a href="#args，-kwargs" class="headerlink" title="*args，**kwargs"></a>*args，**kwargs</h4><ul>
 <li>如果我们不确定要往函数中传入多少个参数，或者我们想往函数中以列表和元组的形式传参数时，那就使要用*args；  </li>
-<li>如果我们不知道要往函数中传入多少个关键词参数，或者想传入字典的值作为关键词参数时，那就要使用**kwargs。  <h4 id="5-python导入模块的搜索路径"><a href="#5-python导入模块的搜索路径" class="headerlink" title="5.python导入模块的搜索路径"></a>5.python导入模块的搜索路径</h4>python会优先搜索主目录，当导入的文件跨目录时设置PAYTHONPATH很重要</li>
+<li>如果我们不知道要往函数中传入多少个关键词参数，或者想传入字典的值作为关键词参数时，那就要使用**kwargs。</li>
 </ul>
+<h4 id="5-python导入模块的搜索路径"><a href="#5-python导入模块的搜索路径" class="headerlink" title="5.python导入模块的搜索路径"></a>5.python导入模块的搜索路径</h4><p>python会优先搜索主目录，当导入的文件跨目录时设置PAYTHONPATH很重要</p>
 <p>1.程序的主目录<br>2.PYTHONPATH目录(如果设置了)，python会从左至右搜索该环境变量中罗列出的所有目录<br>3.标准库模块安装目录<br>4.任何.pth文件的内容(如果存在)，在.pth文件中一行行列出目录，扩展模块搜索路径</p>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="if-name-’-main-‘"><a href="#if-name-’-main-‘" class="headerlink" title="if __name__==’__main__‘:"></a>if __name__==’__main__‘:</h4><p>在命令行中，python解释器会把__name__变量置为__main__，如果模块中有if __name__==’__main__’:这句话，那么他之后的操作会自动执行。<br>而当我们在其他的py文件里导入这个模块时，__name__的值为模块的名称，if条件不满足，后面的就不会执行。  用途就是测试一个模块。  </p>
 <h4 id="文件和目录"><a href="#文件和目录" class="headerlink" title="文件和目录"></a>文件和目录</h4><p>os.path.isfile(fname)<br>进阶：</p>

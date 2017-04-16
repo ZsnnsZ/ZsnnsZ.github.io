@@ -121,7 +121,7 @@ datafilter.py、pd_analyse.py
 
 pandas使用记录
 1.分组计数，并进行位置选择  data">
-<meta property="og:updated_time" content="2017-04-05T11:14:23.000Z">
+<meta property="og:updated_time" content="2017-04-13T08:27:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[DM]天池大数据竞赛">
 <meta name="twitter:description" content="阿里天池移动推荐算法大赛数据预处理
@@ -495,7 +495,7 @@ total_df.to_csv(&apos;train_sample/train_sample.csv&apos;, index=False)
 <ul>
 <li><p>加载训练好的模型，提取测试数据，用模型进行预测，与真实情况比较，计算Accuracy、AUC Score、F1，从而进行调参</p>
 </li>
-<li><p>GBDT调参：<br>  n_estimators：弱学习器的最大迭代次数<br>  learning_rate：每个弱学习器的权重缩减系数νν，也称作步长<br>  步长和最大迭代次数要一起调参<br>  subsample：子采样，取值为(0,1]，不放回抽样<br>  loss：损失函数，对于分类模型，有对数似然损失函数”deviance”和指数损失函数”exponential”；对于回归模型，有均方差”ls”, 绝对损失”lad”, Huber损失”huber”和分位数损失“quantile”，默认为ls<br>  max_features：划分时考虑的最大特征数<br>  max_depth：决策树最大深度<br>  min_samples_split：内部节点再划分所需最小样本数<br>  min_samples_leaf：叶子节点最少样本数<br>  max_leaf_nodes：最大叶子节点数</p>
+<li><p>GBDT调参：<br>  n_estimators：弱学习器的最大迭代次数<br>  learning_rate：每个弱学习器的权重缩减系数ν，也称作步长<br>  步长和最大迭代次数要一起调参<br>  subsample：子采样，取值为(0,1]，不放回抽样<br>  loss：损失函数，对于分类模型，有对数似然损失函数”deviance”和指数损失函数”exponential”；对于回归模型，有均方差”ls”, 绝对损失”lad”, Huber损失”huber”和分位数损失“quantile”，默认为ls<br>  max_features：划分时考虑的最大特征数<br>  max_depth：决策树最大深度<br>  min_samples_split：内部节点再划分所需最小样本数<br>  min_samples_leaf：叶子节点最少样本数<br>  max_leaf_nodes：最大叶子节点数</p>
 </li>
 </ul>
 <h2 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h2><blockquote>
